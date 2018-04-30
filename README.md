@@ -6,3 +6,5 @@ Please fork this repo and clone it down on to your machine. When you have the re
 - Fork repository and clone it on your machine
 - Enter one of the sample app directories (ex. `cd live-dashboard`)
 - Start application by running `npm start`
+
+Check out the JS Catalyst repo [here](https://github.com/EikosPartners/jscatalyst)!
