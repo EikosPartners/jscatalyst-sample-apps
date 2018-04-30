@@ -14,30 +14,35 @@
 
       <div class="bubble">
         <chartjs-bubble
+          title='Chartjs Bubble Chart'
           :dataModel='bubbleData'
         ></chartjs-bubble>
       </div>
 
       <div class="line">
         <chartjs-line
+          title='Chartjs Line Chart'
           :dataModel='lineData'
         ></chartjs-line>
       </div>
 
       <div class="pie">
         <chartist-pie
+          title='Chartist Pie Chart'
           :dataModel='pieData'
         ></chartist-pie>
       </div>
 
       <div class="zoomable">
         <d3-zoomable-line
+          title='D3 Zoomable Line Chart'
           :dataModel='zoomableData'
         ></d3-zoomable-line>
       </div>
 
       <div class="stream">
         <d3-stream
+          title='D3 Stream Graph'
           :dataModel='streamData'
           dateFormat='M/D/YY'
         ></d3-stream>
@@ -45,6 +50,7 @@
 
       <div class="difference">
         <d3-difference
+          title='D3 Difference Chart'
           :dataModel='differenceData'
           style='background-color: yellow;'
         ></d3-difference>
@@ -106,11 +112,6 @@
 
 <style>
 @supports (display: grid) {
-  .dashboard {
-    display:grid;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 20px;
-  }
   .charts {
     display:grid;
     grid-template-columns: repeat(12, 1fr);
@@ -122,14 +123,14 @@
     '. zo zo zo zo zo zo zo zo zo zo .'
     '. st st st st st df df df df df .';
     border: 2px dashed;
-    grid-gap: 20px;
+    grid-gap: 50px;
   }
   .description {
     grid-area: ds;
   }
   .sender {
     grid-area: sd;
-    height: 200px;
+    height: 100px;
   }
   .bubble {
     grid-area: bb;
