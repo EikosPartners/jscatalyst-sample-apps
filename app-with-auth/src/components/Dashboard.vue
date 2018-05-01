@@ -1,37 +1,40 @@
 <template>
-  <div class="dashboard">
-    <div class="chart">
-      <bar-chart
-        :dataModel='barData'
-      ></bar-chart>
+  <div>
+    <h1 class='display-2 mb-5' style='text-align:center;'>Protected Dashboard</h1>
+    <div class="dashboard">
+      <div class="chart">
+        <bar-chart
+          :dataModel='barData'
+        ></bar-chart>
+      </div>
+
+      <div class="chart">
+        <box-plot
+          :dataModel='boxData'
+        ></box-plot>
+      </div>
+
+      <div class="chart">
+        <heat-map
+          :dataModel='heatData'
+        ></heat-map>
+      </div>
+
+      <div class="chart">
+        <line-plot
+          :dataModel='lineData'
+        ></line-plot>
+      </div>
+
+      <div class="chart">
+        <punch-card
+          :dataModel='punchData'
+        ></punch-card>
+      </div>
+
     </div>
-
-    <div class="chart">
-      <box-plot
-        :dataModel='boxData'
-      ></box-plot>
-    </div>
-
-    <div class="chart">
-      <heat-map
-        :dataModel='heatData'
-      ></heat-map>
-    </div>
-
-    <div class="chart">
-      <line-plot
-        :dataModel='lineData'
-      ></line-plot>
-    </div>
-
-    <div class="chart">
-      <punch-card
-        :dataModel='punchData'
-      ></punch-card>
-    </div>
-
-
   </div>
+
 </template>
 
 <script>
