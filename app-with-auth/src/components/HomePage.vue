@@ -1,6 +1,6 @@
 <template>
   <section style="z-index: 1;">
-      <h1 class="display-2">Authentication</h1>
+      <h1 class="display-2">Authentication Demo</h1>
       <p class="subtitle my-3">
         This is a demo for the Authentication plugin that is available in the <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst repo</a>. This plugin encapsulates all the logic needed to keep track of a user's authentication by adding this data to the Vuex store. It also provides built in actions for logging in and signing up.
       </p>

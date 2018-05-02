@@ -7,7 +7,7 @@
         style="z-index:5;"
       >
         <!-- DROP A LOGO HERE -->
-        <h1 id="headerText">Auth Demo</h1>
+        <h1 id="headerText">Authentication Demo</h1>
         <v-spacer></v-spacer>
 
         <!-- Full nav menu for larger screens -->
