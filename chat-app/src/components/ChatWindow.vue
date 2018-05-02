@@ -2,25 +2,43 @@
 <v-container fluid>
 	<v-layout row wrap>
 		<v-flex xs12>
-			<v-alert type="info" :value="true" v-if="!connected">
-		      You are not connected to the websocket server! To send and receive messages, please run `node server.js`.
-    		</v-alert>
-    		<v-alert type="success" :value="true" v-else>
-    			Success! Server connected.
-    		</v-alert>
+			<span v-if="!connected">
+				<v-alert type="info" :value="true">
+			      You are not connected to the websocket server! To send and receive messages, please run `node server.js`.
+	    		</v-alert>
+	    	</span>
+	    	<span v-else>
+	    		<v-alert type="success" :value="true">
+	    			Success! Server connected.
+	    		</v-alert>
+    		</span>
 		</v-flex>
-		<v-flex xs10>
+		<v-flex xs12>
+			<v-divider />
+		</v-flex>
+		<v-flex xs12 md10>
 			<v-text-field
 			  v-model="value"
 	          name="yourMessage"
 	          label="write message here"
-	          multi-line
+	          textarea
 	        ></v-text-field>
 		</v-flex>
-		<v-flex xs2 d-flex align-center>
+		<v-flex xs12 md2 d-flex align-center>
 			<v-btn @click="submitMessage">
 				Submit Message
 			</v-btn>
+		</v-flex>
+		<v-flex xs12>
+			<v-divider />
+		</v-flex>
+		<v-flex xs12>
+			<v-text-field
+			  disabled
+			  v-model="messageDisplay"
+	          name="theirMessages"
+	          textarea
+	        ></v-text-field>
 		</v-flex>
 	</v-layout>
 </v-container>
@@ -33,8 +51,8 @@ export default {
 	data: function(){
 		return {
         	connected: null,
-        	value: ''
-
+        	value: '',
+        	theirMessages: []
 		}
 	},
     sockets: {
@@ -44,7 +62,7 @@ export default {
       },
       broadcast: function(msg){
         if (msg.chat === true) {
-          alert(msg.value)
+          this.theirMessages.push(msg)
         }      
       }
     },
@@ -53,15 +71,6 @@ export default {
     },
 
     methods: {
-      emitMessage: function(msg){
-// if socket.io server, broadcast message to all instances
-        if (this.$socket.connected) {
-          this.$socket.emit('externalMessage', msg)
-        } else {
-// else, just send the message
-          windowmanager.messagebus.send('external-message', msg)
-        }
-      },
       submitMessage: function(){
       	if (this.$socket.connected) {
           this.$socket.emit('externalMessage', {value: this.value})
@@ -71,6 +80,15 @@ export default {
     },
     props: {
 
+    },
+    computed: {
+    	messageDisplay(){
+    		let bigOldString = ''
+    		this.theirMessages.forEach(item=>{
+    			bigOldString += item.id + ': ' + item.value + '\n'
+    		})
+    		return bigOldString 
+    	}
     }
 
 
@@ -79,5 +97,7 @@ export default {
 </script>
 
 <style>
-
+.input-group textarea:disabled, .input-group__details {
+	color: black!important;
+}
 </style>

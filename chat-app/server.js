@@ -20,7 +20,7 @@ io.sockets.on('connection', function(socket){
     io.emit('users', socket.id)
 
     socket.on('externalMessage', function(msg){
-      let newMsg = Object.assign(msg, {chat: true})
+      let newMsg = Object.assign(msg, {chat: true, id: socket.id})
       console.log(msg)
       io.emit('broadcast', msg)
     })
