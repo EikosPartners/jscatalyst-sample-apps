@@ -52,30 +52,39 @@ export default {
 		return {
         	connected: null,
         	value: '',
-        	theirMessages: []
+        	theirMessages: [],
+        	myIPaddress: '',
+        	socketID: ''
 		}
 	},
     sockets: {
       connect: function(){
         console.log('connected')
         this.connected = true
+        this.$socket.emit('pageOpened')
       },
       broadcast: function(msg){
         if (msg.chat === true) {
           this.theirMessages.push(msg)
-        }      
+        } else if (msg.location === true) {
+        	this.myIPaddress = msg.address
+        	this.socketID = msg.id
+        }
       }
     },
     beforeMount: function(){
-        this.connected = this.$socket.connected
+       this.connected = this.$socket.connected
     },
-
+    mounted: function(){
+	   	if (this.connected) {
+	       	this.$socket.emit('pageOpened', 'hello')
+	    }
+    },
     methods: {
       submitMessage: function(){
       	if (this.$socket.connected) {
           this.$socket.emit('externalMessage', {value: this.value})
          }
-      	// debugger
       }
     },
     props: {
@@ -85,7 +94,7 @@ export default {
     	messageDisplay(){
     		let bigOldString = ''
     		this.theirMessages.forEach(item=>{
-    			bigOldString += item.id + ': ' + item.value + '\n'
+    			bigOldString += item.id + '@' + item.address + ': ' + item.value + '\n'
     		})
     		return bigOldString 
     	}
