@@ -1,17 +1,20 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
-  </div>
+  <v-app id="app">
+<!--     <img src="./assets/logo.png">
+    <HelloWorld/> -->
+    <ChatWindow/> 
+  </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import ChatWindow from './components/ChatWindow'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    ChatWindow
   }
 }
 </script>
