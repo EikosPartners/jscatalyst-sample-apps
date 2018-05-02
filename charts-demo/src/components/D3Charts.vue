@@ -296,7 +296,6 @@
           label: el.category_1 + el.category_2 + el.category_3
         }
       })
-      console.log(pieData());
     }
   }
 </script>
