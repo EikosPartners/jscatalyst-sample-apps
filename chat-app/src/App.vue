@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <div class="display-2"> Direct Messages </div>
+    <div class="display-3"> Direct Messages Example </div>
       <DirectMessage/> 
 <!--     <div class="display-2"> Group Chat </div>
     <v-jumbotron :gradient="gradient">      

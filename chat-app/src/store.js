@@ -36,6 +36,9 @@ export const store = new Vuex.Store({
   	},
   	usersWhoAreNotMe: function(state, getters) {
   		 return state.allUsers.filter(item=>{return item.username != state.myUsername})
+  	},
+  	allUsersByUserName: function(state, getters) {
+  		return state.allUsers.map(item=>item.username)
   	}
   }
 

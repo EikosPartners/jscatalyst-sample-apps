@@ -1,46 +1,8 @@
 <template>
 <v-container fluid>
 	<v-layout row wrap>
-    <v-flex xs12 md10>
-      <v-select
-        :items="usersWhoAreNotMe"
-        item-text="username"
-        v-model="recipient"
-        label="Select Recipient"
-        single-line
-      >
-      </v-select>
-
-    </v-flex>
-    <v-flex xs12 md2 d-flex align-center>
-      <v-btn @click="submitMessage">
-        Select Recipient
-      </v-btn>
-    </v-flex>
-
-		<v-flex xs12 md10>
-			<v-text-field
-			  v-model="value"
-	          name="yourMessage"
-	          label="write message here"
-	          textarea
-	        ></v-text-field>
-		</v-flex>
-		<v-flex xs12 md2 d-flex align-center>
-			<v-btn @click="submitMessage" :disabled="!recipient">
-				Submit Message
-			</v-btn>
-		</v-flex>
-		<v-flex xs12>
-			<v-divider />
-		</v-flex>
-		<v-flex xs12>
-			<v-text-field
-			  disabled
-			  v-model="messageDisplay"
-	          name="theirMessages"
-	          textarea
-	        ></v-text-field>
+    <v-flex xs12 v-for="user in usersWhoAreNotMe" :key="user.username">
+      <OneOnOne :recipient="user"  />
 		</v-flex>
 	</v-layout>
 </v-container>
@@ -49,13 +11,16 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex'
+import OneOnOne from './OneOnOne.vue'
 
 export default {
+  components: {
+    OneOnOne
+  },
 	data: function(){
 		return {
         	connected: null,
         	value: '',
-        	theirMessages: [],
           recipient: '',
 		}
 	},
@@ -69,15 +34,10 @@ export default {
       },
       allUsers: function(msg) {
         msg.forEach(item=>{
-          if (!this.allUsers.includes(item)) {
+          if (!this.allUsersByUserName.includes(item.username)) {
             this.$store.commit('ADD_USER', item)
           }
         })
-      },
-      directMessage: function(msg) {
-        if (msg.recipient.username === this.myUsername || msg.from.username == this.myUsername) {
-          this.theirMessages.push(msg)
-        }
       },
       userConnected: function(msg){
           if (!this.myIPaddress) {
@@ -89,7 +49,7 @@ export default {
           if (!this.mySocketID) {
             this.$store.commit('MY_SOCKET_ID', msg.id)
           }
-        if (!this.allUsers.includes(msg)) {
+        if (!this.allUsersByUserName.includes(msg.username)) {
          this.$store.commit('ADD_USER', msg)
         }
       },
@@ -105,21 +65,16 @@ export default {
 	       	this.$socket.emit('pageOpened')
 	    }
     },
-    created(){
+    created: function(){
       window.addEventListener('beforeunload', this.closeHandler)
     },
+    beforeDestroy: function(){
+      this.closeHandler()
+    },
     methods: {
-      submitMessage: function(){
-      	if (this.$socket.connected) {
-          this.$socket.emit('directMessage', {value: this.value, recipient: this.recipient})
-         }
-      },
       closeHandler: function(event){
         this.$socket.emit('pageClosed', {username: this.myUsername})
       }
-    },
-    props: {
-
     },
     computed: {
       ...mapState([
@@ -130,7 +85,8 @@ export default {
       ]),
     	...mapGetters([
     		'usersWhoAreMe',
-    		'usersWhoAreNotMe'
+    		'usersWhoAreNotMe',
+        'allUsersByUserName'
     	]),
     	messageDisplay(){
     		let bigOldString = ''
