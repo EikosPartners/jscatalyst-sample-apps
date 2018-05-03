@@ -23,6 +23,12 @@ const worldData = require('../src/mockData/worldMapMock.json')
 const boxData = require('../src/mockData/boxPlotMock.json')
 const forceData = require('../src/mockData/forceDirectedGraphMock.json')
 
+const cjspieData = require('../src/mockData/polarMock.json')
+const cjsbubbleData = require('../src/mockData/bubbleMock.json')
+const radarData = require('../src/mockData/radarMock.json')
+const cjsscatterData = require('../src/mockData/scatterMock.json')
+const multiLineData = require('../src/mockData/multiLineMock.json')
+
 router.get('/:comp', (req, res) => {
     const dataModels = {
       'barchart': barData,
@@ -43,9 +49,15 @@ router.get('/:comp', (req, res) => {
       zoomablelinechart: zoomData,
       usmapcounty: usCountyData,
       usmapstate: usStateData,
+      histogram: histogramData,
       wolrdmap: worldData,
       boxplot: boxData,
-      forcegraph: forceData
+      forcegraph: forceData,
+      cjspiechart: cjspieData,
+      cjsbubblechart: cjsbubbleData,
+      radarchart: radarData,
+      cjsscatterplot: cjsscatterData,
+      multiline: multiLineData
     }
     res.send({ dataModel: dataModels[req.params.comp] });
 });
