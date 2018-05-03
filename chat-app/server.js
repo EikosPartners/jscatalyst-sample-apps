@@ -20,37 +20,79 @@ io.sockets.on('connection', function(socket){
 	connectCount++;
 		// console.log(socket.conn)
 		// console.log(socket.handshake)
-
-
-
+    let personID = {id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`}
 
 	socket.on('pageOpened', function(){
-
-		let personID = {connected: true, id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`}
+    console.log('pageOpened')
+    io.emit('allUsers', allUsers)
     allUsers.push(personID)
-    console.log(allUsers.length)
-    let msg = {...personID, allUsers: allUsers}
-    io.emit('broadcast', msg)
+    io.emit('userConnected', personID)
 	})
 
-  socket.on('externalMessage', function(msg){
-    let newMsg = Object.assign(msg, {chat: true, id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`})
-    console.log(msg)
-    io.emit('broadcast', msg)
+  socket.on('chatMessage', function(msg){
+    console.log('chatMessage')
+    let newMsg = {...msg, from: personID}
+    console.log(newMsg)
+    io.emit('chatMessage', newMsg)
   })
 
   socket.on('directMessage', function(msg){
-    let newMsg = Object.assign(msg, {DM: true, id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`})
-    console.log(msg)
-    io.emit('broadcast', msg)
+    console.log('directMessage')
+    let newMsg = {...msg, from: personID}
+    console.log(newMsg)
+
+    io.emit('directMessage', newMsg)
   })
 
   socket.on('pageClosed', function(msg){
-    allUsers = allUsers.filter(item=> item.username !== msg.username)
-    console.log(allUsers.length) 
     console.log('pageClosed')
-    io.emit('brodcast', {allUsers: allUsers, connected: true})
+    allUsers.filter(item=>(item.username !== msg.username))
+    console.log(msg)
+    io.emit('userDisconnected', msg)
   })
 
 
 })
+// HTK start socketserver and webpackserver at same time 
+// module.exports = webpackConfig.then((webpackConfig) => {
+//     let compiler = webpack(webpackConfig);
+
+//     compiler.apply(new webpack.ProgressPlugin());
+
+//     app.use(middleware(compiler, {
+//         // webpack-dev-middleware options
+//         noInfo: true, publicPath: webpackConfig.output.publicPath
+//     }));
+
+//     app.use(require("webpack-hot-middleware")(compiler));
+
+//     // catch 404 and forward to error handler
+//     app.use(function(req, res, next) {
+//         var err = new Error('Not Found');
+//         err.status = 404;
+//         next(err);
+//     });
+
+//     // error handler
+//     app.use(function(err, req, res, next) {
+//         // set locals, only providing error in development
+//         res.locals.message = err.message;
+//         res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+//         // render the error page
+//         res.status(err.status || 500).end();
+//         // res.render('error');
+//     });
+
+//     app.listen(webpackConfig.devServer.port, () => console.log('Listening on port 8080'));
+//     // spdy
+//     //     .createServer(options, app)
+//     //     .listen(webpackConfig.devServer.port, (error) => {
+//     //         if (error) {
+//     //             console.error(error)
+//     //             return process.exit(1)
+//     //         } else {
+//     //             console.log('Listening on port: ' + webpackConfig.devServer.port + '.')
+//     //         }
+//     //     })
+// })

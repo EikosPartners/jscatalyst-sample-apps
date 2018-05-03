@@ -13,8 +13,11 @@ export const store = new Vuex.Store({
     mySocketID: ''
   },
   mutations: {
-    ALL_USERS: function(state, payload) {
-      state.allUsers = payload
+    ADD_USER: function(state, payload) {
+      state.allUsers = [...state.allUsers, payload]
+    },
+    REMOVE_USER: function(state, payload) {
+      state.allUsers = state.allUsers.filter(item=>{return item.username !== payload.username })
     },
     MY_IP_ADDRESS: function(state, payload) {
     	state.myIPaddress = payload

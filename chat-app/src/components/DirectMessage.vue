@@ -5,7 +5,6 @@
       <v-select
         :items="usersWhoAreNotMe"
         item-text="username"
-        item.value="username"
         v-model="recipient"
         label="Select Recipient"
         single-line
@@ -67,11 +66,22 @@ export default {
         this.$socket.emit('pageOpened')
       },
       broadcast: function(msg){
-        if (msg.DM === true) {
+      },
+      allUsers: function(msg) {
+        msg.forEach(item=>{
+          if (!this.allUsers.includes(item)) {
+            this.$store.commit('ADD_USER', item)
+          }
+        })
+      },
+      directMessage: function(msg) {
+        if (msg.recipient.username === this.myUsername || msg.from.username == this.myUsername) {
           this.theirMessages.push(msg)
-        } else if (msg.connected === true) {
+        }
+      },
+      userConnected: function(msg){
           if (!this.myIPaddress) {
-        	 this.$store.commit('MY_IP_ADDRESS', msg.address)
+           this.$store.commit('MY_IP_ADDRESS', msg.address)
           }
           if (!this.myUsername) {
             this.$store.commit('MY_USERNAME', msg.username)
@@ -79,13 +89,16 @@ export default {
           if (!this.mySocketID) {
             this.$store.commit('MY_SOCKET_ID', msg.id)
           }
-        	this.$store.commit('ALL_USERS', msg.allUsers)
+        if (!this.allUsers.includes(msg)) {
+         this.$store.commit('ADD_USER', msg)
         }
+      },
+      userDisconnected: function(msg) {
+         this.$store.commit('REMOVE_USER', msg) 
       }
     },
     beforeMount: function(){
        this.connected = this.$socket.connected
-
     },
     mounted: function(){
 	   	if (this.connected) {
@@ -93,14 +106,12 @@ export default {
 	    }
     },
     created(){
-      window.addEventListener('close', this.closeHandler)
       window.addEventListener('beforeunload', this.closeHandler)
-
     },
     methods: {
       submitMessage: function(){
       	if (this.$socket.connected) {
-          this.$socket.emit('directMessage', {value: this.value, recipient: this.recipient, sender: this.username})
+          this.$socket.emit('directMessage', {value: this.value, recipient: this.recipient})
          }
       },
       closeHandler: function(event){
@@ -124,7 +135,7 @@ export default {
     	messageDisplay(){
     		let bigOldString = ''
     		this.theirMessages.forEach(item=>{
-    			bigOldString += item.username + ': ' + item.value + '\n'
+    			bigOldString += item.from.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 
     	}

@@ -1,4 +1,4 @@
-<template>
+a<template>
 <v-container fluid>
 	<v-layout row wrap>
 		<v-flex xs12>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 
 export default {
 	data: function(){
@@ -54,8 +54,6 @@ export default {
         	connected: null,
         	value: '',
         	theirMessages: [],
-        	myIPaddress: '',
-        	socketID: ''
 		}
 	},
     sockets: {
@@ -64,16 +62,27 @@ export default {
         this.connected = true
         this.$socket.emit('pageOpened')
       },
-      broadcast: function(msg){
-        if (msg.chat === true) {
-          this.theirMessages.push(msg)
-        } else if (msg.connected === true) {
-        	this.myIPaddress = msg.address
-        	this.socketID = msg.id
-        	this.$store.commit('MY_IP_ADDRESS', msg.address)
-        	this.$store.commit('ALL_USERS', msg)
-        }
+      chatMessage: function(msg) {
+        this.theirMessages.push(msg)
+      },
+      userConnected: function(msg){
+          if (!this.myIPaddress) {
+           this.$store.commit('MY_IP_ADDRESS', msg.address)
+          }
+          if (!this.myUsername) {
+            this.$store.commit('MY_USERNAME', msg.username)
+          }
+          if (!this.mySocketID) {
+            this.$store.commit('MY_SOCKET_ID', msg.id)
+          }
+         // this.$store.commit('ADD_USER', msg)
+      },
+      userDisconnected: function(msg) {
+         this.$store.commit('REMOVE_USER', msg) 
       }
+    },
+    created(){
+      window.addEventListener('beforeunload', this.closeHandler)
     },
     beforeMount: function(){
        this.connected = this.$socket.connected
@@ -86,7 +95,7 @@ export default {
     methods: {
       submitMessage: function(){
       	if (this.$socket.connected) {
-          this.$socket.emit('externalMessage', {value: this.value})
+          this.$socket.emit('chatMessage', {value: this.value})
          }
       }
     },
@@ -94,14 +103,20 @@ export default {
 
     },
     computed: {
-    	...mapGetters([
-    		'usersWhoAreMe',
-    		'usersWhoAreNotMe'
-    	]),
+      ...mapState([
+        'allUsers',
+        'myIPaddress',
+        'myUsername',
+        'mySocketID'
+      ]),
+      ...mapGetters([
+        'usersWhoAreMe',
+        'usersWhoAreNotMe'
+      ]),
     	messageDisplay(){
     		let bigOldString = ''
     		this.theirMessages.forEach(item=>{
-    			bigOldString += item.id + '@' + item.address + ': ' + item.value + '\n'
+    			bigOldString += item.from.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 
     	}

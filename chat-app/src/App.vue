@@ -1,10 +1,8 @@
 <template>
   <v-app id="app">
-<!--     <img src="./assets/logo.png">
-    <HelloWorld/> -->
     <div class="display-2"> Direct Messages </div>
-    <DirectMessage/> 
-    <div class="display-2"> Group Chat </div>
+      <DirectMessage/> 
+<!--     <div class="display-2"> Group Chat </div>
     <v-jumbotron :gradient="gradient">      
       <v-container fill-height>
         <v-layout align-center>
@@ -13,21 +11,19 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-jumbotron>
+    </v-jumbotron> -->
 <!--     <ChatWindow/>  -->
 
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import DirectMessage from './components/DirectMessage'
 import ChatWindow from './components/ChatWindow'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     ChatWindow,
     DirectMessage
   },
