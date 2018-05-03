@@ -2,8 +2,12 @@
   <div class="header-title" style="z-index: 1;">
       <h1 class="display-2">Chart Examples</h1>
       <p class="subtitle my-3">
-        This sample app demonstrates all charts available in the JS Catalyst package. TO navigate throught the different charts please press the menu button at the top left corner and select one of the pages under Data Visualiztions. Feel free to play around with the color themes and the light/dark themes as well.
-      </p>
+        This page demonstrates all of the charts, including the various charting JavaScript libraries, available in the JS Catalyst package.</p>
+
+        <h3>To Use</h3>
+        <p>The libraries and their respective charts are located in the menu dropdown on the upper left. All of the charts respond to various color themes, which can be changed using the Themes dropdown in the navigation bar.</p>
+
+        <p>In JS Catalyst, you can use pre-made themes, or easily create your own.</p>
   </div>
 </template>
 
