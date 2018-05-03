@@ -3,7 +3,7 @@
 	<v-layout row wrap>
     <v-flex xs12 md10>
       <v-select
-        :items="usersWhoAreMe"
+        :items="usersWhoAreNotMe"
         item-text="username"
         item.value="username"
         v-model="recipient"
@@ -28,7 +28,7 @@
 	        ></v-text-field>
 		</v-flex>
 		<v-flex xs12 md2 d-flex align-center>
-			<v-btn @click="submitMessage">
+			<v-btn @click="submitMessage" :disabled="!recipient">
 				Submit Message
 			</v-btn>
 		</v-flex>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 
 export default {
 	data: function(){
@@ -57,9 +57,7 @@ export default {
         	connected: null,
         	value: '',
         	theirMessages: [],
-        	myIPaddress: '',
-        	socketID: '',
-          recipient: ''
+          recipient: '',
 		}
 	},
     sockets: {
@@ -69,35 +67,56 @@ export default {
         this.$socket.emit('pageOpened')
       },
       broadcast: function(msg){
-        if (msg.chat === true) {
+        if (msg.DM === true) {
           this.theirMessages.push(msg)
         } else if (msg.connected === true) {
-        	this.myIPaddress = msg.address
-        	this.socketID = msg.id
-        	this.$store.commit('MY_IP_ADDRESS', msg.address)
-        	this.$store.commit('ALL_USERS', msg)
+          if (!this.myIPaddress) {
+        	 this.$store.commit('MY_IP_ADDRESS', msg.address)
+          }
+          if (!this.myUsername) {
+            this.$store.commit('MY_USERNAME', msg.username)
+          }
+          if (!this.mySocketID) {
+            this.$store.commit('MY_SOCKET_ID', msg.id)
+          }
+        	this.$store.commit('ALL_USERS', msg.allUsers)
         }
       }
     },
     beforeMount: function(){
        this.connected = this.$socket.connected
+
     },
     mounted: function(){
 	   	if (this.connected) {
 	       	this.$socket.emit('pageOpened')
 	    }
     },
+    created(){
+      window.addEventListener('close', this.closeHandler)
+      window.addEventListener('beforeunload', this.closeHandler)
+
+    },
     methods: {
       submitMessage: function(){
       	if (this.$socket.connected) {
-          this.$socket.emit('externalMessage', {value: this.value})
+          this.$socket.emit('directMessage', {value: this.value, recipient: this.recipient, sender: this.username})
          }
+      },
+      closeHandler: function(event){
+        this.$socket.emit('pageClosed', {username: this.myUsername})
       }
     },
     props: {
 
     },
     computed: {
+      ...mapState([
+        'allUsers',
+        'myIPaddress',
+        'myUsername',
+        'mySocketID'
+      ]),
     	...mapGetters([
     		'usersWhoAreMe',
     		'usersWhoAreNotMe'
@@ -105,7 +124,7 @@ export default {
     	messageDisplay(){
     		let bigOldString = ''
     		this.theirMessages.forEach(item=>{
-    			bigOldString += item.id + '@' + item.address + ': ' + item.value + '\n'
+    			bigOldString += item.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 
     	}
