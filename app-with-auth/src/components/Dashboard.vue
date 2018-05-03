@@ -1,40 +1,42 @@
 <template>
-  <div>
-    <h1 class='display-2 mb-5' style='text-align:center;'>Protected Dashboard</h1>
+  <main style="margin: 0 auto;">
+    <h1 class='display-2 my-5 text-xs-center'>Protected Dashboard</h1>
     <div class="dashboard">
-      <div class="chart">
+      <section class="chart pa-2 ma-2">
+        <h2 class='subtitle text-xs-center'>Chart Name</h2>
         <bar-chart
           :dataModel='barData'
         ></bar-chart>
-      </div>
+      </section>
 
-      <div class="chart">
+      <section class="chart pa-2 ma-2">
         <box-plot
           :dataModel='boxData'
         ></box-plot>
-      </div>
+      </section>
 
-      <div class="chart">
+      <section class="chart pa-2 ma-2">
+        <h2 class='subtitle text-xs-center'>Chart Name</h2>
         <heat-map
           :dataModel='heatData'
         ></heat-map>
-      </div>
+      </section>
 
-      <div class="chart">
+      <section class="chart pa-2 ma-2">
+        <h2 class='subtitle text-xs-center'>Chart Name</h2>
         <line-plot
           :dataModel='lineData'
         ></line-plot>
-      </div>
+      </section>
 
-      <div class="chart">
+      <section class="chart pa-2 ma-2">
+        <h2 class='subtitle text-xs-center'>Chart Name</h2>
         <punch-card
           :dataModel='punchData'
         ></punch-card>
-      </div>
-
+      </section>
     </div>
-  </div>
-
+  </main>
 </template>
 
 <script>
@@ -82,12 +84,17 @@
   }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+h2 {
+  font-weight: normal;
+}
 .dashboard {
   display: grid;
   grid-template-columns: 48vw 48vw;
 }
 .chart {
-  height:500px
+  height:500px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px #888888;
 }
 </style>
