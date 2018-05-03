@@ -10,27 +10,28 @@ var server = http.createServer(app);
 server.listen(4000, '0.0.0.0');
 
 console.log('Websocket server is running on 4000!\n');
-
+console.log(myIPaddress)
 var io = require('socket.io').listen(server);
 var connectCount = 0;
 io.sockets.on('connection', function(socket){
     //send data to clienzt
-    console.log('Connection Established')
+  console.log('Connection Established')
 	connectCount++;
 		// console.log(socket.conn)
 		// console.log(socket.handshake)
 
-	socket.on('pageOpened', function(thing){
-		console.log(thing)
-		let newThing = {location: true, id: socket.id, address: myIPaddress}
-    	io.emit('broadcast', newThing)
+
+	socket.on('pageOpened', function(){
+		let personID = {connected: true, id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`}
+    console.log(personID)
+    io.emit('broadcast', personID)
 	})
 
-    socket.on('externalMessage', function(msg){
-      let newMsg = Object.assign(msg, {chat: true, id: socket.id, address: myIPAddress})
-      console.log(msg)
-      io.emit('broadcast', msg)
-    })
+  socket.on('externalMessage', function(msg){
+    let newMsg = Object.assign(msg, {chat: true, id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`})
+    console.log(msg)
+    io.emit('broadcast', msg)
+  })
 
 
 })
