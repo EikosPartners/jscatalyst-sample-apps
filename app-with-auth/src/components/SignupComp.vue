@@ -56,6 +56,8 @@
       }
     },
     methods: {
+      // function for signing up
+      // dispatches the signup action provided by the auth plugin
       signup: function() {
         var username = this.username
         var password = this.password

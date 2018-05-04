@@ -219,6 +219,7 @@
       'stacked-bar-chart': D3StackedBarChart
     },
     created() {
+      // get all possible stock symbols that the api provides so that they can be displayed in select
       axios.get('https://api.iextrading.com/1.0/ref-data/symbols')
         .then(res => {
           this.stockSymbols = res.data.filter(el => el.isEnabled).map(el => {
@@ -283,6 +284,7 @@
       this.$socket.emit('unsubscribe', this.currentStockSymbol)
     },
     methods: {
+      // changing the stock resets the data of the charts and then gets the new data for that stock symbol
       changeStock: function(stock) {
         this.$socket.emit('unsubscribe', this.currentStockSymbol)
         this.currentStock = stock
@@ -291,8 +293,10 @@
         this.gridOptions= {};
         this.getLiveStockData();
         this.getStaticStockData()
+        //subscribe to the newly selected stock symbol's websocket channel
         this.$socket.emit('subscribe', this.currentStockSymbol)
       },
+      // for viewing the stock history in the static charts on the dashboard
       selectTimeRange: function(event) {
         if(event.target.firstChild.nodeValue === '1 Month') {
           this.selectedTime = '1m'
@@ -309,6 +313,7 @@
         };
         this.getStaticStockData()
       },
+      // gets the data from the current day up until the current time so that the charts are not blank when waiting for live data
       getLiveStockData: function() {
         var today = moment().format('YYYYMMDD')
         var requestURL = `https://api.iextrading.com/1.0/stock/${this.currentStockSymbol}/chart/date/${today}`;
@@ -339,6 +344,7 @@
             this.liveLinePlotData2 = lineData;
           })
       },
+      // gets the data for the currently selected time period and currently selected stock 
       getStaticStockData: function() {
         axios.get(`https://api.iextrading.com/1.0/stock/${this.currentStockSymbol}/chart/${this.selectedTime}`)
           .then(res => {

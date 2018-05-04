@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// import the Receiver component from jscatalyst 
 import { ReceiverComponent } from 'jscatalyst'
 export default {
   components: {

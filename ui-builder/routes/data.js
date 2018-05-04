@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// imnport all the mock data
 const barData = require('../src/mockData/barchartMock.json')
 const bubbleData = require('../src/mockData/bubbleMock.json')
 const heatData = require('../src/mockData/heatmapMock.json')
@@ -23,9 +24,18 @@ const worldData = require('../src/mockData/worldMapMock.json')
 const boxData = require('../src/mockData/boxPlotMock.json')
 const forceData = require('../src/mockData/forceDirectedGraphMock.json')
 
+const cjspieData = require('../src/mockData/polarMock.json')
+const cjsbubbleData = require('../src/mockData/bubbleMock.json')
+const radarData = require('../src/mockData/radarMock.json')
+const cjsscatterData = require('../src/mockData/scatterMock.json')
+const multiLineData = require('../src/mockData/multiLineMock.json')
+
+// route used when a request is made for a chart's data
 router.get('/:comp', (req, res) => {
+    //object mapping the data of all the charts to the name of the chart passed as a param
+    // in the request
     const dataModels = {
-      'barchart': barData,
+      barchart: barData,
       linechart: lineData,
       bubblechart: bubbleData,
       heatmap: heatData,
@@ -43,10 +53,18 @@ router.get('/:comp', (req, res) => {
       zoomablelinechart: zoomData,
       usmapcounty: usCountyData,
       usmapstate: usStateData,
+      histogram: histogramData,
       wolrdmap: worldData,
       boxplot: boxData,
-      forcegraph: forceData
+      forcegraph: forceData,
+      cjspiechart: cjspieData,
+      cjsbubblechart: cjsbubbleData,
+      radarchart: radarData,
+      cjsscatterplot: cjsscatterData,
+      multiline: multiLineData
     }
+    // use the dataModels object to find correct data based on
+    // request param and send to the front end
     res.send({ dataModel: dataModels[req.params.comp] });
 });
 
