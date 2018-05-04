@@ -30,20 +30,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Tell the application to use passport to do authentication
 app.use(pass.initialize())
+// wrap the passport strategy in a function so that there is access to the req and res arguments
 const passportAuth = function(req,res,next) {
   pass.authenticate('jwt', function(err, user, info) {
+    // a check if the user's session is going to epire soon. if it will then they can be prompted to extend their session
     if (err && err.expiresSoon === true) {
       res.locals.expiresSoon = true
     } else {
       res.locals.expiresSoon = false
     }
+    // clear the user's cookie if the token has expired. they are no longer authorized
     if (info && info.name === 'TokenExpiredError') {
       res.clearCookie("jwt");
     }
     next()
   }, {session: false, failureRedirect:'/'})(req,res,next)
 }
+// passport will be used on all routes other that the ones specified below
 passportAuth.unless = unless
 app.use(passportAuth.unless({
   path: [
@@ -55,9 +60,9 @@ app.use(passportAuth.unless({
     /.*\.(js|html|jpg|jpeg|css)$/i
   ]
 }))
-
+// load the auth routes from the routes folder
 app.use('/auth', require('./routes/auth'));
-
+// route to check a user's authentication
 app.get('/checkAuth', (req, res) => {
   if (req.cookies['jwt']) {
     res.locals.expiresSoon ? res.send({authenticated: true, expiresSoon: res.locals.expiresSoon}) : res.send({authenticated: true})

@@ -56,6 +56,7 @@
   import punchData from '@/mockData/punchMock.json'
 
   export default {
+    // register components on vue instance
     components: {
       'bar-chart': D3BarChart,
       'box-plot': D3BoxPlot,
@@ -63,6 +64,7 @@
       'line-plot': D3LinePlot,
       'punch-card': D3PunchCard
     },
+    // set data for all the charts
     data: function() {
       return {
         barData: [],
