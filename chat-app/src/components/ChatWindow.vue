@@ -20,13 +20,28 @@ a<template>
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		<v-flex xs12>
+     <v-flex xs12 md2 style="padding-top: 20px">
+      <v-card color="transparent">
+        <v-toolbar>
+          <v-toolbar-title>Current Users</v-toolbar-title>
+        </v-toolbar>
+        <v-list v-for="user in usersWhoAreNotMe" :key="user.id">
+          <v-list-tile>
+            <v-list-tile-title>
+              {{user.username}}
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-card>
+    </v-flex>
+		<v-flex xs12 md10>
 			<v-text-field
 			  disabled
 			  v-model="messageDisplay"
 	          name="theirMessages"
 	          textarea
-	        ></v-text-field>
+	        > 
+        </v-text-field>
 		</v-flex>
 	</v-layout>
 </v-container>
