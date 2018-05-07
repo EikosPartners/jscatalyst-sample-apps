@@ -63,11 +63,23 @@ export default {
           if (!this.mySocketID) {
             this.$store.commit('MY_SOCKET_ID', msg.id)
           }
-         // this.$store.commit('ADD_USER', msg)
+        if (!this.allUsersByUserName.includes(msg.username)) {
+         this.$store.commit('ADD_USER', msg)
+        }
+      },
+      allUsers: function(msg) {
+        msg.forEach(item=>{
+          if (!this.allUsersByUserName.includes(item.username)) {
+            this.$store.commit('ADD_USER', item)
+          }
+        })
       },
       userDisconnected: function(msg) {
          this.$store.commit('REMOVE_USER', msg) 
-      }
+      },
+      allNewUsers: function(msg) {
+        this.$store.commit('ALL_USERS', msg)
+      },
     },
     created(){
       window.addEventListener('beforeunload', this.closeHandler)
@@ -80,12 +92,19 @@ export default {
 	       	this.$socket.emit('pageOpened')
 	    }
     },
+    beforeDestroy(){
+      this.closeHandler()
+    },
     methods: {
       submitMessage: function(){
       	if (this.$socket.connected) {
           this.$socket.emit('chatMessage', {value: this.value})
          }
+      },
+      closeHandler: function(event){
+        this.$socket.emit('pageClosed', {username: this.myUsername})
       }
+
     },
     props: {
 
@@ -99,7 +118,8 @@ export default {
       ]),
       ...mapGetters([
         'usersWhoAreMe',
-        'usersWhoAreNotMe'
+        'usersWhoAreNotMe',
+        'allUsersByUserName'
       ]),
     	messageDisplay(){
     		let bigOldString = ''

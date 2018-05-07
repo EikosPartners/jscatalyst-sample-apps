@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 
 Vue.use(Vuex)
@@ -40,7 +41,10 @@ export const store = new Vuex.Store({
   	allUsersByUserName: function(state, getters) {
   		return state.allUsers.map(item=>item.username)
   	}
-  }
+  },
+  // plugins: [(new VuexPersistence({
+  //       storage: window.sessionStorage
+  //   })).plugin]
 
 
 

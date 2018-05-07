@@ -25,8 +25,11 @@ io.sockets.on('connection', function(socket){
 	socket.on('pageOpened', function(){
     console.log('pageOpened')
     io.emit('allUsers', allUsers)
-    allUsers.push(personID)
-    io.emit('userConnected', personID)
+    var amINew = allUsers.filter(item=>item.username === personID.username)
+    if (amINew.length == 0) {
+      allUsers.push(personID)
+      io.emit('userConnected', personID)
+    }
 	})
 
   socket.on('newUsername', function(msg){
