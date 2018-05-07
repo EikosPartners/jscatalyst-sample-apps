@@ -29,6 +29,16 @@ io.sockets.on('connection', function(socket){
     io.emit('userConnected', personID)
 	})
 
+  socket.on('newUsername', function(msg){
+    console.log('newUsername')
+    console.log(personID)
+    allUsers = allUsers.filter(item=> item.username !== personID.username)
+    personID.username = msg.username
+    console.log(personID)
+    allUsers.push(personID)
+    io.emit('allNewUsers', allUsers)
+  })
+
   socket.on('chatMessage', function(msg){
     console.log('chatMessage')
     let newMsg = {...msg, from: personID}
@@ -53,46 +63,4 @@ io.sockets.on('connection', function(socket){
 
 
 })
-// HTK start socketserver and webpackserver at same time 
-// module.exports = webpackConfig.then((webpackConfig) => {
-//     let compiler = webpack(webpackConfig);
 
-//     compiler.apply(new webpack.ProgressPlugin());
-
-//     app.use(middleware(compiler, {
-//         // webpack-dev-middleware options
-//         noInfo: true, publicPath: webpackConfig.output.publicPath
-//     }));
-
-//     app.use(require("webpack-hot-middleware")(compiler));
-
-//     // catch 404 and forward to error handler
-//     app.use(function(req, res, next) {
-//         var err = new Error('Not Found');
-//         err.status = 404;
-//         next(err);
-//     });
-
-//     // error handler
-//     app.use(function(err, req, res, next) {
-//         // set locals, only providing error in development
-//         res.locals.message = err.message;
-//         res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-//         // render the error page
-//         res.status(err.status || 500).end();
-//         // res.render('error');
-//     });
-
-//     app.listen(webpackConfig.devServer.port, () => console.log('Listening on port 8080'));
-//     // spdy
-//     //     .createServer(options, app)
-//     //     .listen(webpackConfig.devServer.port, (error) => {
-//     //         if (error) {
-//     //             console.error(error)
-//     //             return process.exit(1)
-//     //         } else {
-//     //             console.log('Listening on port: ' + webpackConfig.devServer.port + '.')
-//     //         }
-//     //     })
-// })
