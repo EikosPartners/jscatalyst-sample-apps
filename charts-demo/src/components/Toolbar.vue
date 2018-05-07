@@ -7,7 +7,8 @@
         style="z-index:5;"
       >
         <!-- DROP A LOGO HERE -->
-        <h1 id="headerText">Chart Demo</h1>
+        <!-- <h1 :to="{name: 'HomePage'}" id="headerText">Chart Demo</h1> -->
+        <router-link :to="{name: 'HomePage'}" class="headline nav-text">Chart Demo</router-link>
         <v-spacer></v-spacer>
 
         <!-- Full nav menu for larger screens -->
@@ -134,6 +135,10 @@ import { StyleTogglerMixin } from 'jscatalyst'
     -webkit-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
     -moz-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
     box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
+
+  .nav-text
+    text-decoration none
+    color #000
 
   .list__tile__title
     font-size: 12px

@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <toolbar></toolbar>
-    <nav-menu></nav-menu>
+    <sub-nav></sub-nav>
     <v-content style="padding-top: 50px;">
       <router-view></router-view>
     </v-content>
@@ -10,12 +10,12 @@
 
 <script>
 import Toolbar from './components/Toolbar.vue'
-import NavMenu from './components/NavMenu.vue'
+import SubNavBar from './components/SubNavBar.vue'
 export default {
   name: 'App',
   components: {
     'toolbar': Toolbar,
-    'nav-menu': NavMenu
+    'sub-nav': SubNavBar
   }
 }
 </script>

@@ -58,7 +58,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'main-nav-drawer',
   data () {
