@@ -25,8 +25,9 @@ io.sockets.on('connection', function(socket){
 	socket.on('pageOpened', function(){
     console.log('pageOpened')
     io.emit('allUsers', allUsers)
-    var amINew = allUsers.filter(item=>item.username === personID.username)
-    if (amINew.length == 0) {
+    var amINew = allUsers.filter(item=>item.id === personID.id)
+    
+    if (amINew.length === 0) {
       allUsers.push(personID)
       io.emit('userConnected', personID)
     }
@@ -34,12 +35,15 @@ io.sockets.on('connection', function(socket){
 
   socket.on('newUsername', function(msg){
     console.log('newUsername')
-    console.log(personID)
-    allUsers = allUsers.filter(item=> item.username !== personID.username)
+    io.emit('userDisconnected', personID)
     personID.username = msg.username
-    console.log(personID)
-    allUsers.push(personID)
-    io.emit('allNewUsers', allUsers)
+    allUsers.map(item=> {
+      if (item.id === msg.id) {
+        item.username === msg.username
+      }
+      return item
+    })
+    io.emit('userConnected', personID)
   })
 
   socket.on('chatMessage', function(msg){

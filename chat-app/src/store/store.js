@@ -14,6 +14,9 @@ export const store = new Vuex.Store({
     mySocketID: '',
   },
   mutations: {
+    ALL_USERS: function(state, payload) {
+      state.allUsers = payload
+    },
     ADD_USER: function(state, payload) {
       state.allUsers = [...state.allUsers, payload]
     },
@@ -33,15 +36,15 @@ export const store = new Vuex.Store({
   },
   getters: {
   	usersWhoAreMe: function(state, getters){
-  		return state.allUsers.filter(item=>{return item.username == state.myUsername})
+  		return state.allUsers.filter(item=>{return item.id == state.mySocketID})
   	},
   	usersWhoAreNotMe: function(state, getters) {
-  		 return state.allUsers.filter(item=>{return item.username != state.myUsername})
+  		 return state.allUsers.filter(item=>{return item.id != state.mySocketID})
   	},
   	allUsersByUserName: function(state, getters) {
   		return state.allUsers.map(item=>item.username)
   	}
-  },
+  }
   // plugins: [(new VuexPersistence({
   //       storage: window.sessionStorage
   //   })).plugin]

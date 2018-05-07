@@ -36,13 +36,16 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
   export default {
 
     computed: {
       ...mapState([
         'myUsername',
         'mySocketID'
+      ]),
+      ...mapGetters([
+        'allUsersByUserName'
       ]),
       newUsername: function(){
         if (this.customUsername == '') {
@@ -82,13 +85,32 @@ import {mapState} from 'vuex'
           if (!this.mySocketID) {
             this.$store.commit('MY_SOCKET_ID', msg.id)
           }
-         // this.$store.commit('ADD_USER', msg)
+      if (!this.allUsersByUserName.includes(msg.username)) {
+         this.$store.commit('ADD_USER', msg)
+        }
       },
+      allUsers: function(msg) {
+        msg.forEach(item=>{
+          if (!this.allUsersByUserName.includes(item.username)) {
+            this.$store.commit('ADD_USER', item)
+          }
+        })
+      },
+      userDisconnected: function(msg) {
+         this.$store.commit('REMOVE_USER', msg) 
+      },
+
     },
     methods: {
       setNewUsername: function(){
         this.$store.commit('MY_USERNAME', this.newUsername)
-        this.$socket.emit('newUsername', {username: this.newUsername})
+        this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
+        this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
+      }
+    },
+    watch: {
+      allUsersByUserName: function(msg) {
+        debugger
       }
     }
   }

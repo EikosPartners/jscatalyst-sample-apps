@@ -1,13 +1,7 @@
 <template>
 <v-container fluid>
 	<v-layout row wrap>
-    <v-flex v-if="usersWhoAreNotMe.length < 1">
-       <v-alert type="info" :value="true">
-          You are the only user connected this app! No DM recipients available. 
-        </v-alert>
-      </span>
-    </v-flex>
-    <v-flex v-else xs12 v-for="user in usersWhoAreNotMe" :key="user.username">
+    <v-flex xs12 v-for="user in usersWhoAreNotMe" :key="user.username">
       <OneOnOne :recipient="user"  />
 		</v-flex>
 	</v-layout>
@@ -36,8 +30,6 @@ export default {
         this.connected = true
         this.$socket.emit('pageOpened')
       },
-      broadcast: function(msg){
-      },
       allUsers: function(msg) {
         msg.forEach(item=>{
           if (!this.allUsersByUserName.includes(item.username)) {
@@ -63,26 +55,23 @@ export default {
          this.$store.commit('REMOVE_USER', msg) 
       }
     },
+    created: function(){
+      window.addEventListener('beforeunload', this.closeHandler)
+    },
     beforeMount: function(){
        this.connected = this.$socket.connected
     },
     mounted: function(){
-	   	if (this.connected) {
-	       	this.$socket.emit('pageOpened')
-	    }
+      if (this.connected) {
+          this.$socket.emit('pageOpened')
+      }
     },
     beforeDestroy(){
       this.closeHandler()
     },
-    created: function(){
-      window.addEventListener('beforeunload', this.closeHandler)
-    },
-    beforeDestroy: function(){
-      this.closeHandler()
-    },
     methods: {
       closeHandler: function(event){
-        this.$socket.emit('pageClosed', {username: this.myUsername})
+        this.$socket.emit('pageClosed', {username: this.myUsername, id: this.mySocketID})
       }
     },
     computed: {

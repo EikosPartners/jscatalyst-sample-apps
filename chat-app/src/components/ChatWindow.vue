@@ -102,7 +102,7 @@ export default {
          }
       },
       closeHandler: function(event){
-        this.$socket.emit('pageClosed', {username: this.myUsername})
+        this.$socket.emit('pageClosed', {username: this.myUsername, id: this.mySocketID})
       }
 
     },
