@@ -41,7 +41,7 @@ a<template>
         name="theirMessages"
         textarea
         :rows="textAreaRows"
-	        > 
+	     > 
         </v-text-field>
 		</v-flex>
 	</v-layout>
@@ -51,15 +51,17 @@ a<template>
 
 <script>
 import {mapGetters, mapState} from 'vuex'
+import lifeCycleMixin from '../mixins'
 
 export default {
-	data: function(){
-		return {
-        	connected: null,
-        	value: '',
-        	theirMessages: [],
-		}
-	},
+    data: function(){
+    	return {
+          	connected: null,
+          	value: '',
+          	theirMessages: [],
+    	}
+    },
+    mixins: [lifeCycleMixin],
     sockets: {
       connect: function(){
         console.log('connected')
@@ -70,9 +72,6 @@ export default {
         this.theirMessages.push(msg)
       },
       userConnected: function(msg){
-          if (!this.myIPaddress) {
-           this.$store.commit('MY_IP_ADDRESS', msg.address)
-          }
           if (!this.myUsername) {
             this.$store.commit('MY_USERNAME', msg.username)
           }
@@ -97,46 +96,19 @@ export default {
         this.$store.commit('ALL_USERS', msg)
       },
     },
-    created(){
-      window.addEventListener('beforeunload', this.closeHandler)
-    },
-    beforeMount: function(){
-       this.connected = this.$socket.connected
-    },
-    mounted: function(){
-	   	if (this.connected) {
-	       	this.$socket.emit('pageOpened')
-	    }
-    },
-    beforeDestroy(){
-      this.closeHandler()
-    },
     methods: {
       submitMessage: function(){
       	if (this.$socket.connected) {
           this.$socket.emit('chatMessage', {value: this.value})
          }
       },
-      closeHandler: function(event){
-        this.$socket.emit('pageClosed', {username: this.myUsername, id: this.mySocketID})
-      }
 
     },
     props: {
 
     },
     computed: {
-      ...mapState([
-        'allUsers',
-        'myIPaddress',
-        'myUsername',
-        'mySocketID'
-      ]),
-      ...mapGetters([
-        'usersWhoAreMe',
-        'usersWhoAreNotMe',
-        'allUsersByUserName'
-      ]),
+     
     	messageDisplay(){
     		let bigOldString = ''
     		this.theirMessages.forEach(item=>{

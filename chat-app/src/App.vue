@@ -4,7 +4,7 @@
     <v-container style="padding-top: 70px;">
        <span v-if="usersWhoAreNotMe.length < 1">
        <v-alert type="info" :value="true">
-          You are the only user connected this app! 
+          You are the only user connected to this app! 
         </v-alert>
       </span>
       <span v-else>

@@ -12,18 +12,19 @@
 <script>
 import {mapGetters, mapState} from 'vuex'
 import OneOnOne from './OneOnOne.vue'
+import lifeCycleMixin from '../mixins'
 
 export default {
-  components: {
-    OneOnOne
-  },
-	data: function(){
-		return {
-        	connected: null,
-        	value: '',
-          recipient: '',
-		}
-	},
+    components: {
+      OneOnOne
+    },
+  	data: function(){
+  		return {
+          	connected: null,
+          	value: '',
+            recipient: '',
+  		}
+  	},
     sockets: {
       connect: function(){
         console.log('connected')
@@ -38,9 +39,6 @@ export default {
         })
       },
       userConnected: function(msg){
-          if (!this.myIPaddress) {
-           this.$store.commit('MY_IP_ADDRESS', msg.address)
-          }
           if (!this.myUsername) {
             this.$store.commit('MY_USERNAME', msg.username)
           }
@@ -55,37 +53,10 @@ export default {
          this.$store.commit('REMOVE_USER', msg) 
       }
     },
-    created: function(){
-      window.addEventListener('beforeunload', this.closeHandler)
-    },
-    beforeMount: function(){
-       this.connected = this.$socket.connected
-    },
-    mounted: function(){
-      if (this.connected) {
-          this.$socket.emit('pageOpened')
-      }
-    },
-    beforeDestroy(){
-      this.closeHandler()
-    },
+    mixins: [lifeCycleMixin],
     methods: {
-      closeHandler: function(event){
-        this.$socket.emit('pageClosed', {username: this.myUsername, id: this.mySocketID})
-      }
     },
     computed: {
-      ...mapState([
-        'allUsers',
-        'myIPaddress',
-        'myUsername',
-        'mySocketID'
-      ]),
-    	...mapGetters([
-    		'usersWhoAreMe',
-    		'usersWhoAreNotMe',
-        'allUsersByUserName'
-    	]),
     	messageDisplay(){
     		let bigOldString = ''
     		this.theirMessages.forEach(item=>{

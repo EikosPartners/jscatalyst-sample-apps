@@ -8,6 +8,7 @@
       >
         <!-- DROP A LOGO HERE -->
         <h1 id="headerText"> <router-link to="/">JSCatalyst Chat</router-link></h1>
+        <h3 style="margin-left: 15px" v-if="myUsername">@{{myUsername}}</h3>
         <v-spacer></v-spacer>
 
         <!-- Full nav menu for larger screens -->
@@ -78,6 +79,7 @@
 <script>
 
 import { StyleTogglerMixin } from 'jscatalyst'
+import {mapState} from 'vuex'
 
   export default {
     components: {
@@ -115,6 +117,11 @@ import { StyleTogglerMixin } from 'jscatalyst'
         if (this.$store.state.themeMod) return this.$store.state.themeMod.displayTheme;
         return 'light'
       },
+
+      ...mapState([
+        'myUsername',
+      ]),
+
     },
     methods: {
       tbd: function(){

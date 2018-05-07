@@ -37,17 +37,11 @@
 </template>
 
 <script>
+import lifeCycleMixin from '../mixins'
 import {mapState, mapGetters} from 'vuex'
   export default {
 
     computed: {
-      ...mapState([
-        'myUsername',
-        'mySocketID'
-      ]),
-      ...mapGetters([
-        'allUsersByUserName'
-      ]),
       newUsername: function(){
         if (this.customUsername == '') {
           return this.myUsername
@@ -65,17 +59,7 @@ import {mapState, mapGetters} from 'vuex'
         }
       }
     },
-    created(){
-        window.addEventListener('beforeunload', this.closeHandler)
-    },
-    beforeMount() {
-      this.connected = this.$socket.connected
-    },
-    mounted: function(){
-      if (this.connected) {
-          this.$socket.emit('pageOpened')
-      }
-    },
+    mixins: [lifeCycleMixin],
     sockets: {
       connect: function(){
         console.log('connected')
@@ -114,9 +98,6 @@ import {mapState, mapGetters} from 'vuex'
         this.$store.commit('MY_USERNAME', this.newUsername)
         this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
         this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
-      },
-      closeHandler: function(event){
-        this.$socket.emit('pageClosed', {username: this.myUsername, id: this.mySocketID})
       }
     }
   }
