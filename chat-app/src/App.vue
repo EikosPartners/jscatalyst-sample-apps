@@ -9,7 +9,7 @@
       </span>
       <span v-else>
         <v-alert type="success" :value="true">
-          {{usersWhoAreNotMe.length}} other users connected! 
+          {{usersMessage | plurals}} connected! 
         </v-alert>
       </span>
       <router-view></router-view>
@@ -37,6 +37,18 @@ export default {
       ...mapGetters([
         'usersWhoAreNotMe'
       ]),
+      usersMessage: function(){
+        return this.usersWhoAreNotMe.length
+      }
+  },
+  filters: {
+    plurals: function(value) {
+      if (value === 1) {
+        return value + " other user "
+      } else {
+        return value + " other users "
+      }
+    }
   }
 }
 </script>

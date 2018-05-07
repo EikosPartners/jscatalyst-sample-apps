@@ -22,6 +22,7 @@
         <v-text-field
           id="username"
           name="username"
+          :rules="[rules.uniqueName]"
           label="Choose A User Name (Optional)"
           :placeholder="myUsername"
           v-model="customUsername"
@@ -58,7 +59,10 @@ import {mapState, mapGetters} from 'vuex'
     data: function(){
       return {
         connected: null,
-        customUsername: ''
+        customUsername: '',
+        rules: {
+          uniqueName: (value)=> {return !this.allUsersByUserName.includes(value) || 'Username In Use'}
+        }
       }
     },
     beforeMount() {
@@ -103,14 +107,17 @@ import {mapState, mapGetters} from 'vuex'
     },
     methods: {
       setNewUsername: function(){
-        this.$store.commit('MY_USERNAME', this.newUsername)
-        this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
-        this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
+        if (this.allUsersByUserName.includes(this.newUsername)) {
+
+        } else {
+          this.$store.commit('MY_USERNAME', this.newUsername)
+          this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
+          this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
+        }
       }
     },
     watch: {
       allUsersByUserName: function(msg) {
-        debugger
       }
     }
   }
