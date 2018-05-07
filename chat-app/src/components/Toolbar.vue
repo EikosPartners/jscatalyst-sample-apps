@@ -1,0 +1,173 @@
+<template>
+  <div class="window-drag">
+      <v-toolbar class="nav-toolbar window-drag"
+        app
+        clipped-left
+        fixed
+        style="z-index:5;"
+      >
+        <!-- DROP A LOGO HERE -->
+        <h1 id="headerText"> <router-link to="/">JSCatalyst Chat</router-link></h1>
+        <v-spacer></v-spacer>
+
+        <!-- Full nav menu for larger screens -->
+        <v-toolbar-items class="hidden-md-and-down">
+          <v-tooltip bottom>
+            <v-btn icon @click="toggleDark" slot="activator">
+              <v-icon class="">lightbulb_outline</v-icon>
+            </v-btn>
+            <span>Toggle light/dark</span>
+          </v-tooltip>
+          <!-- <v-tooltip bottom>
+            <v-btn icon @click.stop="" slot="activator">
+              share function when available: @click="shareURL"
+              <v-icon class="">share</v-icon>
+            </v-btn>
+            <span>Share</span>
+          </v-tooltip> -->
+          <v-tooltip bottom>
+            <v-btn icon @click.stop="refreshScreen" slot="activator">
+              <v-icon>refresh</v-icon>
+            </v-btn>
+            <span>Refresh</span>
+          </v-tooltip>
+
+          <!-- <v-btn small flat @click.stop="aboutModal = true" class="navBtn">About</v-btn> -->
+        <!--   <v-menu offset-y open-on-hover max-height="400px">
+            <v-btn flat slot="activator" class="navBtn">Themes
+              <v-icon>arrow_drop_down</v-icon>
+            </v-btn>
+            <v-list>
+              <v-list-tile v-for="item in themes" :key="item" @click="chooseTheme(item)">
+                <v-list-tile-title>{{ item }}</v-list-tile-title>
+                  <v-icon :color="item.toLowerCase()">brightness_1</v-icon>
+
+              </v-list-tile>
+            </v-list>
+          </v-menu> -->
+          <v-menu>
+            <v-btn flat :to='{name: "Chat"}' slot="activator" class="navBtn">Chat</v-btn>
+            <v-btn flat :to='{name: "DirectMessage"}' slot="activator" class="navBtn">DM</v-btn>
+          </v-menu>
+
+        </v-toolbar-items>
+
+        <!-- Collapsed nav menu for mobile -->
+        <v-toolbar-items class="hidden-lg-and-up">
+          <v-menu max-height="400px">
+            <v-icon slot="activator">menu</v-icon>
+            <v-list>
+              <v-list-tile v-for="item in collapsedUserMenu" :key="item.title" @click.stop="item.action">
+                <v-list-tile-title v-text="item.title"></v-list-tile-title>
+              </v-list-tile>
+                <v-list-tile class='list__tile--link'>
+                  <v-list-tile-title><router-link to='Chat' style='text-decoration: none'>Chat</router-link></v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile class='list__tile--link'>
+                  <v-list-tile-title><router-link to='DM' style='text-decoration: none'>Direct Messages</router-link></v-list-tile-title>
+                </v-list-tile>
+            </v-list>
+          </v-menu>
+        </v-toolbar-items>
+
+      </v-toolbar>
+
+  </div>
+</template>
+
+<script>
+
+import { StyleTogglerMixin } from 'jscatalyst'
+
+  export default {
+    components: {
+    },
+    props: [
+
+    ],
+    mixins: [StyleTogglerMixin],
+    data: function () {
+      return {
+        // aboutModal: false,
+        //dashboards:['catstats', 'process', 'alerts', 'kpi', 'chasing','css','executive', 'example', 'scorecard'],
+        dashboards:[],
+        userMenu: [
+        { title: 'Help & Feedback', action: () => {alert('Help And feedback')}},
+        { title: 'User Preferences', action: () => {alert('User Preferences')}},
+        { title: 'Password Reset', action: () => {alert('password Reset')}},
+        { title: 'Logout', action: () => { this.logout()}}
+        ],
+        collapsedUserMenu: [
+          { title: 'Refresh', action: () => {this.refreshScreen}},
+          ],
+        showTabs: false,
+        shareLink: '',
+        falseParam: false,
+        activeTab: '',
+        windowLocaton: window.location.href,
+        themes: [],
+      }
+    },
+    mounted() {
+    },
+    computed: {
+      displayTheme: function() {
+        if (this.$store.state.themeMod) return this.$store.state.themeMod.displayTheme;
+        return 'light'
+      },
+    },
+    methods: {
+      tbd: function(){
+        alert('feature not yet implemented')
+      },
+      // closeModal: function(){
+      //     this.aboutModal = false
+      // },
+      // openModal: function(){
+      //     this.aboutModal = true
+      // },
+      refreshScreen: function(){
+        location.reload();
+      }
+    },
+  }
+</script>
+
+
+<style lang="stylus">
+  .navBtn
+    width: 50px!important
+
+  .responsive-img
+      max-height: 46px!important
+      padding-top: 5px
+
+  .nav-toolbar
+    -webkit-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
+    -moz-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
+    box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
+
+  .list__tile__title
+    font-size: 12px
+
+  i.material-icons
+    color: black
+
+  .onHoverBtn:hover
+    background-color: #D3D3D3
+		cursor: pointer
+
+  #homeButton
+    text-decoration: none
+
+  #headerText
+    padding-left: 10px
+    font-size: 28px
+    font-family: 'Roboto'
+    font-weight: normal
+    text-decoration: none
+
+    a
+      text-decoration: none
+      color: inherit
+</style>

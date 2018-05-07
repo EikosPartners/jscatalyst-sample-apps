@@ -1,7 +1,13 @@
 <template>
 <v-container fluid>
 	<v-layout row wrap>
-    <v-flex xs12 v-for="user in usersWhoAreNotMe" :key="user.username">
+    <v-flex v-if="usersWhoAreNotMe.length < 1">
+       <v-alert type="info" :value="true">
+          You are the only user connected this app! No DM recipients available. 
+        </v-alert>
+      </span>
+    </v-flex>
+    <v-flex v-else xs12 v-for="user in usersWhoAreNotMe" :key="user.username">
       <OneOnOne :recipient="user"  />
 		</v-flex>
 	</v-layout>
@@ -64,6 +70,9 @@ export default {
 	   	if (this.connected) {
 	       	this.$socket.emit('pageOpened')
 	    }
+    },
+    beforeDestroy(){
+      this.closeHandler()
     },
     created: function(){
       window.addEventListener('beforeunload', this.closeHandler)

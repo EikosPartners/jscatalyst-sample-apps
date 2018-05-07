@@ -1,50 +1,45 @@
 <template>
   <v-app id="app">
-    <div class="display-3"> Direct Messages Example </div>
-      <DirectMessage/> 
-<!--     <div class="display-2"> Group Chat </div>
-    <v-jumbotron :gradient="gradient">      
-      <v-container fill-height>
-        <v-layout align-center>
-          <v-flex text-xs-center>
-            <h3 class="display-3">Work In Progress</h3>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-jumbotron> -->
-<!--     <ChatWindow/>  -->
-
+    <toolbar></toolbar>
+    <v-container style="padding-top: 70px;">
+       <span v-if="usersWhoAreNotMe.length < 1">
+       <v-alert type="info" :value="true">
+          You are the only user connected this app! 
+        </v-alert>
+      </span>
+      <span v-else>
+        <v-alert type="success" :value="true">
+          {{usersWhoAreNotMe.length}} other users connected! 
+        </v-alert>
+      </span>
+      <router-view></router-view>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import DirectMessage from './components/DirectMessage'
-import ChatWindow from './components/ChatWindow'
+import {mapGetters} from 'vuex'
+
+import Toolbar from './components/Toolbar.vue'
 
 export default {
   name: 'App',
   components: {
-    ChatWindow,
-    DirectMessage
+    Toolbar
   },
   data() {
     return {
-      gradient: 'to top, #1A2980, #26D0CE'
     }
   },
   created(){
-    // console.log(this.$store)
+  },
+  computed: {
+      ...mapGetters([
+        'usersWhoAreNotMe'
+      ]),
   }
 }
 </script>
 
 <style>
-/*#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}*/
 </style>

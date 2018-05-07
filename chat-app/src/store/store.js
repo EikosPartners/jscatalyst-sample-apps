@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
     allUsers: [],
     myIPaddress: '',
     myUsername: '',
-    mySocketID: ''
+    mySocketID: '',
   },
   mutations: {
     ADD_USER: function(state, payload) {

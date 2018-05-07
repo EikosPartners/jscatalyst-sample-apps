@@ -46,7 +46,7 @@ io.sockets.on('connection', function(socket){
 
   socket.on('pageClosed', function(msg){
     console.log('pageClosed')
-    allUsers.filter(item=>(item.username !== msg.username))
+    allUsers = allUsers.filter(item=>(item.username !== msg.username))
     console.log(msg)
     io.emit('userDisconnected', msg)
   })
