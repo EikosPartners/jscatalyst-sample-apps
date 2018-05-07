@@ -20,7 +20,7 @@ io.sockets.on('connection', function(socket){
 	connectCount++;
 		// console.log(socket.conn)
 		// console.log(socket.handshake)
-    let personID = {id: socket.id, address: myIPaddress, username: `${socket.id}@${myIPaddress}`}
+    let personID = {id: socket.id, username: socket.id}
 
 	socket.on('pageOpened', function(){
     console.log('pageOpened')

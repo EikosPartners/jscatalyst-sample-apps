@@ -77,7 +77,12 @@ import {mapState, mapGetters} from 'vuex'
       connect: function(){
         console.log('connected')
         this.connected = true
+        let userName = this.myUsername
         this.$socket.emit('pageOpened')
+        if (userName) {
+          this.customUsername = userName 
+          this.setNewUsername()
+        }
       },
       userConnected: function(msg){
           if (!this.myIPaddress) {

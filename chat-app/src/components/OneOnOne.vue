@@ -67,7 +67,6 @@ export default {
 	computed: {
 		...mapState([
 			'allUsers',
-			'myIPaddress',
 			'myUsername',
 			'mySocketID'
 		]),
