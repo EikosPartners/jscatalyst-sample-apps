@@ -103,21 +103,12 @@ import {mapState, mapGetters} from 'vuex'
       userDisconnected: function(msg) {
          this.$store.commit('REMOVE_USER', msg) 
       },
-
     },
     methods: {
       setNewUsername: function(){
-        if (this.allUsersByUserName.includes(this.newUsername)) {
-
-        } else {
-          this.$store.commit('MY_USERNAME', this.newUsername)
-          this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
-          this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
-        }
-      }
-    },
-    watch: {
-      allUsersByUserName: function(msg) {
+        this.$store.commit('MY_USERNAME', this.newUsername)
+        this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
+        this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
       }
     }
   }

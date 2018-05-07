@@ -37,9 +37,10 @@ a<template>
 		<v-flex xs12 md10>
 			<v-text-field
 			  disabled
-			  v-model="messageDisplay"
-	          name="theirMessages"
-	          textarea
+	      v-model="messageDisplay"
+        name="theirMessages"
+        textarea
+        :rows="textAreaRows"
 	        > 
         </v-text-field>
 		</v-flex>
@@ -142,7 +143,14 @@ export default {
     			bigOldString += item.from.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 
-    	}
+    	},
+      textAreaRows(){
+        if (this.theirMessages.length < 5) {
+          return 5
+        } else {
+           return this.theirMessages.length + 1
+        }
+      },
     }
 
 
