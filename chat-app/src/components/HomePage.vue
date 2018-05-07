@@ -65,6 +65,9 @@ import {mapState, mapGetters} from 'vuex'
         }
       }
     },
+    created(){
+        window.addEventListener('beforeunload', this.closeHandler)
+    },
     beforeMount() {
       this.connected = this.$socket.connected
     },
@@ -85,9 +88,6 @@ import {mapState, mapGetters} from 'vuex'
         }
       },
       userConnected: function(msg){
-          if (!this.myIPaddress) {
-           this.$store.commit('MY_IP_ADDRESS', msg.address)
-          }
           if (!this.myUsername) {
             this.$store.commit('MY_USERNAME', msg.username)
           }
@@ -114,6 +114,9 @@ import {mapState, mapGetters} from 'vuex'
         this.$store.commit('MY_USERNAME', this.newUsername)
         this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
         this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
+      },
+      closeHandler: function(event){
+        this.$socket.emit('pageClosed', {username: this.myUsername, id: this.mySocketID})
       }
     }
   }
