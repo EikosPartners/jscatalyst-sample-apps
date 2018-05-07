@@ -53,6 +53,8 @@
       }
     },
     methods: {
+      // function for logging in
+      // it dispatches the login action provided by the auth plugin
       login: function() {
         var username = this.username
         var password = this.password

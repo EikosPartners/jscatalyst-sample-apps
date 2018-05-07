@@ -46,6 +46,7 @@
 </template>
 
 <script>
+  // import the charts from the jscatalyst package
   import {
     PlotlyAreaChart,
     PlotlyBarGraph,
@@ -55,7 +56,7 @@
     PlotlyScatterPlot,
     PlotlySurfacePlot
   } from 'jscatalyst'
-  
+  // import the data for the charts
   import barData from '@/mockData/plotly/barMock.json'
   import bubbleData from '@/mockData/plotly/bubbleMock.json'
   import scatterData from '@/mockData/plotly/scatterMock.json'
@@ -65,6 +66,7 @@
   import surfaceData from '@/mockData/plotly/surfaceMock.json'
 
   export default {
+    //register the charts on the Vue instance
     components: {
       'area-chart': PlotlyAreaChart,
       'bar': PlotlyBarGraph,
@@ -74,6 +76,7 @@
       'scatter': PlotlyScatterPlot,
       'surface': PlotlySurfacePlot
     },
+    // add data to the Vue instance to be used by the charts
     data() {
       return {
         areaData: areaData,

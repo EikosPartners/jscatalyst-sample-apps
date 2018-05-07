@@ -179,6 +179,7 @@
 </template>
 
 <script>
+  // import the charts from the jscatalyst package
   import {
     D3BarChart,
     D3BoxPlot,
@@ -204,6 +205,7 @@
     D3USMap,
     D3WorldMap
   } from 'jscatalyst'
+  // import alll the data for the charts
   import barData from '@/mockData/d3/barchartMock.json'
   import bubbleData from '@/mockData/d3/bubbleMock.json'
   import heatData from '@/mockData/d3/heatmapMock.json'
@@ -231,6 +233,7 @@
   import GOOG from '@/mockData/stockData/GOOG.json'
 
   export default {
+    // register the charts on the Vue instance
     components: {
       'bar': D3BarChart,
       'box': D3BoxPlot,
@@ -256,6 +259,7 @@
       'us-map': D3USMap,
       'world-map': D3WorldMap
     },
+    // add the data to the vue instance to be used by the charts
     data() {
       return {
         barData: barData,

@@ -79,6 +79,7 @@
   import differenceData from '@/mockData/differenceMock.json'
 
   export default {
+    // register the charts on the Vue instance
     components: {
       'chartjs-bubble': ChartjsBubbleChart,
       'chartjs-line': ChartjsLineChart,
@@ -98,6 +99,7 @@
         differenceData: []
       }
     },
+    // add mock data to the Vue instance to be used by the charts
     created() {
       this.bubbleData = bubbleData;
       this.lineData = barlineData;

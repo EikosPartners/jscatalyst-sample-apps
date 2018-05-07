@@ -59,6 +59,7 @@
 </template>
 
 <script>
+// load the components from the jscatalyst package
   import {
     ChartjsBarChart,
     ChartjsBarLineChart,
@@ -69,6 +70,7 @@
     ChartjsRadarChart,
     ChartjsScatterChart
   } from 'jscatalyst'
+  // load all the mock data for the charts
   import barData from '@/mockData/barMock.json'
   import lineData from '@/mockData/lineMock.json'
   import pieData from '@/mockData/chartjs/polarMock.json'
@@ -78,6 +80,7 @@
   import multiLineData from '@/mockData/chartjs/multiLineMock.json'
 
   export default {
+    // register charts on the vue instance
     components: {
       'bar': ChartjsBarChart,
       'bar-line': ChartjsBarLineChart,
@@ -88,6 +91,7 @@
       'radar': ChartjsRadarChart,
       'scatter': ChartjsScatterChart
     },
+    // add their data to the instance so that it can be accessed
     data() {
       return {
         barData: barData,

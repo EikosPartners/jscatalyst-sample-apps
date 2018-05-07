@@ -26,17 +26,21 @@
 
 <script>
   require('chartist/dist/chartist.min.css')
+  // import the components from the jscatalyst package
   import { ChartistBarChart, ChartistLineChart, ChartistPieChart } from 'jscatalyst'
+  // import all the data for the charts
   import barData from '@/mockData/barMock.json'
   import lineData from '@/mockData/lineMock.json'
   import pieData from '@/mockData/chartjs/polarMock.json'
 
   export default {
+    // register the charts on the Vue instance
     components: {
       'bar-chart': ChartistBarChart,
       'line-chart': ChartistLineChart,
       'pie-chart': ChartistPieChart
     },
+    // add data to instance to be used for each chart 
     data() {
       return {
         barData: barData,

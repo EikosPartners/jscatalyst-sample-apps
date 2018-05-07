@@ -58,7 +58,7 @@
           <v-menu v-else>
             <v-btn flat :to='{name: "Login"}' slot="activator" class="navBtn">Login</v-btn>
             <v-btn flat :to='{name: "Signup"}' slot="activator" class="navBtn">Signup</v-btn>
-            <v-btn flat :to='{name: "HomePage"}' slot="activator" class="navBtn">Home</v-btn>
+            <v-btn exact flat :to='{name: "HomePage"}' slot="activator" class="navBtn">Home</v-btn>
           </v-menu>
 
         </v-toolbar-items>
