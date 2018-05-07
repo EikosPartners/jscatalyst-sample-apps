@@ -2,7 +2,7 @@
   <v-app id="app">
     <toolbar></toolbar>
     <sub-nav></sub-nav>
-    <v-content style="padding-top: 50px;">
+    <v-content class="mx-5" style="padding-top: 50px;">
       <router-view></router-view>
     </v-content>
   </v-app>
