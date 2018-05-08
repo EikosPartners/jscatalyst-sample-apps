@@ -79,14 +79,14 @@ export default {
     updated(){
         let params = new URLSearchParams(window.location.search)
         if (params.get('user')) {
-          this.DMtab = this.usersWhoAreNotMeByUserName.indexOf(params.get('user')).toString()
+          this.DMtab = this.usersWhoAreNotMeByUserName.indexOf(params.get('user')).toString() !== "-1" ? this.usersWhoAreNotMeByUserName.indexOf(params.get('user')).toString() : "0"
         }
     },
     watch: {
       usersWhoAreNotMeByUserName(data){
           let params = new URLSearchParams(window.location.search)
           if (params.get('user')) {
-            this.DMtab = data.indexOf(params.get('user')).toString()
+            this.DMtab = data.indexOf(params.get('user')).toString() !== "-1" ? data.indexOf(params.get('user')).toString() : "0" 
           }
       }
     }

@@ -2,9 +2,9 @@
   <v-container fluid>
 	<v-layout row wrap>
 		<v-flex xs12>
-			<div class="display-1"> Direct Messages from {{recipient.username}}</div>
+			<div class="display-1 text-xs-center"> Direct Messages from {{recipient.username}}</div>
 		</v-flex>
-		<v-flex xs11>
+		<v-flex xs12>
 			<v-text-field
 			  disabled
 			  v-model="messageDisplay"
@@ -16,7 +16,7 @@
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		<v-flex xs12 md10>
+		<v-flex xs12 md11>
 			<v-text-field
 			  v-model="value"
 	          name="yourMessage"
@@ -24,7 +24,7 @@
 	          single-line
 	        ></v-text-field>
 		</v-flex>
-		<v-flex xs12 md2>
+		<v-flex xs12 md1>
 			<v-btn @click="submitMessage">
 				Submit Message
 			</v-btn>

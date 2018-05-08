@@ -10,7 +10,7 @@
     <v-flex xs12 id="headerText"> 
       <h1 class="display-2 text-xs-center">Chat Demo</h1>
       <p class="subtitle my-3">
-        This is a demo for implementing Chat features using <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in a <router-link to="chat">shared room</router-link> or via <router-link to="DM">direct messaging</router-link>. 
+        This is a demo for implementing Chat features using <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" id="dmLink">direct messaging</router-link>. 
       </p>
     </v-flex>
     <v-flex xs12 md4 offset-xs3> 
@@ -116,6 +116,7 @@ import {mapState, mapGetters} from 'vuex'
     font-family: 'Roboto';
     font-weight: normal;
   }
+
 
 
 </style>

@@ -9,7 +9,7 @@
          <v-card-title primary class="title">Current Users</v-card-title>
         <v-card-text>
           <v-list v-for="username in usersWhoAreNotMeByUserName" :key="username">
-            <router-link :to="`/DM?user=${username}`">
+            <router-link class="userListLink" :to="`/DM?user=${username}`">
             <v-list-tile>
               <v-list-tile-title>
                 {{username}}
@@ -143,5 +143,13 @@ export default {
 <style>
 .input-group textarea:disabled, .input-group__details {
 	color: black!important;
+}
+.userListLink {
+  color: inherit;
+  text-decoration: none
+}
+
+.userListLink:hover {
+  text-decoration:underline
 }
 </style>
