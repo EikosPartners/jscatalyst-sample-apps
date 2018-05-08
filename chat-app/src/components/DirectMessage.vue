@@ -27,9 +27,7 @@ export default {
     },
   	data: function(){
   		return {
-          	connected: null,
           	value: '',
-            recipient: '',
             DMtab: null,
             snackbar: null,
             snackValue: null,
@@ -38,59 +36,28 @@ export default {
   	},
     sockets: {
 
-      connect: function(){
-        console.log('connected')
-        this.connected = true
-        this.$socket.emit('pageOpened')
-      },
-      allUsers: function(msg) {
-        msg.forEach(item=>{
-          if (!this.allUsersByUserName.includes(item.username)) {
-            this.$store.commit('ADD_USER', item)
-          }
-        })
-      },
-      userConnected: function(msg){
-          if (!this.myUsername) {
-            this.$store.commit('MY_USERNAME', msg.username)
-          }
-          if (!this.mySocketID) {
-            this.$store.commit('MY_SOCKET_ID', msg.id)
-          }
-        if (!this.allUsersByUserName.includes(msg.username)) {
-         this.$store.commit('ADD_USER', msg)
-        }
-      },
-      userDisconnected: function(msg) {
-         this.$store.commit('REMOVE_USER', msg) 
-      }
     },
     mixins: [lifeCycleMixin],
     methods: {
     },
     computed: {
-    	messageDisplay(){
-    		let bigOldString = ''
-    		this.theirMessages.forEach(item=>{
-    			bigOldString += item.from.username + ': ' + item.value + '\n'
-    		})
-    		return bigOldString 
-    	}
     },
     mounted(){
 
     },
     updated(){
         let params = new URLSearchParams(window.location.search)
-        if (params.get('user')) {
+        if (params.get('user') && !this.DMtab) {
           this.DMtab = this.usersWhoAreNotMeByUserName.indexOf(params.get('user')).toString() !== "-1" ? this.usersWhoAreNotMeByUserName.indexOf(params.get('user')).toString() : "0"
         }
     },
     watch: {
       usersWhoAreNotMeByUserName(data){
           let params = new URLSearchParams(window.location.search)
-          if (params.get('user')) {
+          if (params.get('user') && !this.DMtab) {
             this.DMtab = data.indexOf(params.get('user')).toString() !== "-1" ? data.indexOf(params.get('user')).toString() : "0" 
+          } else if (!params.get('user') && !this.DMtab) {
+            this.DMtab = 0
           }
       }
     }

@@ -13,7 +13,7 @@
         This is a demo for implementing Chat features using <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" id="dmLink">direct messaging</router-link>. 
       </p>
     </v-flex>
-    <v-flex xs12 md4 offset-xs3> 
+    <!-- <v-flex xs12 md4 offset-xs3> 
         <v-text-field
           id="username"
           name="username"
@@ -27,7 +27,7 @@
       <v-btn @click="setNewUsername">
         Use This Username
       </v-btn>
-    </v-flex>
+    </v-flex> -->
     <ChatWindow v-if="connected" />
   </v-layout>
 </template>
@@ -41,6 +41,9 @@ import {mapState, mapGetters} from 'vuex'
       ChatWindow
     },
     computed: {
+      ...mapState([
+        'connected'
+      ]),
       newUsername: function(){
         if (this.customUsername == '') {
           return this.myUsername
@@ -51,7 +54,6 @@ import {mapState, mapGetters} from 'vuex'
     },
     data: function(){
       return {
-        connected: null,
         customUsername: '',
         rules: {
           uniqueName: (value)=> {return !this.allUsersByUserName.includes(value) || 'Username In Use'}
@@ -61,35 +63,11 @@ import {mapState, mapGetters} from 'vuex'
     mixins: [lifeCycleMixin],
     sockets: {
       connect: function(){
-        console.log('connected')
-        this.connected = true
-        let userName = this.myUsername
-        this.$socket.emit('pageOpened')
-        if (userName) {
-          this.customUsername = userName 
-          this.setNewUsername()
-        }
-      },
-      userConnected: function(msg){
-          if (!this.myUsername) {
-            this.$store.commit('MY_USERNAME', msg.username)
-          }
-          if (!this.mySocketID) {
-            this.$store.commit('MY_SOCKET_ID', msg.id)
-          }
-      if (!this.allUsersByUserName.includes(msg.username)) {
-         this.$store.commit('ADD_USER', msg)
-        }
-      },
-      allUsers: function(msg) {
-        msg.forEach(item=>{
-          if (!this.allUsersByUserName.includes(item.username)) {
-            this.$store.commit('ADD_USER', item)
-          }
-        })
-      },
-      userDisconnected: function(msg) {
-         this.$store.commit('REMOVE_USER', msg) 
+        // let userName = this.myUsername
+        // if (userName) {
+        //   this.customUsername = userName 
+        //   this.setNewUsername()
+        // }
       },
     },
     methods: {
@@ -115,6 +93,9 @@ import {mapState, mapGetters} from 'vuex'
     font-size: 28px;
     font-family: 'Roboto';
     font-weight: normal;
+  }
+  #dmLink:hover {
+    text-decoration: underline
   }
 
 

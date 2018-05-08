@@ -11,11 +11,11 @@ export const store = new Vuex.Store({
     allUsers: [],
     myUsername: '',
     mySocketID: '',
+    myChats: [],
+    myDMs: [],
+    connected: false
   },
   mutations: {
-    ALL_USERS: function(state, payload) {
-      state.allUsers = payload
-    },
     ADD_USER: function(state, payload) {
       state.allUsers = [...state.allUsers, payload]
     },
@@ -27,6 +27,56 @@ export const store = new Vuex.Store({
     },
     MY_SOCKET_ID: function(state, payload) {
     	state.mySocketID = payload
+    },
+    SOCKET_CONNECT: function(state, payload) {
+      state.connected = true
+      this._vm.$socket.emit('pageOpened')
+    },
+    SOCKET_USERCONNECTED: function(state, payload) {
+      let msg = payload[0]
+      if (!state.myUsername) {
+          state.myUsername = msg.username
+        }
+      if (!state.mySocketID) {
+        state.mySocketID = msg.id
+      } 
+
+      if (!this.getters.allUsersByUserName || !this.getters.allUsersByUserName.includes(msg.username)) {
+         state.allUsers = [...state.allUsers, msg]
+         state.myDMs.push({username: msg.username, messages: []})
+      }
+    },
+    SOCKET_ALLUSERS: function(state, payload) {
+      let msg = payload[0]
+      msg.forEach(item=>{
+          if (!this.getters.allUsersByUserName || !this.getters.allUsersByUserName.includes(item.username)) {
+            state.allUsers = [...state.allUsers, item]
+            state.myDMs.push({username: item.username, messages: []})
+          }
+        })
+    },
+    SOCKET_USERDISCONNECTED: function(state, payload) {
+      let msg = payload[0]
+      state.allUsers = state.allUsers.filter(item=>{return item.username !== msg.username })
+      state.myDMS = state.myDMs.filter(item=>{return item.username !== msg.username})
+    },
+    SOCKET_DIRECTMESSAGE: function(state, payload) {
+      let to = payload[0].recipient
+      let from = payload[0].from 
+      let value = payload[0].value 
+      let messagePool = state.myDMs
+      let poolIndexFinder = messagePool.map(item=>item.username)
+      let indexOfSender
+      if (to.username === state.myUsername) {
+        indexOfSender = poolIndexFinder.indexOf(from.username)
+        state.myDMs[indexOfSender].messages.push(payload[0])
+      } else if (from.username === state.myUsername){
+        indexOfSender = poolIndexFinder.indexOf(to.username)
+        state.myDMs[indexOfSender].messages.push(payload[0])
+      } 
+    },
+    SOCKET_CHATMESSAGE: function(state, payload) {
+      state.myChats.push(payload[0])
     },
 
   },

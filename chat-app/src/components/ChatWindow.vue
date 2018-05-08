@@ -4,7 +4,7 @@
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		 <v-flex xs12 md2 style="padding-top: 20px" fill-height>
+		 <v-flex xs3 md2 style="padding-top: 20px" fill-height>
       <v-card :height="cardRows">
          <v-card-title primary class="title">Current Users</v-card-title>
         <v-card-text>
@@ -19,7 +19,7 @@
         </v-list></v-card-text>
       </v-card>
     </v-flex>
-    <v-flex xs12 md10>
+    <v-flex xs9 md10>
       <v-text-field 
         disabled
         v-model="messageDisplay"
@@ -32,7 +32,7 @@
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-    <v-flex xs12 md8 offset-md2>
+    <v-flex xs9 md8 offset-md2>
       <v-text-field
         v-model="value"
             name="yourMessage"
@@ -40,7 +40,7 @@
             single-line
           ></v-text-field>
     </v-flex>
-    <v-flex xs12 md2 d-flex align-center>
+    <v-flex xs3 md2 d-flex align-center>
       <v-btn @click="submitMessage">
         Submit Message
       </v-btn>
@@ -59,49 +59,16 @@ import lifeCycleMixin from '../mixins'
 export default {
     data: function(){
     	return {
-          	connected: null,
           	value: '',
-          	theirMessages: [],
     	}
     },
     mixins: [lifeCycleMixin],
     sockets: {
-      connect: function(){
-        console.log('connected')
-        this.connected = true
-        this.$socket.emit('pageOpened')
-      },
-      chatMessage: function(msg) {
-        this.theirMessages.push(msg)
-      },
-      userConnected: function(msg){
-          if (!this.myUsername) {
-            this.$store.commit('MY_USERNAME', msg.username)
-          }
-          if (!this.mySocketID) {
-            this.$store.commit('MY_SOCKET_ID', msg.id)
-          }
-        if (!this.allUsersByUserName.includes(msg.username)) {
-         this.$store.commit('ADD_USER', msg)
-        }
-      },
-      allUsers: function(msg) {
-        msg.forEach(item=>{
-          if (!this.allUsersByUserName.includes(item.username)) {
-            this.$store.commit('ADD_USER', item)
-          }
-        })
-      },
-      userDisconnected: function(msg) {
-         this.$store.commit('REMOVE_USER', msg) 
-      },
-      allNewUsers: function(msg) {
-        this.$store.commit('ALL_USERS', msg)
-      },
+
     },
     methods: {
       submitMessage: function(){
-      	if (this.$socket.connected) {
+      	if (this.connected) {
           this.$socket.emit('chatMessage', {value: this.value})
          }
       },
@@ -111,10 +78,12 @@ export default {
 
     },
     computed: {
-     
+      ...mapState([
+        'myChats'
+      ]),
     	messageDisplay(){
     		let bigOldString = ''
-    		this.theirMessages.forEach(item=>{
+    		this.myChats.forEach(item=>{
     			bigOldString += item.from.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 
@@ -122,10 +91,10 @@ export default {
       textAreaRows(){
         if (this.usersWhoAreNotMeByUserName.length > 5) {
           return this.usersWhoAreNotMeByUserName.length * 3
-        } else if (this.theirMessages.length < 15) {
+        } else if (this.myChats.length < 15) {
           return 15
         } else {
-           return this.theirMessages.length + 1
+           return this.myChats.length + 1
         }
       },
       cardRows(){

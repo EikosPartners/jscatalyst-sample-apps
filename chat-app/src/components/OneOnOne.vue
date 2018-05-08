@@ -16,7 +16,7 @@
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		<v-flex xs12 md11>
+		<v-flex xs9 md11>
 			<v-text-field
 			  v-model="value"
 	          name="yourMessage"
@@ -24,7 +24,7 @@
 	          single-line
 	        ></v-text-field>
 		</v-flex>
-		<v-flex xs12 md1>
+		<v-flex xs3 md1>
 			<v-btn @click="submitMessage">
 				Submit Message
 			</v-btn>
@@ -37,13 +37,13 @@
 import {mapGetters, mapState} from 'vuex'
 
 export default {
-	sockets: {
-		directMessage: function(msg) {
-	        if ((msg.recipient.username === this.myUsername && msg.from.username == this.recipient.username)|| (msg.from.username === this.myUsername && msg.recipient.username === this.recipient.username)) {
-	          this.theirMessages.push(msg)
-	        }
-	      },
-  	},
+	// sockets: {
+	// 	directMessage: function(msg) {
+	//         if ((msg.recipient.username === this.myUsername && msg.from.username == this.recipient.username)|| (msg.from.username === this.myUsername && msg.recipient.username === this.recipient.username)) {
+	//           this.theirMessages.push(msg)
+	//         }
+	//       },
+ //  	},
 	props: {
 		recipient:{
 			type: Object,
@@ -68,22 +68,26 @@ export default {
 		...mapState([
 			'allUsers',
 			'myUsername',
-			'mySocketID'
+			'mySocketID',
+			'myDMs'
 		]),
     	...mapGetters([
     		'usersWhoAreMe',
-    		'usersWhoAreNotMe'
+    		'usersWhoAreNotMe',
+    		'usersWhoAreNotMeByUserName'
     	]),
     	textAreaRows(){
-    		if (this.theirMessages.length < 5) {
+    		if (this.myDMs.length < 5) {
     			return 5
     		} else {
-    			 return this.theirMessages.length + 1
+    			 return this.myDMs.length + 1
     		}
     	},
     	messageDisplay(){
     		let bigOldString = ''
-    		this.theirMessages.forEach(item=>{
+    		let relevantDMs = this.myDMs.filter(item=>item.username === this.recipient.username)[0].messages
+
+    		relevantDMs.forEach(item=>{
     			bigOldString += item.from.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 

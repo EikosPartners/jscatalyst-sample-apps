@@ -5,19 +5,20 @@ export default lifeCycleMixin = {
     created(){
         window.addEventListener('beforeunload', this.closeHandler)
     },
-    beforeMount() {
-      this.connected = this.$socket.connected
-    },
-    mounted: function(){
-      if (this.connected) {
-          this.$socket.emit('pageOpened')
-      }
-    },
+    // beforeMount() {
+    //   this.connected = this.$socket.connected
+    // },
+    // mounted: function(){
+    //   if (this.connected) {
+    //       this.$socket.emit('pageOpened')
+    //   }
+    // },
     computed: {
       ...mapState([
         'allUsers',
         'myUsername',
-        'mySocketID'
+        'mySocketID',
+        'connected'
       ]),
       ...mapGetters([
         'usersWhoAreMe',
