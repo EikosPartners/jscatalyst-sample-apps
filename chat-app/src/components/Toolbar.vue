@@ -47,7 +47,6 @@
             </v-list>
           </v-menu> -->
           <v-menu>
-            <v-btn flat :to='{name: "Chat"}' slot="activator" class="navBtn">Chat</v-btn>
             <v-btn flat :to='{name: "DirectMessage"}' slot="activator" class="navBtn">DM</v-btn>
           </v-menu>
 
@@ -61,9 +60,6 @@
               <v-list-tile v-for="item in collapsedUserMenu" :key="item.title" @click.stop="item.action">
                 <v-list-tile-title v-text="item.title"></v-list-tile-title>
               </v-list-tile>
-               <router-link :to='{name: "Chat"}' style='text-decoration: none; color: inherit'> <v-list-tile class='list__tile--link'>
-                  <v-list-tile-title>Chat</v-list-tile-title>
-                </v-list-tile></router-link>
                 <router-link :to='{name: "DirectMessage"}' style='text-decoration: none; color: inherit'><v-list-tile class='list__tile--link'>
                   <v-list-tile-title>Direct Messages</v-list-tile-title>
                 </v-list-tile></router-link>

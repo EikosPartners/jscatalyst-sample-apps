@@ -6,11 +6,6 @@
               You are not connected to the websocket server! To send and receive messages, please run `node server.js`.
             </v-alert>
           </span>
-          <span v-else>
-            <v-alert type="success" :value="true">
-              Success! Server connected.
-            </v-alert>
-          </span>
     </v-flex>
     <v-flex xs12 id="headerText"> 
       <h1 class="display-2 text-xs-center">Chat Demo</h1>
@@ -18,7 +13,7 @@
         This is a demo for implementing Chat features using <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in a <router-link to="chat">shared room</router-link> or via <router-link to="DM">direct messaging</router-link>. 
       </p>
     </v-flex>
-    <v-flex xs12 md10> 
+    <v-flex xs12 md4 offset-xs3> 
         <v-text-field
           id="username"
           name="username"
@@ -33,14 +28,18 @@
         Use This Username
       </v-btn>
     </v-flex>
+    <ChatWindow v-if="connected" />
   </v-layout>
 </template>
 
 <script>
+import ChatWindow from '@/components/ChatWindow'
 import lifeCycleMixin from '../mixins'
 import {mapState, mapGetters} from 'vuex'
   export default {
-
+    components: {
+      ChatWindow
+    },
     computed: {
       newUsername: function(){
         if (this.customUsername == '') {

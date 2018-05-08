@@ -9,7 +9,7 @@
 			  v-model="value"
 	          name="yourMessage"
 	          label="write message here"
-	          multi-line
+	          single-line
 	        ></v-text-field>
 		</v-flex>
 		<v-flex xs12 md2 d-flex align-center>

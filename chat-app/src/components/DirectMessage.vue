@@ -1,9 +1,10 @@
 <template>
 <v-container fluid>
-	<v-layout row wrap>
-    <v-flex xs12 v-for="user in usersWhoAreNotMe" :key="user.username">
+	<v-layout row wrap class="pb-5 mb-5">
+    <v-flex xs12 v-for="user in usersWhoAreNotMe" :key="user.username" :id="user.username" >
       <OneOnOne :recipient="user"  />
 		</v-flex>
+
 	</v-layout>
 </v-container>
 

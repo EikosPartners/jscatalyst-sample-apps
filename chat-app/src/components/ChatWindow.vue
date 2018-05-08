@@ -1,49 +1,51 @@
-a<template>
-<v-container fluid>
-	<v-layout row wrap>
+<template>
+<v-container fluid grid-list-md> 
+	<v-layout row wrap fill-height>
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		<v-flex xs12 md10>
-			<v-text-field
-			  v-model="value"
-	          name="yourMessage"
-	          label="write message here"
-	          textarea
-	        ></v-text-field>
-		</v-flex>
-		<v-flex xs12 md2 d-flex align-center>
-			<v-btn @click="submitMessage">
-				Submit Message
-			</v-btn>
-		</v-flex>
-		<v-flex xs12>
-			<v-divider />
-		</v-flex>
-     <v-flex xs12 md2 style="padding-top: 20px">
-      <v-card color="transparent">
-        <v-toolbar>
-          <v-toolbar-title>Current Users</v-toolbar-title>
-        </v-toolbar>
-        <v-list v-for="user in usersWhoAreNotMe" :key="user.id">
+		 <v-flex d-flex xs12 md2 style="padding-top: 20px" fill-height>
+      <v-card :height="textAreaRows * 26.5">
+         <v-card-title primary class="title">Current Users</v-card-title>
+        <v-card-text><v-list v-for="user in usersWhoAreNotMe" :key="user.id">
+          <a :href="`/DM#${user.username}`">
           <v-list-tile>
             <v-list-tile-title>
               {{user.username}}
             </v-list-tile-title>
           </v-list-tile>
-        </v-list>
+        </a>
+        </v-list></v-card-text>
       </v-card>
     </v-flex>
-		<v-flex xs12 md10>
-			<v-text-field
-			  disabled
-	      v-model="messageDisplay"
+    <v-flex xs12 md10>
+      <v-text-field
+        disabled
+        v-model="messageDisplay"
         name="theirMessages"
         textarea
         :rows="textAreaRows"
-	     > 
+       > 
         </v-text-field>
+    </v-flex>
+		<v-flex xs12>
+			<v-divider />
 		</v-flex>
+    <v-flex xs12 md8 offset-md2>
+      <v-text-field
+        v-model="value"
+            name="yourMessage"
+            label="write message here"
+            single-line
+          ></v-text-field>
+    </v-flex>
+    <v-flex xs12 md2 d-flex align-center>
+      <v-btn @click="submitMessage">
+        Submit Message
+      </v-btn>
+    </v-flex>
+
+
 	</v-layout>
 </v-container>
 
@@ -117,12 +119,15 @@ export default {
     		return bigOldString 
     	},
       textAreaRows(){
-        if (this.theirMessages.length < 5) {
-          return 5
+        if (this.theirMessages.length < 15) {
+        return 15
         } else {
            return this.theirMessages.length + 1
         }
       },
+      // cardRows(){
+      //  return (this.textAreaRows * 10).toString() + ' px'
+      // }
     }
 
 
