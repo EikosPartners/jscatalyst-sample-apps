@@ -30,10 +30,14 @@ export default {
           	connected: null,
           	value: '',
             recipient: '',
-            DMtab: null
+            DMtab: null,
+            snackbar: null,
+            snackValue: null,
+            timeout: 3000
   		}
   	},
     sockets: {
+
       connect: function(){
         console.log('connected')
         this.connected = true
