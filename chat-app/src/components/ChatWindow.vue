@@ -19,16 +19,18 @@
         </v-list></v-card-text>
       </v-card>
     </v-flex>
-    <v-flex xs9 md10>
+    <v-flex xs9 md10 >
       <v-text-field 
         disabled
         v-model="messageDisplay"
         name="theirMessages"
         textarea
+        :dark="darkness"
         :rows="textAreaRows"
        > 
-        </v-text-field>
+      </v-text-field>
     </v-flex>
+   
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
@@ -81,6 +83,9 @@ export default {
       ...mapState([
         'myChats'
       ]),
+      ...mapGetters([
+        'darkness'
+      ]),
     	messageDisplay(){
     		let bigOldString = ''
     		this.myChats.forEach(item=>{
@@ -110,8 +115,13 @@ export default {
 </script>
 
 <style>
-.input-group textarea:disabled, .input-group__details {
-	color: black!important;
+.theme--dark.input-group textarea:disabled, .theme--dark.input-group__details {
+	color: white!important;
+}
+
+.input-group textarea:disabled, .input-group__details{
+  color: black!important;
+
 }
 .userListLink {
   color: inherit;

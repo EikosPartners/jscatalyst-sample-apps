@@ -39,8 +39,9 @@ export const store = new Vuex.Store({
         }
       if (!state.mySocketID) {
         state.mySocketID = msg.id
-      } 
-
+      } else if (state.mySocketID === msg.id && state.myUsername !== msg.username)  {
+        state.myUsername = msg.username
+      }
       if (!this.getters.allUsersByUserName || !this.getters.allUsersByUserName.includes(msg.username)) {
          state.allUsers = [...state.allUsers, msg]
          state.myDMs.push({username: msg.username, messages: []})
@@ -58,7 +59,7 @@ export const store = new Vuex.Store({
     SOCKET_USERDISCONNECTED: function(state, payload) {
       let msg = payload[0]
       state.allUsers = state.allUsers.filter(item=>{return item.username !== msg.username })
-      state.myDMS = state.myDMs.filter(item=>{return item.username !== msg.username})
+      state.myDMs = state.myDMs.filter(item=>{return item.username !== msg.username})
     },
     SOCKET_DIRECTMESSAGE: function(state, payload) {
       let to = payload[0].recipient
@@ -92,7 +93,10 @@ export const store = new Vuex.Store({
     },
   	allUsersByUserName: function(state, getters) {
   		return state.allUsers.map(item=>item.username)
-  	}
+  	},
+    darkness: function(state, getters){
+      return state.themeMod.displayTheme !== 'light'
+    }
   }
   // plugins: [(new VuexPersistence({
   //       storage: window.sessionStorage

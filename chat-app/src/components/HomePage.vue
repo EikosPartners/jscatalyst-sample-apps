@@ -13,21 +13,21 @@
         This is a demo for implementing Chat features using <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" id="dmLink">direct messaging</router-link>. 
       </p>
     </v-flex>
-    <!-- <v-flex xs12 md4 offset-xs3> 
+    <v-flex xs9 md6 offset-md2> 
         <v-text-field
           id="username"
           name="username"
           :rules="[rules.uniqueName]"
-          label="Choose A User Name (Optional)"
+          label="Custom Username (Optional; Resets DM History)"
           :placeholder="myUsername"
           v-model="customUsername"
         ></v-text-field>
     </v-flex>
-    <v-flex xs12 md2> 
+    <v-flex xs3 md2> 
       <v-btn @click="setNewUsername">
         Use This Username
       </v-btn>
-    </v-flex> -->
+    </v-flex>
     <ChatWindow v-if="connected" />
   </v-layout>
 </template>
@@ -61,14 +61,7 @@ import {mapState, mapGetters} from 'vuex'
       }
     },
     mixins: [lifeCycleMixin],
-    sockets: {
-      connect: function(){
-        // let userName = this.myUsername
-        // if (userName) {
-        //   this.customUsername = userName 
-        //   this.setNewUsername()
-        // }
-      },
+    sockets: { 
     },
     methods: {
       setNewUsername: function(){

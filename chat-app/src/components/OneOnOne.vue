@@ -10,13 +10,14 @@
 			  v-model="messageDisplay"
 	          name="theirMessages"
 	          textarea
+	          :dark="darkness"
 	          :rows="textAreaRows"
 	        ></v-text-field>
 		</v-flex>
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		<v-flex xs9 md11>
+		<v-flex xs9 md10>
 			<v-text-field
 			  v-model="value"
 	          name="yourMessage"
@@ -24,7 +25,7 @@
 	          single-line
 	        ></v-text-field>
 		</v-flex>
-		<v-flex xs3 md1>
+		<v-flex xs3 md2>
 			<v-btn @click="submitMessage">
 				Submit Message
 			</v-btn>
@@ -74,7 +75,8 @@ export default {
     	...mapGetters([
     		'usersWhoAreMe',
     		'usersWhoAreNotMe',
-    		'usersWhoAreNotMeByUserName'
+    		'usersWhoAreNotMeByUserName',
+    		'darkness'
     	]),
     	textAreaRows(){
     		if (this.myDMs.length < 5) {
@@ -100,5 +102,12 @@ export default {
 </script>
 
 <style>
+.theme--dark.input-group textarea:disabled, .theme--dark.input-group__details {
+	color: white!important;
+}
 
+.input-group textarea:disabled, .input-group__details{
+  color: black!important;
+
+}
 </style>

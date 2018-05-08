@@ -13,6 +13,9 @@ Vue.use(VueSocketio, 'http://localhost:4000', store) // ,store
 import '@@/vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
+import { ThemePlugin, AuthPlugin } from 'jscatalyst'
+Vue.use(ThemePlugin, {store, themes: ['Blue', 'Pink', 'Green', 'Brown', 'Red', 'Grey']})
+
 new Vue({
   el: '#app',
   store,

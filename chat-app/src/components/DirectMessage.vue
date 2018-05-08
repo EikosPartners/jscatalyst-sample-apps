@@ -66,7 +66,13 @@ export default {
 </script>
 
 <style>
-.input-group textarea:disabled, .input-group__details {
-	color: black!important;
+
+.theme--dark.input-group textarea:disabled, .theme--dark.input-group__details {
+  color: white!important;
 }
+
+.input-group textarea:disabled, .input-group__details{
+  color: black!important;
+}
+
 </style>
