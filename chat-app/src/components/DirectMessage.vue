@@ -1,10 +1,16 @@
 <template>
 <v-container fluid>
 	<v-layout row wrap class="pb-5 mb-5">
-    <v-flex xs12 v-for="user in usersWhoAreNotMe" :key="user.username" :id="user.username" >
-      <OneOnOne :recipient="user"  />
-		</v-flex>
-
+    <v-flex xs12>
+      <v-tabs v-model="DMtab"> 
+        <v-tab v-for="user in usersWhoAreNotMe" :key="user.username">
+          {{user.username}}
+        </v-tab>
+        <v-tab-item v-for="user in usersWhoAreNotMe" :key="user.username">
+            <OneOnOne :recipient="user"> </OneOnOne>
+        </v-tab-item>
+      </v-tabs>
+    </v-flex>
 	</v-layout>
 </v-container>
 
@@ -24,6 +30,7 @@ export default {
           	connected: null,
           	value: '',
             recipient: '',
+            DMtab: null
   		}
   	},
     sockets: {
@@ -65,6 +72,23 @@ export default {
     		})
     		return bigOldString 
     	}
+    },
+    mounted(){
+
+    },
+    updated(){
+        let params = new URLSearchParams(window.location.search)
+        if (params.get('user')) {
+          this.DMtab = this.usersWhoAreNotMeByUserName.indexOf(params.get('user')).toString()
+        }
+    },
+    watch: {
+      usersWhoAreNotMeByUserName(data){
+          let params = new URLSearchParams(window.location.search)
+          if (params.get('user')) {
+            this.DMtab = data.indexOf(params.get('user')).toString()
+          }
+      }
     }
 }
 	

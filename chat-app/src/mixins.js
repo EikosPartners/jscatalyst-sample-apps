@@ -22,7 +22,8 @@ export default lifeCycleMixin = {
       ...mapGetters([
         'usersWhoAreMe',
         'usersWhoAreNotMe',
-        'allUsersByUserName'
+        'allUsersByUserName',
+        'usersWhoAreNotMeByUserName'
       ]),
     },
     methods: {

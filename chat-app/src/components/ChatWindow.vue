@@ -4,22 +4,23 @@
 		<v-flex xs12>
 			<v-divider />
 		</v-flex>
-		 <v-flex d-flex xs12 md2 style="padding-top: 20px" fill-height>
-      <v-card :height="textAreaRows * 26.5">
+		 <v-flex xs12 md2 style="padding-top: 20px" fill-height>
+      <v-card :height="cardRows">
          <v-card-title primary class="title">Current Users</v-card-title>
-        <v-card-text><v-list v-for="user in usersWhoAreNotMe" :key="user.id">
-          <a :href="`/DM#${user.username}`">
-          <v-list-tile>
-            <v-list-tile-title>
-              {{user.username}}
-            </v-list-tile-title>
-          </v-list-tile>
-        </a>
+        <v-card-text>
+          <v-list v-for="username in usersWhoAreNotMeByUserName" :key="username">
+            <router-link :to="`/DM?user=${username}`">
+            <v-list-tile>
+              <v-list-tile-title>
+                {{username}}
+              </v-list-tile-title>
+            </v-list-tile>
+          </router-link>
         </v-list></v-card-text>
       </v-card>
     </v-flex>
     <v-flex xs12 md10>
-      <v-text-field
+      <v-text-field 
         disabled
         v-model="messageDisplay"
         name="theirMessages"
@@ -119,15 +120,19 @@ export default {
     		return bigOldString 
     	},
       textAreaRows(){
-        if (this.theirMessages.length < 15) {
-        return 15
+        if (this.usersWhoAreNotMeByUserName.length > 5) {
+          return this.usersWhoAreNotMeByUserName.length * 3
+        } else if (this.theirMessages.length < 15) {
+          return 15
         } else {
            return this.theirMessages.length + 1
         }
       },
-      // cardRows(){
-      //  return (this.textAreaRows * 10).toString() + ' px'
-      // }
+      cardRows(){
+        let textHeightPixels = (this.textAreaRows * 26.5)
+        let otherOption = (this.usersWhoAreNotMeByUserName.length * 64) + 74
+        return Math.max(textHeightPixels, otherOption).toString()
+      }
     }
 
 

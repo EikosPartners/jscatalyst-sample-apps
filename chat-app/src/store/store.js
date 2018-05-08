@@ -9,7 +9,6 @@ export const store = new Vuex.Store({
   state: {
     socketAddress: 'http://localhost:4000',
     allUsers: [],
-    myIPaddress: '',
     myUsername: '',
     mySocketID: '',
   },
@@ -22,9 +21,6 @@ export const store = new Vuex.Store({
     },
     REMOVE_USER: function(state, payload) {
       state.allUsers = state.allUsers.filter(item=>{return item.username !== payload.username })
-    },
-    MY_IP_ADDRESS: function(state, payload) {
-    	state.myIPaddress = payload
     },
     MY_USERNAME: function(state, payload) {
     	state.myUsername = payload
@@ -41,6 +37,9 @@ export const store = new Vuex.Store({
   	usersWhoAreNotMe: function(state, getters) {
   		 return state.allUsers.filter(item=>{return item.id != state.mySocketID})
   	},
+    usersWhoAreNotMeByUserName: function(state, getters) {
+       return state.allUsers.filter(item=>{return item.id != state.mySocketID}).map(item=> item.username)
+    },
   	allUsersByUserName: function(state, getters) {
   		return state.allUsers.map(item=>item.username)
   	}
