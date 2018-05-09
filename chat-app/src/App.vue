@@ -1,7 +1,10 @@
 <template>
   <v-app id="app">
+
     <toolbar></toolbar>
+
     <v-container style="padding-top: 70px;">
+
        <span v-if="usersWhoAreNotMeByUserName.length < 1">
        <v-alert type="info" :value="true">
           You are the only user connected to this app! 
@@ -12,8 +15,11 @@
           {{usersMessage | plurals}} connected! 
         </v-alert>
       </span>
+
       <router-view></router-view>
+
     </v-container>
+
      <v-snackbar
         :timeout="timeout"
         v-model="snackbar"
@@ -21,6 +27,7 @@
         {{snackValue}}  
       <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
     </v-snackbar>
+    
   </v-app>
 </template>
 
@@ -40,8 +47,6 @@ export default {
       snackbar: false,
       timeout: 3000
     }
-  },
-  created(){
   },
   sockets: {
       directMessage:function(msg) {

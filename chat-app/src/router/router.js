@@ -22,8 +22,6 @@ export default new Router({
       path: '/DM/:id',
       name: 'DirectMessageSolo',
       component: DirectMessageSolo
-    },
-    
-    
+    },   
   ]
 })

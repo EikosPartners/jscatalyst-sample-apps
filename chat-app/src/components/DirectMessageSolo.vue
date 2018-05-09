@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
 import OneOnOne from './OneOnOne.vue'
 import lifeCycleMixin from '../mixins'
 
@@ -21,26 +20,16 @@ export default {
     },
   	data: function(){
   		return {
-            DMtab: null,
-            snackbar: null,
-            snackValue: null,
-            timeout: 3000
+
   		}
   	},
-    sockets: {
-
-    },
     mixins: [lifeCycleMixin],
-    methods: {
-    },
+
     computed: {
       recipient() {
         let username = this.$route.params.id
         return this.usersWhoAreNotMe.filter(item=>item.username === username)[0]
       }
-    },
-    mounted(){
-
     },
   }
   

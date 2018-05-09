@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
 import OneOnOne from './OneOnOne.vue'
 import lifeCycleMixin from '../mixins'
 
@@ -20,9 +19,6 @@ export default {
     },
   	data: function(){
   		return {
-            snackbar: null,
-            snackValue: null,
-            timeout: 3000
   		}
   	},
     mixins: [lifeCycleMixin],

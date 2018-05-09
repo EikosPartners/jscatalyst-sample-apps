@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
-
 
 Vue.use(Vuex)
 
@@ -96,12 +94,16 @@ export const store = new Vuex.Store({
   	},
     darkness: function(state, getters){
       return state.themeMod.displayTheme !== 'light'
+    },
+    chatRows: function(state, getters){
+        if (getters.usersWhoAreNotMeByUserName.length > 5) {
+          return getters.usersWhoAreNotMeByUserName.length * 3
+        } else if (state.myChats.length < 15) {
+          return 15
+        } else {
+           return state.myChats.length + 1
+        }
     }
+
   }
-  // plugins: [(new VuexPersistence({
-  //       storage: window.sessionStorage
-  //   })).plugin]
-
-
-
 })

@@ -1,14 +1,15 @@
 <template>
   <v-layout row wrap>
     <v-flex xs9 md6 offset-md2> 
-        <v-text-field
-          id="username"
-          name="username"
-          :rules="[rules.uniqueName]"
-          label="Custom Username (Optional; Resets DM History)"
-          :placeholder="myUsername"
-          v-model="customUsername"
-        ></v-text-field>
+      <v-text-field
+        id="username"
+        name="username"
+        :rules="[rules.uniqueName]"
+        label="Custom Username (Optional; Resets DM History)"
+        :placeholder="myUsername"
+        v-model="customUsername"
+      >
+      </v-text-field>
     </v-flex>
     <v-flex xs3 md2> 
       <v-btn @click="setNewUsername">
@@ -61,9 +62,6 @@ import {mapState, mapGetters} from 'vuex'
     width:600px;
     margin:auto;
   }
-  .header-title {
-
-  }
   #headerText {
     padding-left: 10px;
     font-size: 28px;
@@ -73,7 +71,5 @@ import {mapState, mapGetters} from 'vuex'
   .subtitleLink:hover {
     text-decoration: underline!important;
   }
-
-
 
 </style>
