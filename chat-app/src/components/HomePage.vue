@@ -10,66 +10,26 @@
     <v-flex xs12 id="headerText"> 
       <h1 class="display-2 text-xs-center">Chat Demo</h1>
       <p class="subtitle my-3">
-        This is a demo for implementing Chat features using <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" id="dmLink">direct messaging</router-link>. 
+        This is a demo for implementing Chat features using <a class="subtitleLink" href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" class="subtitleLink">direct messaging</router-link>. 
       </p>
     </v-flex>
-    <v-flex xs9 md6 offset-md2> 
-        <v-text-field
-          id="username"
-          name="username"
-          :rules="[rules.uniqueName]"
-          label="Custom Username (Optional; Resets DM History)"
-          :placeholder="myUsername"
-          v-model="customUsername"
-        ></v-text-field>
-    </v-flex>
-    <v-flex xs3 md2> 
-      <v-btn @click="setNewUsername">
-        Use This Username
-      </v-btn>
-    </v-flex>
+    <UserName v-if="connected" />
+
     <ChatWindow v-if="connected" />
+
   </v-layout>
 </template>
 
 <script>
 import ChatWindow from '@/components/ChatWindow'
+import UserName from '@/components/UserName'
 import lifeCycleMixin from '../mixins'
-import {mapState, mapGetters} from 'vuex'
   export default {
     components: {
-      ChatWindow
-    },
-    computed: {
-      ...mapState([
-        'connected'
-      ]),
-      newUsername: function(){
-        if (this.customUsername == '') {
-          return this.myUsername
-        } else {
-          return this.customUsername
-        }
-      }
-    },
-    data: function(){
-      return {
-        customUsername: '',
-        rules: {
-          uniqueName: (value)=> {return !this.allUsersByUserName.includes(value) || 'Username In Use'}
-        }
-      }
+      ChatWindow,
+      UserName
     },
     mixins: [lifeCycleMixin],
-    sockets: { 
-    },
-    methods: {
-      setNewUsername: function(){
-        this.$store.commit('MY_USERNAME', this.newUsername)
-        this.$store.commit('REMOVE_USER', {username: this.myUsername, id: this.mySocketID})
-        this.$socket.emit('newUsername', {username: this.newUsername, id: this.mySocketID})
-      }
-    }
   }
 </script>
 
@@ -78,19 +38,14 @@ import {mapState, mapGetters} from 'vuex'
     width:600px;
     margin:auto;
   }
-  .header-title {
-
-  }
   #headerText {
     padding-left: 10px;
     font-size: 28px;
     font-family: 'Roboto';
     font-weight: normal;
   }
-  #dmLink:hover {
-    text-decoration: underline
+  .subtitleLink:hover {
+    text-decoration: underline!important;
   }
-
-
 
 </style>
