@@ -12,12 +12,12 @@
 
         <!-- Full nav menu for larger screens -->
         <v-toolbar-items class="hidden-md-and-down">
-          <v-tooltip bottom>
+          <!-- <v-tooltip bottom>
             <v-btn icon @click="toggleDark" slot="activator">
               <v-icon class="">lightbulb_outline</v-icon>
             </v-btn>
             <span>Toggle light/dark</span>
-          </v-tooltip>
+          </v-tooltip> -->
           <v-tooltip bottom>
             <v-btn icon @click.stop="" slot="activator">
               <!-- share function when available: @click="shareURL" -->
