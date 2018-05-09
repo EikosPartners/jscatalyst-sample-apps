@@ -7,6 +7,7 @@ const compress = require('compression');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const http = require('http');
 
 const history = require('connect-history-api-fallback');
 const webpack = require('webpack');
@@ -15,6 +16,12 @@ const webpackConfig = require('./build/webpack.dev.conf');
 
 const app = express();
 
+// Mock backend
+const mock_backend = express();
+mock_backend.use('/data', require('./routes/data'));
+let server = http.createServer(mock_backend);
+server.listen(9000);
+console.log('Mock backend listening on 9000');
 
 app.use(compress());
 app.use(history({
@@ -24,8 +31,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// add the data route for the chart data
-app.use('/data', require('./routes/data'));
 
 module.exports = webpackConfig.then((webpackConfig) => {
     let compiler = webpack(webpackConfig);
