@@ -123,9 +123,12 @@
     '. bb bb bb bb bb bb bb bb bb bb .'
     '. li li li li li pi pi pi pi pi .'
     '. zo zo zo zo zo zo zo zo zo zo .'
-    '. st st st st st df df df df df .';
+    '. st st st st st df df df df df .'
+    '. . . . . . . . . . . .'
+    ;
     border: 2px dashed;
-    grid-gap: 50px;
+    grid-row-gap: 50px;
+    grid-column-gap: 50px;
   }
   .description {
     grid-area: ds;
