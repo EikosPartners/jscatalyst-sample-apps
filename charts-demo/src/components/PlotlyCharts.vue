@@ -1,48 +1,51 @@
 <template lang="html">
-  <div class="plotly-wrapper">
-    <div class="a-chart">
-      <area-chart
-        :dataModel='areaData'
-        title='Plotly Area Chart'
-      ></area-chart>
+  <main>
+    <h1 class="display-2 mb-5 text-xs-center">Plotly Charts</h1>
+    <div class="plotly-wrapper">
+      <div class="a-chart">
+        <area-chart
+          :dataModel='areaData'
+          title='Plotly Area Chart'
+        ></area-chart>
+      </div>
+      <div class="b-chart">
+        <bar
+          :dataModel='barData'
+          title='Plotly Bar Chart'
+        ></bar>
+      </div>
+      <div class="bu-chart">
+        <bubble
+          :dataModel='bubbleData'
+          title='Plotly Bubble Chart'
+        ></bubble>
+      </div>
+      <div class="d-chart">
+        <donut
+          :dataModel='donutData'
+          title='Plotly Donut Chart'
+        ></donut>
+      </div>
+      <div class="h-chart">
+        <heat
+          :dataModel='heatData'
+          title='Plotly Heat Map'
+        ></heat>
+      </div>
+      <div class="sc-chart">
+        <scatter
+          :dataModel='scatterData'
+          title='Plotly Scatter Plot'
+        ></scatter>
+      </div>
+      <div class="su-chart">
+        <surface
+          :dataModel='surfaceData'
+          title='Plotly Surface Chart'
+        ></surface>
+      </div>
     </div>
-    <div class="b-chart">
-      <bar
-        :dataModel='barData'
-        title='Plotly Bar Chart'
-      ></bar>
-    </div>
-    <div class="bu-chart">
-      <bubble
-        :dataModel='bubbleData'
-        title='Plotly Bubble Chart'
-      ></bubble>
-    </div>
-    <div class="d-chart">
-      <donut
-        :dataModel='donutData'
-        title='Plotly Donut Chart'
-      ></donut>
-    </div>
-    <div class="h-chart">
-      <heat
-        :dataModel='heatData'
-        title='Plotly Heat Map'
-      ></heat>
-    </div>
-    <div class="sc-chart">
-      <scatter
-        :dataModel='scatterData'
-        title='Plotly Scatter Plot'
-      ></scatter>
-    </div>
-    <div class="su-chart">
-      <surface
-        :dataModel='surfaceData'
-        title='Plotly Surface Chart'
-      ></surface>
-    </div>
-  </div>
+  </main>
 </template>
 
 <script>

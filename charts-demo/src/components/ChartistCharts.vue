@@ -1,26 +1,29 @@
 <template>
-  <div class="chartist-wrapper">
-    <div class="b-chart">
-      <bar-chart
-        title='Chartist Bar Chart'
-        :dataModel='barData'
-      ></bar-chart>
-    </div>
+  <main>
+    <h1 class="display-2 mb-5 text-xs-center">Chartist Charts</h1>
+    <div class="chartist-wrapper">
+      <div class="b-chart">
+        <bar-chart
+          title='Chartist Bar Chart'
+          :dataModel='barData'
+        ></bar-chart>
+      </div>
 
-    <div class="l-chart">
-      <line-chart
-        title='Chartist Line Chart'
-        :dataModel='lineData'
-      ></line-chart>
-    </div>
+      <div class="l-chart">
+        <line-chart
+          title='Chartist Line Chart'
+          :dataModel='lineData'
+        ></line-chart>
+      </div>
 
-    <div class="p-chart">
-      <pie-chart
-        title='Chartist Pie Chart'
-        :dataModel='pieData'
-      ></pie-chart>
+      <div class="p-chart">
+        <pie-chart
+          title='Chartist Pie Chart'
+          :dataModel='pieData'
+        ></pie-chart>
+      </div>
     </div>
-  </div>
+  </main>
 
 </template>
 
@@ -40,7 +43,7 @@
       'line-chart': ChartistLineChart,
       'pie-chart': ChartistPieChart
     },
-    // add data to instance to be used for each chart 
+    // add data to instance to be used for each chart
     data() {
       return {
         barData: barData,

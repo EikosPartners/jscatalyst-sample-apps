@@ -1,61 +1,64 @@
 <template lang="html">
-  <div class="chartjs-wrapper">
-    <div class="b-chart">
-      <bar
-        title='Chartjs Bar Chart'
-        :dataModel='barData'
-      ></bar>
+  <main>
+    <h1 class="display-2 mb-5 text-xs-center">ChartJS Charts</h1>
+    <div class="chartjs-wrapper">
+      <div class="b-chart">
+        <bar
+          title='Chartjs Bar Chart'
+          :dataModel='barData'
+        ></bar>
+      </div>
+      <div class="bl-chart">
+        <bar-line
+          title='Chartjs Bar Line Chart'
+          :dataModel='lineData'
+        ></bar-line>
+      </div>
+      <div class="bu-chart">
+        <bubble
+          title='Chartjs Bubble Chart'
+          :dataModel='bubbleData'
+        ></bubble>
+      </div>
+      <div class="l-chart">
+        <line-chart
+          title='Chartjs Line Chart'
+          :dataModel='lineData'
+        ></line-chart>
+      </div>
+      <div class="pi-chart">
+        <pie
+          title='Chartjs Pie Chart'
+          :dataModel='pieData'
+        ></pie>
+      </div>
+      <div class="po-chart">
+        <polar
+          title='Chartjs Polar Chart'
+          :dataModel='polarData'
+        ></polar>
+      </div>
+      <div class="r-chart">
+        <radar
+          title='Chartjs Radar Chart'
+          :dataModel='radarData'
+        ></radar>
+      </div>
+      <div class="s-chart">
+        <scatter
+          title='Chartjs Scatter Plot'
+          :dataModel='scatterData'
+        ></scatter>
+      </div>
+      <div class="ml-chart">
+        <line-chart
+          title='Chartjs Multi Line Chart'
+          propID='multi-line-chart'
+          :dataModel='multiLineData'
+        ></line-chart>
+      </div>
     </div>
-    <div class="bl-chart">
-      <bar-line
-        title='Chartjs Bar Line Chart'
-        :dataModel='lineData'
-      ></bar-line>
-    </div>
-    <div class="bu-chart">
-      <bubble
-        title='Chartjs Bubble Chart'
-        :dataModel='bubbleData'
-      ></bubble>
-    </div>
-    <div class="l-chart">
-      <line-chart
-        title='Chartjs Line Chart'
-        :dataModel='lineData'
-      ></line-chart>
-    </div>
-    <div class="pi-chart">
-      <pie
-        title='Chartjs Pie Chart'
-        :dataModel='pieData'
-      ></pie>
-    </div>
-    <div class="po-chart">
-      <polar
-        title='Chartjs Polar Chart'
-        :dataModel='polarData'
-      ></polar>
-    </div>
-    <div class="r-chart">
-      <radar
-        title='Chartjs Radar Chart'
-        :dataModel='radarData'
-      ></radar>
-    </div>
-    <div class="s-chart">
-      <scatter
-        title='Chartjs Scatter Plot'
-        :dataModel='scatterData'
-      ></scatter>
-    </div>
-    <div class="ml-chart">
-      <line-chart
-        title='Chartjs Multi Line Chart'
-        propID='multi-line-chart'
-        :dataModel='multiLineData'
-      ></line-chart>
-    </div>
-  </div>
+  </main>
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-  <section class="mt-5 mb-3">
-    <v-btn :to="{name: 'HomePage'}" class="primary">Home</v-btn>
-    <v-btn :to="{name: 'D3Charts'}" class="primary">D3</v-btn>
-    <v-btn :to="{name: 'PlotlyCharts'}" class="primary">Plotly</v-btn>
-    <v-btn :to="{name: 'ChartjsCharts'}" class="primary">Chartjs</v-btn>
-    <v-btn :to="{name: 'ChartistCharts'}" class="primary">Chartist</v-btn>
+  <section class="mt-5">
+    <v-btn flat :to="{name: 'HomePage'}" class="primary">Home</v-btn>
+    <v-btn flat :to="{name: 'D3Charts'}" class="primary">D3</v-btn>
+    <v-btn flat :to="{name: 'PlotlyCharts'}" class="primary">Plotly</v-btn>
+    <v-btn flat :to="{name: 'ChartjsCharts'}" class="primary">Chartjs</v-btn>
+    <v-btn flat :to="{name: 'ChartistCharts'}" class="primary">Chartist</v-btn>
   </section>
 </template>
 

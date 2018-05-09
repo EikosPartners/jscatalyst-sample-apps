@@ -1,181 +1,184 @@
 <template lang="html">
-  <div class="d3-wrapper">
-    <div class="bar-chart">
-      <bar
-        :dataModel='barData'
-        title='D3 Bar Chart'
-      ></bar>
-    </div>
+  <main>
+    <h1 class="display-2 mb-5 text-xs-center">D3 Charts</h1>
+    <div class="d3-wrapper">
+      <div class="bar-chart">
+        <bar
+          :dataModel='barData'
+          title='D3 Bar Chart'
+        ></bar>
+      </div>
 
-    <div class="box-chart">
-      <box
-        :dataModel='boxData'
-        title='D3 Box Plot'
-      ></box>
-    </div>
+      <div class="box-chart">
+        <box
+          :dataModel='boxData'
+          title='D3 Box Plot'
+        ></box>
+      </div>
 
-    <div class="bu-chart">
-      <bubble
-        :dataModel='bubbleData'
-        title='D3 Bubble Chart'
-      ></bubble>
-    </div>
+      <div class="bu-chart">
+        <bubble
+          :dataModel='bubbleData'
+          title='D3 Bubble Chart'
+        ></bubble>
+      </div>
 
-    <div class="bul-chart">
-      <bullet
-        :dataModel='bulletData'
-        title='D3 Bullet Chart'
-      ></bullet>
-    </div>
+      <div class="bul-chart">
+        <bullet
+          :dataModel='bulletData'
+          title='D3 Bullet Chart'
+        ></bullet>
+      </div>
 
-    <div class="den-chart">
-      <dendrogram
-        :dataModel='dendroData'
-        title='D3 Dendrogram'
-      ></dendrogram>
-    </div>
+      <div class="den-chart">
+        <dendrogram
+          :dataModel='dendroData'
+          title='D3 Dendrogram'
+        ></dendrogram>
+      </div>
 
-    <div class="dif-chart">
-      <difference
-        :dataModel='differenceData'
-        title='D3 Difference Chart'
-      ></difference>
-    </div>
+      <div class="dif-chart">
+        <difference
+          :dataModel='differenceData'
+          title='D3 Difference Chart'
+        ></difference>
+      </div>
 
-    <div class="f-chart">
-      <force
-        :dataModel='forceData'
-        title='D3 Force Graph'
-      ></force>
-    </div>
+      <div class="f-chart">
+        <force
+          :dataModel='forceData'
+          title='D3 Force Graph'
+        ></force>
+      </div>
 
-    <div class="g-chart">
-      <gantt
-        style="height:100%"
-        :dataModel='ganttData'
-        title='D3 Gantt Chart'
-      ></gantt>
-    </div>
+      <div class="g-chart">
+        <gantt
+          style="height:100%"
+          :dataModel='ganttData'
+          title='D3 Gantt Chart'
+        ></gantt>
+      </div>
 
-    <div class="heat-chart">
-      <heat
-        :dataModel='heatData'
-        title='D3 Heat Map'
-      ></heat>
-    </div>
+      <div class="heat-chart">
+        <heat
+          :dataModel='heatData'
+          title='D3 Heat Map'
+        ></heat>
+      </div>
 
-    <div class="hist-chart">
-      <histogram
-        :dataModel='histogramData'
-        title='D3 Histogram Chart'
-      ></histogram>
-    </div>
+      <div class="hist-chart">
+        <histogram
+          :dataModel='histogramData'
+          title='D3 Histogram Chart'
+        ></histogram>
+      </div>
 
-    <div class="hori-chart">
-      <horizon
-        :dataModel='horizonData'
-        title='D3 Horizon Chart'
-      ></horizon>
-    </div>
+      <div class="hori-chart">
+        <horizon
+          :dataModel='horizonData'
+          title='D3 Horizon Chart'
+        ></horizon>
+      </div>
 
-    <div class="line-chart">
-      <line-chart
-        :dataModel='lineData'
-        title='D3 Line Chart'
-      ></line-chart>
-    </div>
+      <div class="line-chart">
+        <line-chart
+          :dataModel='lineData'
+          title='D3 Line Chart'
+        ></line-chart>
+      </div>
 
-    <div class="z-chart">
-      <zoomable
-        :dataModel='zoomData'
-        title='D3 Zoomable Line Chart'
-      ></zoomable>
-    </div>
+      <div class="z-chart">
+        <zoomable
+          :dataModel='zoomData'
+          title='D3 Zoomable Line Chart'
+        ></zoomable>
+      </div>
 
-    <div class="line-plot">
-      <line-plot
-        :dataModel='linePlotData'
-        title='D3 Line Plot'
-      ></line-plot>
-    </div>
+      <div class="line-plot">
+        <line-plot
+          :dataModel='linePlotData'
+          title='D3 Line Plot'
+        ></line-plot>
+      </div>
 
-    <div class="pi-chart">
-      <pie
-        :dataModel='pieData'
-        title='D3 Pie Chart'
-      ></pie>
-    </div>
+      <div class="pi-chart">
+        <pie
+          :dataModel='pieData'
+          title='D3 Pie Chart'
+        ></pie>
+      </div>
 
-    <div class="punch-chart">
-      <punch
-        :dataModel='punchData'
-        title='D3 Punch Card'
-      ></punch>
-    </div>
+      <div class="punch-chart">
+        <punch
+          :dataModel='punchData'
+          title='D3 Punch Card'
+        ></punch>
+      </div>
 
-    <div class="sc-chart">
-      <scatter
-        :dataModel='scatterData'
-        title='D3 Scatter Plot'
-      ></scatter>
-    </div>
+      <div class="sc-chart">
+        <scatter
+          :dataModel='scatterData'
+          title='D3 Scatter Plot'
+        ></scatter>
+      </div>
 
-    <div class="stack-chart">
-      <stacked-bar
-        :dataModel='stackData'
-        dateFormat='M/D/YY'
-        title='D3 Stacked Bar Chart'
-      ></stacked-bar>
-    </div>
+      <div class="stack-chart">
+        <stacked-bar
+          :dataModel='stackData'
+          dateFormat='M/D/YY'
+          title='D3 Stacked Bar Chart'
+        ></stacked-bar>
+      </div>
 
-    <div class="st-chart">
-      <stream
-        :dataModel='streamData'
-        title='D3 Stream Graph'
-        dateFormat='M/D/YY'
-      ></stream>
-    </div>
+      <div class="st-chart">
+        <stream
+          :dataModel='streamData'
+          title='D3 Stream Graph'
+          dateFormat='M/D/YY'
+        ></stream>
+      </div>
 
-    <div class="sun-chart">
-      <sunburst
-        :dataModel='sunData'
-        title='D3 Sunburst'
-      ></sunburst>
-    </div>
+      <div class="sun-chart">
+        <sunburst
+          :dataModel='sunData'
+          title='D3 Sunburst'
+        ></sunburst>
+      </div>
 
-    <div class="tl-chart">
-      <two-line
-        :dataModel='twoLineData'
-        title='D3 Two Line Chart'
-        dateFormat='YYYY-MM-DD'
-        :dataModel2='linePlotData'
-      ></two-line>
-    </div>
+      <div class="tl-chart">
+        <two-line
+          :dataModel='twoLineData'
+          title='D3 Two Line Chart'
+          dateFormat='YYYY-MM-DD'
+          :dataModel2='linePlotData'
+        ></two-line>
+      </div>
 
-    <div class="usc-chart">
-      <us-map
-        :dataModel='usCountyData'
-        title='D3 US County Map'
-      ></us-map>
-    </div>
+      <div class="usc-chart">
+        <us-map
+          :dataModel='usCountyData'
+          title='D3 US County Map'
+        ></us-map>
+      </div>
 
-    <div class="uss-chart">
-      <us-map
-        :dataModel='usStateData'
-        title='D3 US State Map'
-        format="State"
-        propID='state-map'
-      ></us-map>
-    </div>
+      <div class="uss-chart">
+        <us-map
+          :dataModel='usStateData'
+          title='D3 US State Map'
+          format="State"
+          propID='state-map'
+        ></us-map>
+      </div>
 
-    <div class="w-chart">
-      <world-map
-        :dataModel='worldData'
-        title='D3 World Map'
-      ></world-map>
-    </div>
+      <div class="w-chart">
+        <world-map
+          :dataModel='worldData'
+          title='D3 World Map'
+        ></world-map>
+      </div>
 
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
