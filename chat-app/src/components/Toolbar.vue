@@ -90,14 +90,14 @@ import {mapState} from 'vuex'
         //dashboards:['catstats', 'process', 'alerts', 'kpi', 'chasing','css','executive', 'example', 'scorecard'],
         dashboards:[],
         userMenu: [
-        { title: 'Help & Feedback', action: () => {alert('Help And feedback')}},
-        { title: 'User Preferences', action: () => {alert('User Preferences')}},
-        { title: 'Password Reset', action: () => {alert('password Reset')}},
-        { title: 'Logout', action: () => { this.logout()}}
+          { title: 'Help & Feedback', action: () => {alert('Help And feedback')}},
+          { title: 'User Preferences', action: () => {alert('User Preferences')}},
+          { title: 'Password Reset', action: () => {alert('password Reset')}},
+          { title: 'Logout', action: () => { this.logout()}}
         ],
         collapsedUserMenu: [
           { title: 'Refresh', action: () => {this.refreshScreen}},
-          ],
+        ],
         showTabs: false,
         shareLink: '',
         falseParam: false,
@@ -113,7 +113,6 @@ import {mapState} from 'vuex'
         if (this.$store.state.themeMod) return this.$store.state.themeMod.displayTheme;
         return 'light'
       },
-
       ...mapState([
         'myUsername',
       ]),

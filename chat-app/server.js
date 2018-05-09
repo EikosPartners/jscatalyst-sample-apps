@@ -48,14 +48,16 @@ io.sockets.on('connection', function(socket){
 
   socket.on('chatMessage', function(msg){
     console.log('chatMessage')
-    let newMsg = {...msg, from: personID}
+    let newMsg = Object.assign({}, msg, {from:personID}) 
+    // let newMsg = {...msg, from: personID}
     console.log(newMsg)
     io.emit('chatMessage', newMsg)
   })
 
   socket.on('directMessage', function(msg){
     console.log('directMessage')
-    let newMsg = {...msg, from: personID}
+    let newMsg = Object.assign({}, msg, {from:personID}) 
+    // let newMsg = {...msg, from: personID}
     console.log(newMsg)
 
     io.emit('directMessage', newMsg)
