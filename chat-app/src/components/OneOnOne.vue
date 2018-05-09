@@ -35,23 +35,15 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
-
+import {mapGetters, mapState} from 'vuex'	
 export default {
-	// sockets: {
-	// 	directMessage: function(msg) {
-	//         if ((msg.recipient.username === this.myUsername && msg.from.username == this.recipient.username)|| (msg.from.username === this.myUsername && msg.recipient.username === this.recipient.username)) {
-	//           this.theirMessages.push(msg)
-	//         }
-	//       },
- //  	},
-	props: {
-		recipient:{
-			type: Object,
-			required: true
-
-		}
-	},
+	props: {	
+		recipient:{	
+			type: Object,	
+			required: true	
+	
+		}	
+	},	
 	data: function(){
 		return {
         	theirMessages: [],
@@ -66,18 +58,18 @@ export default {
 		},
   	},
 	computed: {
-		...mapState([
-			'allUsers',
-			'myUsername',
-			'mySocketID',
-			'myDMs'
-		]),
-    	...mapGetters([
-    		'usersWhoAreMe',
-    		'usersWhoAreNotMe',
-    		'usersWhoAreNotMeByUserName',
-    		'darkness'
-    	]),
+		...mapState([	
+			'allUsers',	
+			'myUsername',	
+			'mySocketID',	
+			'myDMs'	
+		]),	
+    	...mapGetters([	
+    		'usersWhoAreMe',	
+    		'usersWhoAreNotMe',	
+    		'usersWhoAreNotMeByUserName',	
+    		'darkness'	
+    	]),	
     	textAreaRows(){
     		if (this.myDMs.length < 5) {
     			return 5
@@ -93,7 +85,8 @@ export default {
     			bigOldString += item.from.username + ': ' + item.value + '\n'
     		})
     		return bigOldString 
-    	}
+    	},
+
     }
 
 }

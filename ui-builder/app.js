@@ -8,6 +8,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const http = require('http');
+const cors = require('cors');
 
 const history = require('connect-history-api-fallback');
 const webpack = require('webpack');
@@ -18,6 +19,7 @@ const app = express();
 
 // Mock backend
 const mock_backend = express();
+mock_backend.use(cors());
 mock_backend.use('/data', require('./routes/data'));
 let server = http.createServer(mock_backend);
 server.listen(9000);

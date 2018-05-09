@@ -24,7 +24,8 @@ export default lifeCycleMixin = {
         'usersWhoAreMe',
         'usersWhoAreNotMe',
         'allUsersByUserName',
-        'usersWhoAreNotMeByUserName'
+        'usersWhoAreNotMeByUserName',
+        'darkness'
       ]),
     },
     methods: {

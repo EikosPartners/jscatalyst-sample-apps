@@ -32,35 +32,20 @@
             </v-btn>
             <span>Refresh</span>
           </v-tooltip>
-
-          <!-- <v-btn small flat @click.stop="aboutModal = true" class="navBtn">About</v-btn> -->
-        <!--   <v-menu offset-y open-on-hover max-height="400px">
-            <v-btn flat slot="activator" class="navBtn">Themes
-              <v-icon>arrow_drop_down</v-icon>
-            </v-btn>
-            <v-list>
-              <v-list-tile v-for="item in themes" :key="item" @click="chooseTheme(item)">
-                <v-list-tile-title>{{ item }}</v-list-tile-title>
-                  <v-icon :color="item.toLowerCase()">brightness_1</v-icon>
-
-              </v-list-tile>
-            </v-list>
-          </v-menu> -->
-          <v-menu>
-            <v-btn flat :to='{name: "DirectMessage"}' slot="activator" class="navBtn">DM</v-btn>
+          <v-menu>  
+            <v-btn flat :to='{name: "DirectMessageList"}' slot="activator" class="navBtn">DM List</v-btn> 
           </v-menu>
-
         </v-toolbar-items>
 
         <!-- Collapsed nav menu for mobile -->
         <v-toolbar-items class="hidden-lg-and-up">
           <v-menu max-height="400px">
-            <v-icon slot="activator">menu</v-icon>
+            <v-btn icon slot="activator"><v-icon>menu</v-icon></v-btn>
             <v-list>
-              <v-list-tile v-for="item in collapsedUserMenu" :key="item.title" @click.stop="item.action">
+              <v-list-tile v-for="item in collapsedUserMenu" :key="item.title" @click="item.action">
                 <v-list-tile-title v-text="item.title"></v-list-tile-title>
               </v-list-tile>
-                <router-link :to='{name: "DirectMessage"}' style='text-decoration: none; color: inherit'><v-list-tile class='list__tile--link'>
+                <router-link :to='{name: "DirectMessageList"}' style='text-decoration: none; color: inherit'><v-list-tile class='list__tile--link'>
                   <v-list-tile-title>Direct Messages</v-list-tile-title>
                 </v-list-tile></router-link>
             </v-list>
@@ -78,25 +63,13 @@ import { StyleTogglerMixin } from 'jscatalyst'
 import {mapState} from 'vuex'
 
   export default {
-    components: {
-    },
-    props: [
-
-    ],
     mixins: [StyleTogglerMixin],
     data: function () {
       return {
-        // aboutModal: false,
-        //dashboards:['catstats', 'process', 'alerts', 'kpi', 'chasing','css','executive', 'example', 'scorecard'],
         dashboards:[],
-        userMenu: [
-          { title: 'Help & Feedback', action: () => {alert('Help And feedback')}},
-          { title: 'User Preferences', action: () => {alert('User Preferences')}},
-          { title: 'Password Reset', action: () => {alert('password Reset')}},
-          { title: 'Logout', action: () => { this.logout()}}
-        ],
         collapsedUserMenu: [
-          { title: 'Refresh', action: () => {this.refreshScreen}},
+          { title: 'Refresh', action: () => {this.refreshScreen()}},
+          { title: 'Toggle Light/Dark', action: () => {this.toggleDark()}}
         ],
         showTabs: false,
         shareLink: '',
@@ -119,15 +92,6 @@ import {mapState} from 'vuex'
 
     },
     methods: {
-      tbd: function(){
-        alert('feature not yet implemented')
-      },
-      // closeModal: function(){
-      //     this.aboutModal = false
-      // },
-      // openModal: function(){
-      //     this.aboutModal = true
-      // },
       refreshScreen: function(){
         location.reload();
       }
