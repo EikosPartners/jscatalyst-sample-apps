@@ -27,7 +27,7 @@
             <span>Share</span>
           </v-tooltip> -->
           <v-tooltip bottom>
-            <v-btn icon @click.stop="refreshScreen" slot="activator">
+            <v-btn icon @click.stop="refreshScreen" slot="activator" style="margin-right:1vw">
               <v-icon>refresh</v-icon>
             </v-btn>
             <span>Refresh</span>
@@ -46,9 +46,7 @@
               </v-list-tile>
             </v-list>
           </v-menu> -->
-          <v-menu>
-            <v-btn flat :to='{name: "DirectMessage"}' slot="activator" class="navBtn">DM</v-btn>
-          </v-menu>
+
 
         </v-toolbar-items>
 

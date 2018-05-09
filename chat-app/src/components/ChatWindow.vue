@@ -9,7 +9,7 @@
          <v-card-title primary class="title">Current Users</v-card-title>
         <v-card-text>
           <v-list v-for="username in usersWhoAreNotMeByUserName" :key="username">
-            <router-link class="userListLink" :to="`/DM?user=${username}`">
+            <router-link class="userListLink" :to="`/DM/${username}`">
             <v-list-tile>
               <v-list-tile-title>
                 {{username}}
