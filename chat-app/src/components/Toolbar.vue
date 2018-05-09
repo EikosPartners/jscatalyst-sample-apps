@@ -27,11 +27,14 @@
             <span>Share</span>
           </v-tooltip> -->
           <v-tooltip bottom>
-            <v-btn icon @click.stop="refreshScreen" slot="activator" style="margin-right:1vw">
+            <v-btn icon @click.stop="refreshScreen" slot="activator">
               <v-icon>refresh</v-icon>
             </v-btn>
             <span>Refresh</span>
           </v-tooltip>
+          <v-menu>  
+            <v-btn flat :to='{name: "DirectMessageList"}' slot="activator" class="navBtn">DM List</v-btn> 
+          </v-menu>
 
           <!-- <v-btn small flat @click.stop="aboutModal = true" class="navBtn">About</v-btn> -->
         <!--   <v-menu offset-y open-on-hover max-height="400px">
@@ -58,7 +61,7 @@
               <v-list-tile v-for="item in collapsedUserMenu" :key="item.title" @click.stop="item.action">
                 <v-list-tile-title v-text="item.title"></v-list-tile-title>
               </v-list-tile>
-                <router-link :to='{name: "DirectMessage"}' style='text-decoration: none; color: inherit'><v-list-tile class='list__tile--link'>
+                <router-link :to='{name: "DirectMessageList"}' style='text-decoration: none; color: inherit'><v-list-tile class='list__tile--link'>
                   <v-list-tile-title>Direct Messages</v-list-tile-title>
                 </v-list-tile></router-link>
             </v-list>

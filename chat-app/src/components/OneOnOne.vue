@@ -35,11 +35,15 @@
 </template>
 
 <script>
-import lifeCycleMixin from '../mixins'
-
+import {mapGetters, mapState} from 'vuex'	
 export default {
-
-	mixins: [lifeCycleMixin],
+	props: {	
+		recipient:{	
+			type: Object,	
+			required: true	
+	
+		}	
+	},	
 	data: function(){
 		return {
         	theirMessages: [],
@@ -54,6 +58,18 @@ export default {
 		},
   	},
 	computed: {
+		...mapState([	
+			'allUsers',	
+			'myUsername',	
+			'mySocketID',	
+			'myDMs'	
+		]),	
+    	...mapGetters([	
+    		'usersWhoAreMe',	
+    		'usersWhoAreNotMe',	
+    		'usersWhoAreNotMeByUserName',	
+    		'darkness'	
+    	]),	
     	textAreaRows(){
     		if (this.myDMs.length < 5) {
     			return 5
@@ -70,10 +86,7 @@ export default {
     		})
     		return bigOldString 
     	},
-    	recipient() {
-    		let username = this.$route.params.id
-    		return this.usersWhoAreNotMe.filter(item=>item.username === username)[0]
-    	}
+
     }
 
 }

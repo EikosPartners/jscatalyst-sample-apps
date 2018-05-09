@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import DirectMessage from '@/components/DirectMessage'
+import DirectMessageList from '@/components/DirectMessageList'
+import DirectMessageSolo from '@/components/DirectMessageSolo'
 import HomePage from '@/components/HomePage'
-
 Vue.use(Router)
 
 export default new Router({
@@ -14,9 +14,16 @@ export default new Router({
       component: HomePage
     },
     {
-      path: '/DM/:id',
-      component: DirectMessage
+      path: '/allMessages',
+      name: 'DirectMessageList',
+      component: DirectMessageList
     },
+    {
+      path: '/DM/:id',
+      name: 'DirectMessageSolo',
+      component: DirectMessageSolo
+    },
+    
     
   ]
 })
