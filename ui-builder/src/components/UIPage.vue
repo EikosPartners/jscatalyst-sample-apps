@@ -17,33 +17,9 @@ export default {
       // manually enter them
       // these are passed as props to the ui-builder
       endpoints: [
-        '/data/barchart',
-        '/data/boxplot',
-        '/data/bubblechart',
-        '/data/bulletchart',
-        '/data/dendrogram',
-        '/data/differencechart',
-        '/data/forcegraph',
-        '/data/ganttchart',
-        '/data/heatmap',
-        '/data/histogram',
-        '/data/stackedbar',
-        '/data/linechart',
-        '/data/zoomablelinechart',
-        '/data/lineplot',
-        '/data/piechart',
-        '/data/punchcard',
-        '/data/scatterplot',
-        '/data/sunburst',
-        '/data/twolineplot',
-        '/data/usmapcounty',
-        '/data/usmapstate',
-        '/data/wolrdmap',
-        '/data/cjspiechart',
-        '/data/cjsbubblechart',
-        '/data/radarchart',
-        '/data/cjsscatterplot',
-        '/data/multiline'
+        "http://localhost:9000/data/barchart",
+        "http://localhost:9000/data/piechart",
+        "http://localhost:9000/data/linechart"
       ]
     }
   }
