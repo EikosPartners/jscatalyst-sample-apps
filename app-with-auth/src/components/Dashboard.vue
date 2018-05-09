@@ -3,35 +3,36 @@
     <h1 class='display-2 my-5 text-xs-center'>Protected Dashboard</h1>
     <div class="dashboard">
       <section class="chart pa-2 ma-2">
-        <h2 class='subtitle text-xs-center'>Chart Name</h2>
-        <bar-chart
+        <h2 class='title text-xs-center mt-3'>Chart Name</h2>
+        <bar-chart class="chart-styles"
           :dataModel='barData'
         ></bar-chart>
       </section>
 
       <section class="chart pa-2 ma-2">
-        <box-plot
+        <h2 class='title text-xs-center mt-3'>Chart Name</h2>
+        <box-plot class="chart-styles"
           :dataModel='boxData'
         ></box-plot>
       </section>
 
       <section class="chart pa-2 ma-2">
-        <h2 class='subtitle text-xs-center'>Chart Name</h2>
-        <heat-map
+        <h2 class='title text-xs-center mt-3'>Chart Name</h2>
+        <heat-map class="chart-styles"
           :dataModel='heatData'
         ></heat-map>
       </section>
 
       <section class="chart pa-2 ma-2">
-        <h2 class='subtitle text-xs-center'>Chart Name</h2>
-        <line-plot
+        <h2 class='title text-xs-center mt-3'>Chart Name</h2>
+        <line-plot class="chart-styles"
           :dataModel='lineData'
         ></line-plot>
       </section>
 
       <section class="chart pa-2 ma-2">
-        <h2 class='subtitle text-xs-center'>Chart Name</h2>
-        <punch-card
+        <h2 class='title text-xs-center mt-3'>Chart Name</h2>
+        <punch-card class="chart-styles"
           :dataModel='punchData'
         ></punch-card>
       </section>
@@ -87,6 +88,9 @@
 </script>
 
 <style lang="css" scoped>
+section {
+  padding: 40px;
+}
 h2 {
   font-weight: normal;
 }
@@ -97,6 +101,9 @@ h2 {
 .chart {
   height:500px;
   border-radius: 2px;
-  box-shadow: 1px 1px 4px #888888;
+  box-shadow: 1px 1px 4px #999;
+}
+.chart-styles {
+  padding: 40px;
 }
 </style>
