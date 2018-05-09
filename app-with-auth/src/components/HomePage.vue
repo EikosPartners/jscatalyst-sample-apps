@@ -1,14 +1,14 @@
 <template>
   <main>
-    <section class="left white--text">
-      <h1 class="display-3">Authentication Demo</h1>
-      <p class="headline">
-        This page demonstrates the Authentication plugin available in the <a href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst repo</a>.
+    <section class="left">
+      <h1 class="display-3" style="margin-left: 40px;">Authentication Demo</h1>
+      <p class="headline" style="margin-left: 40px;">
+        This page demonstrates the Authentication plugin available in the <a href="https://github.com/EikosPartners/jscatalyst" target="_blank" style="text-decoration: none;">JS Catalyst repo</a>.
       </p>
     </section>
     <section class="right">
       <div class="card">
-        <p class="mb-5">The plugin encapsulates all necessary logic to keep track of a user's authentication. It  provides built-in actions for logging in and signing up and stores that data to the Vuex store.</p>
+        <p class="mb-4">The plugin encapsulates all necessary logic to keep track of a user's authentication. It  provides built-in actions for logging in and signing up and stores that data to the Vuex store.</p>
         <div class="my-3">
           <h3 class="title mb-2">To Use</h3>
           <p>Notice that the 'Go to Protected Dashboard' button is disabled below. Next, either login with 'test' as the username and password, or signup with a new account.</p>
@@ -45,16 +45,13 @@
     display: grid;
     grid-gap: 40px;
     justify-content: space-around;
-    background-image: radial-gradient(ellipse farthest-side at 100% 100%, #3D59FF 30%, #30398a 50%, #1A247D 110%);
+    /* background-image: radial-gradient(ellipse farthest-side at 100% 100%, #3D59FF 30%, #30398a 50%, #0277BD 110%); */
+    background-color: #E0E0E0;
   }
 
   section {
     margin: auto 80px;
   }
-
-  /* .bg {
-    background-image: radial-gradient(ellipse farthest-side at 100% 100%, #3D59FF 30%, #30398a 50%, #1A247D 110%);
-  } */
 
   .left {
     grid-column: 1 / 1;
@@ -64,12 +61,12 @@
   .right {
     grid-column: 2 / 2;
     grid-row: 1 / 1;
-    background-color: #FFF;
   }
 
   .card {
     padding: 40px;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px #333;
+    background-color: #FFF;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px #999;
   }
 </style>
