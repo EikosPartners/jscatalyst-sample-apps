@@ -8,13 +8,13 @@
           </span>
     </v-flex>
 
-    <v-flex xs12 id="headerText"> 
+    <v-flex xs12 id="headerText">
       <h1 class="display-2 text-xs-center">Chat Demo</h1>
       <p class="subtitle my-3">
-        This is a demo for implementing Chat features using <a class="subtitleLink" href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" class="subtitleLink">direct messaging</router-link>. 
+        This is a demo for implementing Chat features using <a class="subtitleLink" href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" class="subtitleLink">direct messaging</router-link>.
       </p>
     </v-flex>
-    
+
     <UserName v-if="connected" />
 
     <ChatWindow v-if="connected" />

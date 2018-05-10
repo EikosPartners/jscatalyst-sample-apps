@@ -1,11 +1,13 @@
 <template>
-  <section class="mt-5">
-    <v-btn flat :to="{name: 'HomePage'}" class="primary">Home</v-btn>
-    <v-btn flat :to="{name: 'D3Charts'}" class="primary">D3</v-btn>
-    <v-btn flat :to="{name: 'PlotlyCharts'}" class="primary">Plotly</v-btn>
-    <v-btn flat :to="{name: 'ChartjsCharts'}" class="primary">Chartjs</v-btn>
-    <v-btn flat :to="{name: 'ChartistCharts'}" class="primary">Chartist</v-btn>
-  </section>
+  <v-card class="py-2">
+    <div class="text-xs-center">
+      <v-btn flat :to="{name: 'HomePage'}" class="primary">Home</v-btn>
+      <v-btn flat :to="{name: 'D3Charts'}" class="primary">D3</v-btn>
+      <v-btn flat :to="{name: 'PlotlyCharts'}" class="primary">Plotly</v-btn>
+      <v-btn flat :to="{name: 'ChartjsCharts'}" class="primary">Chartjs</v-btn>
+      <v-btn flat :to="{name: 'ChartistCharts'}" class="primary">Chartist</v-btn>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -33,9 +35,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  section {
-    margin: auto;
-  }
   // #menu-button {
   //   position: fixed;
   //   z-index: 2;

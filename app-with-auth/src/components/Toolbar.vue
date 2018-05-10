@@ -197,35 +197,36 @@ import { StyleTogglerMixin } from 'jscatalyst'
 </script>
 
 
-<style lang="stylus">
-  .navBtn
+<style lang="css" scoped>
+  .navBtn {
     width: 50px!important
-
-  .responsive-img
-      max-height: 46px!important
-      padding-top: 5px
-
-  .nav-toolbar
-    -webkit-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
-    -moz-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
-    box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
-
-  .list__tile__title
-    font-size: 12px
-
-  i.material-icons
-    color: black
-
-  .onHoverBtn:hover
-    background-color: #D3D3D3
-		cursor: pointer
-
-  #homeButton
-    text-decoration: none
-
-  #headerText
-    padding-left: 10px
-    font-size: 28px
-    font-family: 'Roboto'
-    font-weight: normal
+  }
+  .responsive-img {
+    max-height: 46px!important;
+    padding-top: 5px;
+  }
+  .nav-toolbar {
+    -webkit-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1);
+    -moz-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1);
+    box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1);
+  }
+  .list__tile__title {
+    font-size: 12px;
+  }
+  i.material-icons {
+    color: black;
+  }
+  .onHoverBtn:hover {
+    background-color: #D3D3D3;
+		cursor: pointer;
+  }
+  #homeButton {
+    text-decoration: none;
+  }
+  #headerText {
+    padding-left: 10px;
+    font-size: 28px;
+    font-family: 'Roboto';
+    font-weight: normal;
+  }
 </style>

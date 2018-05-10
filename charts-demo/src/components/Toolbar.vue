@@ -128,8 +128,8 @@ import { StyleTogglerMixin } from 'jscatalyst'
     width: 50px!important
 
   .responsive-img
-      max-height: 46px!important
-      padding-top: 5px
+    max-height: 46px!important
+    padding-top: 5px
 
   .nav-toolbar
     -webkit-box-shadow: 0 2px 3px rgba(17,17,17,0.1),0 0 0 1px rgba(17,17,17,0.1)
