@@ -267,7 +267,7 @@
       return {
         barData: barData,
         boxData: boxData,
-        bubbleData: [],
+        bubbleData: bubbleData,
         bulletData: bulletData,
         dendroData: dendroData,
         differenceData: differenceData,
@@ -295,14 +295,6 @@
     mounted() {
       this.barData = barData
       this.horizonData = {'AAPL': AAPL, 'ADBE': ADBE, 'GOOG': GOOG}
-      this.bubbleData = bubbleData.slice().map(el => {
-        return {
-          x: el.duration_med / 60,
-          y: el.escalated_med *100,
-          value: el.volume,
-          label: el.category_1 + el.category_2 + el.category_3
-        }
-      })
     }
   }
 </script>

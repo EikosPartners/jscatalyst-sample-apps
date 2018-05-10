@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "chartjs": "^0.3.24",
-    "jscatalyst": "^1.1.0",
+    "jscatalyst": "^1.1.9",
     "moment-duration-format": "^2.2.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
