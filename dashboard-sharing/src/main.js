@@ -19,11 +19,18 @@ Vue.use(VueRouter)
 const store = new Vuex.Store({})
 import Dashboard from './components/Dashboard.vue'
 import ReceiveDashboard from './components/ReceiveDashboard.vue'
+import Homepage from './components/Homepage.vue'
+
 const router = new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/',
+      name: 'Homepage',
+      component: Homepage
+    },
+    {
+      path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
     },
