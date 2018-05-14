@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import LocalVideo from './LocalVideo'
-import RemoteVideo from './RemoteVideo'
+import LocalVideo from './drafts/LocalVideoOne'
+import RemoteVideo from './drafts/RemoteVideoOne'
 
 export default {
   name: 'Alternate',
@@ -19,9 +19,8 @@ export default {
   },
 
   components: {
-	LocalVideo,
-	RemoteVideo
-
+  	LocalVideo,
+  	RemoteVideo
   },  
   methods: {
 

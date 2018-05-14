@@ -6,6 +6,7 @@
 </template>
 
 <script>
+  import { remoteVideo, remoteVideoEventListeners, } from '../../RTCHelper.js'
 
 export default {
   name: 'Alternate',
@@ -19,6 +20,8 @@ export default {
 
   },
   mounted(){
+    remoteVideo()
+    remoteVideoEventListeners()
   },  
   methods: {
 

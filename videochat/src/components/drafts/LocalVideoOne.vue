@@ -2,16 +2,17 @@
   <div class="receiver">
     <video id="localVideo" autoplay></video>
 
-<!--     <div>
+    <div>
       <button id="startButton">Start</button>
       <button id="callButton">Call</button>
       <button id="hangupButton">Hang Up</button>
-    </div> -->
+    </div>
 
   </div>
 </template>
 
 <script>
+  import {buttons, buttonEventListeners, localVideo, localVideoEventListeners, } from '../../RTCHelper.js'
 
 export default {
   name: 'Alternate',
@@ -21,10 +22,10 @@ export default {
     }
   },
   mounted(){
-    // buttons()
-    // buttonEventListeners()
-    // localVideo()
-    // localVideoEventListeners()
+    buttons()
+    buttonEventListeners()
+    localVideo()
+    localVideoEventListeners()
   },  
   methods: {
 
