@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ChatsContainer from '@/components/ChatsContainer'
 import SimpleRTCContainer from '@/components/SimpleRTCContainer'
+import SoloContext from '@/components/drafts/SoloContext'
 
 Vue.use(Router)
 
@@ -20,7 +21,12 @@ export default new Router({
       component: ChatsContainer
     },
 
-
+    {
+  	// note: localhost:8080/#/selfie
+      path: '/selfie',
+      name: 'SoloContext',
+      component: SoloContext
+    },
 
   ]
 })

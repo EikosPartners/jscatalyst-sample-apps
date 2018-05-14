@@ -3,7 +3,6 @@
         <video id="localVideo" autoplay></video>
         <video id="remoteVideo" autoplay></video>
 
-    HELLO
   </div>
 </template>
 
@@ -15,6 +14,7 @@ export default {
   data () {
     return {
       msg: 'VIDEO CHAT',
+      sessionId: null
     }
   },
 
@@ -25,6 +25,7 @@ export default {
 
   },
   mounted(){
+    var localThis = this
     var webrtc = new SimpleWebRTC({
         // the id/element dom element that will hold "our" video
         localVideoEl: 'localVideo',
@@ -35,11 +36,18 @@ export default {
     });
 
       webrtc.on('readyToCall', function () {
-        // you can name it anything
-        webrtc.joinRoom('your awesome room name');
+        webrtc.joinRoom('Eikos');
     });
-// https://github.com/andyet/SimpleWebRTC
+      webrtc.on('connectionReady', function (sessionId) {
+        localThis.sessionId = sessionId
+      })
 
+// https://github.com/andyet/SimpleWebRTC
+// https://github.com/andyet/signalmaster
+// https://simplewebrtc.com/
+// https://simplewebrtc.com/notsosimple.html
+
+// https://www.webrtc-experiment.com/
   }
 }
 </script>
