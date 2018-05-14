@@ -1,39 +1,47 @@
 <template>
-  <div class="receiver">
-    <video autoplay playsinline id="remoteVideo"> </video>
-    <audio id="remoteAudio"> </audio>
+  <div class="myContext">
+    <video autoplay playsinline id="localVideo"> </video>
+    <audio id="localAudio"> </audio>
 
+
+<div id="myButtons">   
+  <button id="startButton">Start</button>
+  <button id="callButton">Call</button>
+  <button id="hangupButton">Hang Up</button>
+</div>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
 
 export default {
-  props: ['logVideoLoaded', 'logResizedVideo'],
-  name: 'Receiver',
+  name: 'MyContext',
   data () {
     return {
       msg: 'VIDEO CHAT',
+      hdConstraints: {
+        video: {
+          width: {
+            min: 1280
+          },
+          height: {
+            min: 720
+          }
+        }
+      },
     }
   },
+  computed: {
 
-    computed: {
-    ...mapState([
-      'remoteVideo',
-      'remoteAudio'
-    ])
   },
+
   mounted(){
-    this.$store.commit('SET_REMOTE_VIDEO', {el: document.getElementById('remoteVideo')})
-    this.$store.commit('SET_REMOTE_AUDIO', {el: document.getElementById('remoteAudio')})
-    this.remoteVideo.addEventListener('loadedmetadata', this.logVideoLoaded);
-    this.remoteVideo.addEventListener('onresize', this.logResizedVideo);
+ 
     navigator.mediaDevices.getUserMedia({video:true, audio: true}).then(this.handleSuccess).catch(this.handleError)
   },
   methods: {
     handleSuccess(stream) {
-      this.remoteVideo.srcObject = stream;
+      this.localVideo.srcObject = stream;
       
       var audioTracks = stream.getAudioTracks();
       console.log('Using audio device: ' + audioTracks[0].label);
@@ -41,11 +49,13 @@ export default {
         console.log('Stream ended');
       };
       window.stream = stream; // make variable available to browser console
-      this.remoteAudio.srcObject = stream;
+      this.localAudio.srcObject = stream;
     },
      handleError(error) {
       console.error('Reeeejected!', error);
-    }
+    },
+
+
   }
 }
 </script>
