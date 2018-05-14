@@ -1,6 +1,6 @@
 <template>
   <div class="receiver">
-    <video autoplay id="remoteVideo"> </video>
+    <video autoplay playsinline id="remoteVideo"> </video>
     <audio id="remoteAudio"> </audio>
 
   </div>
@@ -10,12 +10,11 @@
 import {mapState} from 'vuex'
 
 export default {
+  props: ['logVideoLoaded', 'logResizedVideo'],
   name: 'Receiver',
   data () {
     return {
       msg: 'VIDEO CHAT',
-      remoteVideo: null,
-      remoteAudio: null,
     }
   },
 
@@ -26,9 +25,10 @@ export default {
     ])
   },
   mounted(){
-    this.$store.commit('SET_remote_VIDEO', {el: document.getElementById('remoteVideo')})
-    this.$store.commit('SET_remote_AUDIO', {el: document.getElementById('remoteAudio')})
-
+    this.$store.commit('SET_REMOTE_VIDEO', {el: document.getElementById('remoteVideo')})
+    this.$store.commit('SET_REMOTE_AUDIO', {el: document.getElementById('remoteAudio')})
+    this.remoteVideo.addEventListener('loadedmetadata', this.logVideoLoaded);
+    this.remoteVideo.addEventListener('onresize', this.logResizedVideo);
     navigator.mediaDevices.getUserMedia({video:true, audio: true}).then(this.handleSuccess).catch(this.handleError)
   },
   methods: {

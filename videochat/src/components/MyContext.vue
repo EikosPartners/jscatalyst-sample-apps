@@ -1,6 +1,6 @@
 <template>
   <div class="myContext">
-    <video autoplay id="localVideo"> </video>
+    <video autoplay playsinline id="localVideo"> </video>
     <audio id="localAudio"> </audio>
 
 
@@ -16,6 +16,7 @@
 import {mapState} from 'vuex'
 
 export default {
+  props: ['logVideoLoaded'],
   name: 'MyContext',
   data () {
     return {
@@ -29,21 +30,30 @@ export default {
             min: 720
           }
         }
-      }
-
-
+      },
     }
   },
   computed: {
     ...mapState([
       'localVideo',
-      'localAudio'
+      'localAudio',
+      'startButton',
+      'callButton',
+      'hangupButton',
     ])
   },
 
   mounted(){
     this.$store.commit('SET_LOCAL_VIDEO', {el: document.getElementById('localVideo')})
     this.$store.commit('SET_LOCAL_AUDIO', {el: document.getElementById('localAudio')})
+    this.$store.commit('SET_START_BUTTON', {el: document.getElementById('startButton')})
+    this.$store.commit('SET_CALL_BUTTON', {el: document.getElementById('callButton')})
+    this.$store.commit('SET_HANGUP_BUTTON', {el: document.getElementById('hangupButton')})
+    this.localVideo.addEventListener('loadedmetadata', this.logVideoLoaded);
+
+    this.callButton.disabled = true;
+    this.hangupButton.disabled = true;
+
     navigator.mediaDevices.getUserMedia({video:true, audio: true}).then(this.handleSuccess).catch(this.handleError)
   },
   methods: {
@@ -60,7 +70,9 @@ export default {
     },
      handleError(error) {
       console.error('Reeeejected!', error);
-    }
+    },
+
+
   }
 }
 </script>
