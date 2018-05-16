@@ -8,9 +8,9 @@
         </p>
       </section> -->
 
-      <div class="sender">
+      <v-card class="sender pa-3">
         <chart-sender></chart-sender>
-      </div>
+      </v-card>
 
       <div class="bubble">
         <chartjs-bubble
