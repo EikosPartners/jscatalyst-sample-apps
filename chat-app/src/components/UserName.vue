@@ -1,21 +1,33 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs9 md6 offset-md2> 
-      <v-text-field
-        id="username"
-        name="username"
-        :rules="[rules.uniqueName]"
-        label="Custom Username (Optional; Resets DM History)"
-        :placeholder="myUsername"
-        v-model="customUsername"
-      >
-      </v-text-field>
-    </v-flex>
-    <v-flex xs3 md2> 
-      <v-btn @click="setNewUsername">
-        Use This Name
-      </v-btn>
-    </v-flex>
+  <v-layout class="mt-5 mb-3">
+    <v-card class="pa-3 pt-4" style="width:100%; display: inline-flex;">
+      <!-- <v-flex xs9 md6 offset-md2> -->
+      <v-flex xs6>
+        <v-text-field
+          id="username"
+          name="username"
+          :rules="[rules.uniqueName]"
+          label="Custom Username (Optional; Resets DM History)"
+          :placeholder="myUsername"
+          v-model="customUsername"
+        >
+        </v-text-field>
+      </v-flex>
+      <v-flex xs4>
+        <v-btn
+          color="cyan" dark
+          @click="setNewUsername">
+          Use This Name
+        </v-btn>
+      </v-flex>
+      <v-flex xs2>
+        <v-btn flat
+          @click="setNewUsername"
+          color="cyan">
+          View DM List
+        </v-btn>
+      </v-flex>
+    </v-card>
   </v-layout>
 </template>
 
@@ -45,7 +57,7 @@ import {mapState, mapGetters} from 'vuex'
       }
     },
     mixins: [lifeCycleMixin],
-    sockets: { 
+    sockets: {
     },
     methods: {
       setNewUsername: function(){
@@ -58,18 +70,7 @@ import {mapState, mapGetters} from 'vuex'
 </script>
 
 <style lang="css" scoped>
-  section {
-    width:600px;
-    margin:auto;
-  }
-  #headerText {
-    padding-left: 10px;
-    font-size: 28px;
-    font-family: 'Roboto';
-    font-weight: normal;
-  }
   .subtitleLink:hover {
     text-decoration: underline!important;
   }
-
 </style>
