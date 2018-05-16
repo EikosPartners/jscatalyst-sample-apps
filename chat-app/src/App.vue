@@ -3,31 +3,32 @@
 
     <toolbar></toolbar>
 
-    <v-container style="padding-top: 70px;">
-
-       <span v-if="usersWhoAreNotMeByUserName.length < 1">
-       <v-alert type="info" :value="true">
-          You are the only user connected to this app! 
-        </v-alert>
-      </span>
-      <span v-else>
-        <v-alert type="success" :value="true">
-          {{usersMessage | plurals}} connected! 
-        </v-alert>
-      </span>
+    <div style="padding-top: 61px;" fluid>
+      <!-- <v-flex xs12> -->
+        <span v-if="usersWhoAreNotMeByUserName.length < 1">
+          <v-alert type="info" :value="true">
+            You are the only user connected to this app!
+          </v-alert>
+        </span>
+        <span v-else>
+          <v-alert type="success" :value="true">
+            {{usersMessage | plurals}} connected!
+          </v-alert>
+        </span>
+      <!-- </v-flex> -->
 
       <router-view></router-view>
 
-    </v-container>
+    </div>
 
-     <v-snackbar
-        :timeout="timeout"
-        v-model="snackbar"
+    <v-snackbar
+      :timeout="timeout"
+      v-model="snackbar"
       >
-        {{snackValue}}  
+      {{snackValue}}
       <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
     </v-snackbar>
-    
+
   </v-app>
 </template>
 

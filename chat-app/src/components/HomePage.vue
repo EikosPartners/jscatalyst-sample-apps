@@ -1,25 +1,30 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs12>
-        <span v-if="!connected">
-          <v-alert type="info" :value="true">
-              You are not connected to the websocket server! To send and receive messages, please run `node server.js`.
-            </v-alert>
-          </span>
-    </v-flex>
+  <div>
+    <!-- <v-flex xs12> -->
+    <!-- </v-flex> -->
+    <span v-if="!connected">
+      <v-alert type="info" :value="true">
+        You are not connected to the websocket server! To send and receive messages, please run `node server.js`.
+      </v-alert>
+    </span>
+    <v-container row wrap class="my-5 body-content">
+      <v-layout>
+        <h1 class="display-2 text-xs-left">Chat Demo</h1>
+      </v-layout>
+      <v-layout>
+        <p class="title my-4">
+          This is a demo for implementing Chat features using <a class="subtitleLink" href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" class="subtitleLink">direct messaging</router-link>.
+        </p>
+      </v-layout>
 
-    <v-flex xs12 id="headerText">
-      <h1 class="display-2 text-xs-center">Chat Demo</h1>
-      <p class="subtitle my-3">
-        This is a demo for implementing Chat features using <a class="subtitleLink" href="https://github.com/EikosPartners/jscatalyst" target="_blank">JS Catalyst</a>. This demo offers anonymous, registration-free chat, either in the shared room below or via <router-link to="DM" class="subtitleLink">direct messaging</router-link>.
-      </p>
-    </v-flex>
+      <UserName v-if="connected" />
 
-    <UserName v-if="connected" />
+      <ChatWindow v-if="connected" />
 
-    <ChatWindow v-if="connected" />
+    </v-container>
 
-  </v-layout>
+
+  </div>
 </template>
 
 <script>
@@ -36,18 +41,21 @@ import lifeCycleMixin from '../mixins'
 </script>
 
 <style lang="css" scoped>
-  section {
-    width:600px;
-    margin:auto;
-  }
-  #headerText {
+  /* #headerText {
     padding-left: 10px;
     font-size: 28px;
     font-family: 'Roboto';
     font-weight: normal;
-  }
+  } */
   .subtitleLink:hover {
     text-decoration: underline!important;
+  }
+  .body-content {
+    width: 60%;
+    margin: 0 auto;
+  }
+  .title {
+    line-height: 1.5 !important;
   }
 
 </style>
