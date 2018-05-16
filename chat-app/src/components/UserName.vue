@@ -15,14 +15,15 @@
       </v-flex>
       <v-flex xs4>
         <v-btn
-          class="primary"
+          color="cyan" dark
           @click="setNewUsername">
           Use This Name
         </v-btn>
       </v-flex>
       <v-flex xs2>
         <v-btn flat
-          @click="setNewUsername">
+          @click="setNewUsername"
+          color="cyan">
           View DM List
         </v-btn>
       </v-flex>

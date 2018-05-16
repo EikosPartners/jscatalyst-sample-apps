@@ -1,6 +1,8 @@
 <template>
-      <v-card :height="cardRows">
-         <v-card-title primary class="title">Current Users</v-card-title>
+      <v-card :height="cardRows" style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+        <v-toolbar color="cyan" flat dark>
+          <v-toolbar-title>Current Users</v-toolbar-title>
+        </v-toolbar>
         <v-card-text>
           <v-list v-for="username in usersWhoAreNotMeByUserName" :key="username">
             <router-link class="userListLink" :to="`/DM/${username}`">
@@ -25,13 +27,13 @@ export default {
         'usersWhoAreNotMeByUserName'
       ]),
       cardRows(){
-        let textHeightPixels = (this.chatRows  * 26.5)
+        let textHeightPixels = (this.chatRows  * 37.75)
         let otherOption = (this.usersWhoAreNotMeByUserName.length * 64) + 74
         return Math.max(textHeightPixels, otherOption).toString()
       }
     }
 }
-	
+
 </script>
 
 <style>
