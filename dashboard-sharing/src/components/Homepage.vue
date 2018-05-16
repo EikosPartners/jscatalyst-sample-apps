@@ -13,7 +13,7 @@
           <p>In JS Catalyst, you can use pre-made themes, or easily create your own.</p>
         </div>
         <div>
-          <router-link to='Dashboard' @click="openReceiver" style="text-decoration:none;"><v-btn color="primary" class="ml-0">Go to Dashboard</v-btn></router-link>
+          <router-link to='Dashboard' style="text-decoration:none;"><v-btn color="primary" class="ml-0">Go to Dashboard</v-btn></router-link>
         </div>
       </div>
     </section>
@@ -24,11 +24,6 @@
 export default {
   data: function () {
     return {
-    }
-  },
-  methods: {
-    openReceiver: function() {
-      console.log('hi!');
     }
   }
 }
