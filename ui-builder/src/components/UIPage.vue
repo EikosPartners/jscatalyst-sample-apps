@@ -1,6 +1,6 @@
 <template >
   <div class="ui-building">
-    <ui-builder :endpoints='endpoints'></ui-builder>
+    <ui-builder :endpoints='endpoints' @uibsave="save"></ui-builder>
   </div>
 </template>
 
@@ -21,6 +21,30 @@ export default {
         "http://localhost:9000/data/piechart",
         "http://localhost:9000/data/linechart"
       ]
+    }
+  },
+  methods: {
+    save (config) {
+      console.log(JSON.stringify(config));
+
+      let savedConfigs = localStorage.getItem('uibConfigs');
+
+      if (savedConfigs){
+        try {
+          savedConfigs = JSON.parse(savedConfigs);
+        } catch (e) {
+          console.log(e);
+          return;
+        }
+      } else {
+        savedConfigs = {
+          configs: []
+        }
+      }
+
+      savedConfigs.configs.push(config);
+
+      localStorage.setItem('uibConfigs', JSON.stringify(savedConfigs));
     }
   }
 }
