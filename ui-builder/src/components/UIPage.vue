@@ -1,6 +1,21 @@
 <template >
   <div class="ui-building">
-    <ui-builder :endpoints='endpoints' @uibsave="save"></ui-builder>
+    <ui-builder :endpoints='endpoints' @uibsave="save" @uibimport="importConfig" :importedConfig='importedConfig'></ui-builder>
+    <v-dialog v-model="showImportModal" persistent max-width="1000px">
+      <v-card>
+        <v-card-title>Import Configuration</v-card-title>
+        <v-card-text>
+          <div>
+            <v-select :items="configOptions" v-model="selectedConfig">
+            </v-select>
+          </div>
+          <div>
+            <v-btn @click="load()">Load</v-btn>
+            <v-btn @click="close()">Cancel</v-btn>
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -20,31 +35,68 @@ export default {
         "http://localhost:9000/data/barchart",
         "http://localhost:9000/data/piechart",
         "http://localhost:9000/data/linechart"
-      ]
+      ],
+      importedConfig: [],
+      savedConfigs: [],
+      configOptions: [],
+      selectedConfig: "",
+      showImportModal: false
     }
+  },
+  created () {
+    // Get any saved configurations.
+    let localConfigs = localStorage.getItem('uibConfigs');
+
+    if (localConfigs){
+      try {
+        localConfigs = JSON.parse(localConfigs);
+      } catch (e) {
+        console.log(e);
+        return;
+      }
+    } else {
+      localConfigs = {
+        configs: []
+      }
+    }
+    console.log(localConfigs);
+    this.savedConfigs = localConfigs;
+    
+    this.savedConfigs.configs.forEach( (config) => {
+      this.configOptions.push({
+        text: config.name,
+        value: config.id
+      });
+    });
   },
   methods: {
     save (config) {
       console.log(JSON.stringify(config));
 
-      let savedConfigs = localStorage.getItem('uibConfigs');
+      this.savedConfigs.configs.push(config);
 
-      if (savedConfigs){
-        try {
-          savedConfigs = JSON.parse(savedConfigs);
-        } catch (e) {
-          console.log(e);
-          return;
+      localStorage.setItem('uibConfigs', JSON.stringify(this.savedConfigs));
+    },
+    importConfig () {
+      this.showImportModal = true;
+    },
+    load () {
+      let config = [];
+
+      this.savedConfigs.configs.some( (c) => {
+        if (c.id === this.selectedConfig){
+          config = c.rows;
+          return true;
         }
-      } else {
-        savedConfigs = {
-          configs: []
-        }
-      }
+      });
 
-      savedConfigs.configs.push(config);
+      this.importedConfig = config;
 
-      localStorage.setItem('uibConfigs', JSON.stringify(savedConfigs));
+      this.close();
+    },
+    close () {
+      this.selectedConfig = "";
+      this.showImportModal = false;
     }
   }
 }
