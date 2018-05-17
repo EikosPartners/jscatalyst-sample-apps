@@ -22,7 +22,7 @@
       </v-flex>
       <v-flex xs2>
         <v-btn flat
-          @click="setNewUsername"
+          :to='{name: "DirectMessageList"}' slot="activator"
           color="cyan">
           View DM List
         </v-btn>
