@@ -1,0 +1,26 @@
+{
+    "startup_app": {
+        "name": "JSCatalyst Demos",
+        "url": "http://localhost:8082/",
+        "uuid": "ChatApp",
+        "applicationIcon": "http://localhost:8082/static/logo.ico",
+        "autoShow": true,
+        "contextMenu": true,
+        "frame": true
+    },
+    "runtime": {
+        "arguments": "",
+        "version": "8.56.30.55"
+    },
+    "services": [
+        {
+            "name": "layouts"
+        }
+    ],
+    "shortcut": {
+        "company": "Eikos Partners",
+        "description": "ChatApp running in OpenFin",
+        "icon": "http://localhost:8082/static/logo.ico",
+        "name": "JSCatalyst Chat App"
+    }
+}
