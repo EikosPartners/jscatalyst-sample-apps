@@ -16,6 +16,7 @@
     "ag-grid-vue": "^17.1.0",
     "axios": "^0.18.0",
     "d3": "^5.1.0",
+    "html2canvas-webpack": "^0.5.0-beta4",
     "jscatalyst": "^1.1.0",
     "moment": "^2.22.1",
     "vue": "^2.5.2",
