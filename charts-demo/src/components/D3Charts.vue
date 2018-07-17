@@ -1,6 +1,7 @@
 <template lang="html">
   <main>
     <h1 class="display-2 mb-5 text-xs-center">D3 Charts</h1>
+    
     <div class="d3-wrapper">
       <div class="bar-chart">
         <bar
@@ -234,6 +235,8 @@
   import AAPL from '@/mockData/stockData/AAPL.json'
   import ADBE from '@/mockData/stockData/ADBE.json'
   import GOOG from '@/mockData/stockData/GOOG.json'
+
+  import html2canvas from 'html2canvas'
 
   export default {
     // register the charts on the Vue instance

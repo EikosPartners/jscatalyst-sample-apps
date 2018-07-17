@@ -29,7 +29,7 @@ export default {
   methods: {
     toggleMenu: function() {
       this.$store.commit('toggleMenu')
-    }
+    },
   }
 }
 </script>

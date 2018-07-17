@@ -10,6 +10,9 @@
       <v-icon>menu</v-icon>
     </v-btn>
 
+
+      <v-toolbar flat class="transparent">
+
     <v-navigation-drawer
       v-model='menu'
       clipped
@@ -17,7 +20,6 @@
       app
       stateless
     >
-      <v-toolbar flat class="transparent">
         <v-btn
           block
           @click.stop="toggleMenu"
@@ -27,6 +29,7 @@
           <v-icon>chevron_left</v-icon> Close
         </v-btn>
       </v-toolbar>
+
       <v-list class="mt-3">
         <v-list-tile>
           <v-list-tile-title><router-link :to="{name: 'HomePage'}" class="sidebar-menu">Home</router-link></v-list-tile-title>
@@ -76,6 +79,9 @@ export default {
   methods: {
     toggleMenu: function() {
       this.$store.commit('toggleMenu')
+    },
+    grabScreen: function() {
+      alert('Grab Screen')
     }
   }
 }
