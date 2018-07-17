@@ -1,5 +1,3 @@
-echo 'Hello World'
-
 $files = Get-ChildItem ".\openfin\"
 
 for ($i=0; $i -lt $files.Count; $i++) {
