@@ -29,7 +29,7 @@ const windowManagementMixin = {
   methods: {
     // application is the object structure
     openApp: function (application) {
-      debugger
+      // debugger
 
       /*
       var app = new fin.desktop.Application({
@@ -72,7 +72,7 @@ const windowManagementMixin = {
     );
     },
     undock: function () {
-      debugger
+      // debugger
 
       // Only do this if an openFin environment
       if (fin.desktop === undefined) {
@@ -101,7 +101,7 @@ const windowManagementMixin = {
             },
             function() {
 
-                debugger
+                // debugger
 
                 let document = win.getNativeWindow().document
                 var menu = document.getElementById("content")
@@ -112,13 +112,13 @@ const windowManagementMixin = {
                     if ( data.action === undefined )
                         return
 
-                    debugger
+                    // debugger
 
                     let image = document.createElement("img");
                     let sourceWindow = event.source
 
                     image.onclick = () => { 
-                        debugger
+                        // debugger
                         sourceWindow.postMessage({action:'bringToFront'}, '*')
                         win.close(true)
                     }
@@ -169,7 +169,7 @@ const windowManagementMixin = {
                                 let sourceWindow = child
 
                                 canvas.onclick = () => { 
-                                    debugger
+                                    // debugger
                                     sourceWindow.restore()
                                     sourceWindow.bringToFront()
                                     win.close(true)
