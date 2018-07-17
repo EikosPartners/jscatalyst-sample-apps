@@ -72,7 +72,6 @@
 </template>
 
 <script>
-
 import { StyleTogglerMixin } from 'jscatalyst'
 import {mapState} from 'vuex'
 
@@ -119,7 +118,8 @@ import {mapState} from 'vuex'
     },
     methods: {
       refreshScreen: function(){
-        location.reload();
+        debugger
+        //location.reload();
       }
     },
   }
