@@ -63,31 +63,6 @@
             </v-btn>
             <span>Undock</span>
           </v-tooltip>
-          <v-tooltip bottom>
-            <v-btn icon @click="openApp('http://localhost:8082')" slot="activator">
-              <v-icon class="">lightbulb_outline</v-icon>
-            </v-btn>
-            <span>Open Chat App</span>
-          </v-tooltip>
-          <v-tooltip bottom>
-            <v-btn icon @click="openApp('http://localhost:8083')" slot="activator">
-              <v-icon class="">lightbulb_outline</v-icon>
-            </v-btn>
-            <span>Open Live Dashboard</span>
-          </v-tooltip>
-          <v-tooltip bottom>
-            <v-btn icon @click="openApp('http://localhost:8085')" slot="activator">
-              <v-icon class="">lightbulb_outline</v-icon>
-            </v-btn>
-            <span>Open Dashboard Sharing</span>
-          </v-tooltip>
-
-          <v-tooltip bottom>
-            <v-btn icon @click="showAllWindows" slot="activator">
-              <v-icon class="">menu</v-icon>
-            </v-btn>
-            <span>Show All Windows</span>
-          </v-tooltip>
 
           <v-menu max-height="400px">
             <v-icon slot="activator">menu</v-icon>
@@ -117,14 +92,12 @@
 <script>
 
 import { StyleTogglerMixin } from 'jscatalyst'
-import ScreenGrabMixin from '../mixins/screengrabMixin'
-import WindowManagementMixin from '../mixins/windowManagementMixin'
 
   export default {
     props: [
 
     ],
-    mixins: [StyleTogglerMixin, ScreenGrabMixin, WindowManagementMixin],
+    mixins: [StyleTogglerMixin],
     data: function () {
       return {
         themes: [],
