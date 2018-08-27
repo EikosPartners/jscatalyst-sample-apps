@@ -11,7 +11,7 @@ import {
   ThemePlugin
 } from 'jscatalyst'
 
-import Glue from '../../glue/tick42-glue-4-beta-dev.js'
+//import Glue from '../../glue/tick42-glue-4-beta-dev.js'
 
 Vue.use(Vuetify)
 Vue.use(Vuex)
@@ -34,29 +34,29 @@ Vue.use(ThemePlugin, {
 
 Vue.config.productionTip = false
 
-var glueConfig = {};
-if (window.glue42gd) {
-  glueConfig = {
-    appManager: "full"
-  };
-} else {
-  if (!window.htmlContainer) {
-    glueConfig.contexts = false;
-  }
-}
-window.addEventListener('load', () => {
-  console.log('window loaded');
-  if (Glue !== undefined) {
-    Glue(glueConfig)
-      .then(glue => {
-        console.log(glue)
-      })
-      .catch(err => {
-        debugger
-        alert('Failed ' + JSON.stringify(err))
-      })
-  }
-});
+// var glueConfig = {};
+// if (window.glue42gd) {
+//   glueConfig = {
+//     appManager: "full"
+//   };
+// } else {
+//   if (!window.htmlContainer) {
+//     glueConfig.contexts = false;
+//   }
+// }
+// window.addEventListener('load', () => {
+//   console.log('window loaded');
+//   if (Glue !== undefined) {
+//     Glue(glueConfig)
+//       .then(glue => {
+//         console.log(glue)
+//       })
+//       .catch(err => {
+//         debugger
+//         alert('Failed ' + JSON.stringify(err))
+//       })
+//   }
+// });
 
 
 /* eslint-disable no-new */
