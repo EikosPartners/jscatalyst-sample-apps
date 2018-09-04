@@ -118,7 +118,7 @@ import {mapState} from 'vuex'
     },
     methods: {
       refreshScreen: function(){
-        debugger
+        // debugger
         //location.reload();
       }
     },

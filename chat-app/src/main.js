@@ -11,6 +11,8 @@ Vue.config.productionTip = false
 import VueSocketio from 'vue-socket.io'
 Vue.use(VueSocketio, 'http://localhost:4000', store) // ,store
 import '@@/vuetify/dist/vuetify.min.css'
+import '@@/jscatalyst/dist/jscatalyst.min.css'
+
 Vue.use(Vuetify)
 
 import { ThemePlugin, AuthPlugin } from 'jscatalyst'

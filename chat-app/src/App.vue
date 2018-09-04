@@ -62,7 +62,6 @@ export default {
   },
   mounted() {
       window.addEventListener("message", event=>{
-        debugger
 
         if ( event.data.action !== undefined ) {
           if ( event.data.action === 'bringToFront') {
