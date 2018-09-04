@@ -89,9 +89,7 @@
             </v-btn>
             <span>Toggle light/dark</span>
           </v-tooltip>
-<<<<<<< HEAD
          
-=======
           <v-tooltip bottom>
             <v-btn icon @click="undock" slot="activator">
               <v-icon class="">chevron_left</v-icon>
@@ -99,7 +97,6 @@
             <span>Undock</span>
           </v-tooltip>
 
->>>>>>> d003a3cb400fd54559a711a24c47ba08f8f8d7e2
           <v-menu max-height="400px">
             <v-icon slot="activator">menu</v-icon>
             <v-list>

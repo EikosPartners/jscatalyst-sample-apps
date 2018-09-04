@@ -7,6 +7,8 @@
         <bar
           :dataModel='barData'
           title='D3 Bar Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></bar>
       </div>
 
@@ -14,6 +16,8 @@
         <box
           :dataModel='boxData'
           title='D3 Box Plot'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></box>
       </div>
 
@@ -21,6 +25,8 @@
         <bubble
           :dataModel='bubbleData'
           title='D3 Bubble Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></bubble>
       </div>
 
@@ -28,6 +34,8 @@
         <bullet
           :dataModel='bulletData'
           title='D3 Bullet Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></bullet>
       </div>
 
@@ -35,6 +43,8 @@
         <dendrogram
           :dataModel='dendroData'
           title='D3 Dendrogram'
+          @jsc_mouseover="displayDendrogramMO"
+          @jsc_click="displayDendrogramClick"
         ></dendrogram>
       </div>
 
@@ -42,6 +52,8 @@
         <difference
           :dataModel='differenceData'
           title='D3 Difference Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></difference>
       </div>
 
@@ -49,6 +61,8 @@
         <force
           :dataModel='forceData'
           title='D3 Force Graph'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></force>
       </div>
 
@@ -57,6 +71,8 @@
           style="height:100%"
           :dataModel='ganttData'
           title='D3 Gantt Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></gantt>
       </div>
 
@@ -64,6 +80,8 @@
         <heat
           :dataModel='heatData'
           title='D3 Heat Map'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></heat>
       </div>
 
@@ -71,6 +89,8 @@
         <histogram
           :dataModel='histogramData'
           title='D3 Histogram Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></histogram>
       </div>
 
@@ -78,6 +98,8 @@
         <horizon
           :dataModel='horizonData'
           title='D3 Horizon Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></horizon>
       </div>
 
@@ -85,6 +107,8 @@
         <line-chart
           :dataModel='lineData'
           title='D3 Line Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></line-chart>
       </div>
 
@@ -99,6 +123,8 @@
         <line-plot
           :dataModel='linePlotData'
           title='D3 Line Plot'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></line-plot>
       </div>
 
@@ -106,6 +132,8 @@
         <pie
           :dataModel='pieData'
           title='D3 Pie Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></pie>
       </div>
 
@@ -113,6 +141,8 @@
         <punch
           :dataModel='punchData'
           title='D3 Punch Card'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></punch>
       </div>
 
@@ -120,6 +150,8 @@
         <scatter
           :dataModel='scatterData'
           title='D3 Scatter Plot'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></scatter>
       </div>
 
@@ -128,6 +160,8 @@
           :dataModel='stackData'
           dateFormat='M/D/YY'
           title='D3 Stacked Bar Chart'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></stacked-bar>
       </div>
 
@@ -136,6 +170,8 @@
           :dataModel='streamData'
           title='D3 Stream Graph'
           dateFormat='M/D/YY'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></stream>
       </div>
 
@@ -143,6 +179,8 @@
         <sunburst
           :dataModel='sunData'
           title='D3 Sunburst'
+          @jsc_mouseover="displaySunburstMO"
+          @jsc_click="displaySunburstClick"
         ></sunburst>
       </div>
 
@@ -152,6 +190,8 @@
           title='D3 Two Line Chart'
           dateFormat='YYYY-MM-DD'
           :dataModel2='linePlotData'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></two-line>
       </div>
 
@@ -159,6 +199,8 @@
         <us-map
           :dataModel='usCountyData'
           title='D3 US County Map'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></us-map>
       </div>
 
@@ -168,6 +210,8 @@
           title='D3 US State Map'
           format="State"
           propID='state-map'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></us-map>
       </div>
 
@@ -175,10 +219,13 @@
         <world-map
           :dataModel='worldData'
           title='D3 World Map'
+          @jsc_mouseover="displayEventMO"
+          @jsc_click="displayEventClick"
         ></world-map>
       </div>
 
     </div>
+    <v-snackbar v-model="snackbar" :timeout="timeout"> {{eventName}} data: {{ message }} </v-snackbar>
   </main>
 </template>
 
@@ -292,12 +339,48 @@
         usCountyData: usCountyData,
         usStateData: usStateData,
         worldData: worldData,
-        twoLineData: twoLineData
+        twoLineData: twoLineData,
+        message: '',
+        snackbar: false,
+        timeout: 2000,
+        eventName: ''
       }
     },
     mounted() {
       this.barData = barData
       this.horizonData = {'AAPL': AAPL, 'ADBE': ADBE, 'GOOG': GOOG}
+    },
+    methods: {
+      displayEventMO (d) {
+        this.message = d;
+        this.eventName = 'Mouseover';
+        this.snackbar = true;
+      },
+      displayEventClick(d) {
+        this.message = d;
+        this.eventName = 'Click';
+        this.snackbar = true;
+      },
+      displayDendrogramMO (d) {
+        this.message = `Depth: ${d.depth}, Height: ${d.height}, X: ${d.x}, Y: ${d.y}`
+        this.eventName = "Mouseover";
+        this.snackbar = true;
+      },
+      displayDendrogramClick (d) {
+        this.message = `Depth: ${d.depth}, Height: ${d.height}, X: ${d.x}, Y: ${d.y}`
+        this.eventName = "Click";
+        this.snackbar = true;
+      },
+      displaySunburstMO (d) {
+        this.message = d.data;
+        this.eventName = "Mouseover";
+        this.snackbar = true;
+      },
+      displaySunburstClick (d) {
+        this.message = d.data;
+        this.eventName  = "Click";
+        this.snackbar = true;
+      }
     }
   }
 </script>
