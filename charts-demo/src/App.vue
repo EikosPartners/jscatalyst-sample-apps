@@ -12,7 +12,7 @@
 
 import html2canvas from 'html2canvas-webpack' // This needs to be part of a mixin / plugin
 
-import Toolbar from './components/Toolbar.vue'
+import { Toolbar } from 'jscatalyst'
 import SubNavBar from './components/SubNavBar.vue'
 export default {
   name: 'App',

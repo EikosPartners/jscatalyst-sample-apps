@@ -5,6 +5,7 @@ import ChartistCharts from '@/components/ChartistCharts'
 import ChartjsCharts from '@/components/ChartjsCharts'
 import D3Charts from '@/components/D3Charts'
 import PlotlyCharts from '@/components/PlotlyCharts'
+import Google from '@/components/Google'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/plotly',
       name: 'PlotlyCharts',
       component: PlotlyCharts
+    },
+    {
+      path: '/google',
+      name: 'Google',
+      component: Google
     }
   ]
 })
