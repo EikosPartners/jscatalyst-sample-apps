@@ -6,22 +6,46 @@
             <div class="timeline">
                 <timeline :dataModel="tlData" :title="'GoogleCharts Timeline'"/>
             </div>
+            <div class="gauge">
+                <gauge :dataModel="gaugeData" :title="'GoogleCharts Gauge'" :config="gaugeOpts"/>
+            </div>
+            <div class="orgchart">
+                <orgchart :dataModel="orgData" :title="'GoogleCharts Org Chart'"></orgchart>
+            </div>
+            <div class="sankey">
+                <sankey :dataModel="sankeyData" :title="'GoogleCharts Sankey Diagram'"/>
+            </div>
         </div>
     </main>
 </template>
 
 <script>
-    import { Timeline } from 'jscatalyst';
+    import { Timeline, Gauge, OrgChart, SankeyDiagram } from 'jscatalyst';
 
     import tlData from '@/mockData/google/timelineMock.js'
+    import gaugeData from '@/mockData/google/gaugeMock.js';
+    import orgData from '@/mockData/google/orgChartMock.js';
+    import sankeyData from '@/mockData/google/sankeyDiagramMock.js';
 
     export default {
         components: {
-            'timeline': Timeline
+            'timeline': Timeline,
+            'gauge': Gauge,
+            'orgchart': OrgChart,
+            'sankey': SankeyDiagram
         },
         data () {
             return { 
-                tlData: tlData
+                tlData,
+                gaugeData,
+                orgData,
+                sankeyData,
+                gaugeOpts: {
+                    redFrom: 90,
+                    redTo: 100,
+                    yellowFrom: 75, yellowTo: 90,
+                    minorTicks: 5
+                }
             }
         }
     }
@@ -36,6 +60,21 @@
         & .timeline {
             height: 500px;
             grid-column: 1/7;
+        }
+
+        & .gauge {
+            height: 500px;
+            grid-column: 7/13;
+        }
+
+        & .orgchart {
+            height: 500px;
+            grid-column: 1/7;
+        }
+
+        & .sankey {
+            height: 500px;
+            grid-column: 7/13;
         }
     }
 </style>
