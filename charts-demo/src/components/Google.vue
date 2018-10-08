@@ -15,24 +15,29 @@
             <div class="sankey">
                 <sankey :dataModel="sankeyData" :title="'GoogleCharts Sankey Diagram'"/>
             </div>
+            <div class="combo">
+                <combo :dataModel="comboData" :title="'GoogleCharts Combo Chart'" :config='comboOpts'/>
+            </div>
         </div>
     </main>
 </template>
 
 <script>
-    import { Timeline, Gauge, OrgChart, SankeyDiagram } from 'jscatalyst';
+    import { Timeline, Gauge, OrgChart, SankeyDiagram, ComboChart } from 'jscatalyst';
 
     import tlData from '@/mockData/google/timelineMock.js'
     import gaugeData from '@/mockData/google/gaugeMock.js';
     import orgData from '@/mockData/google/orgChartMock.js';
     import sankeyData from '@/mockData/google/sankeyDiagramMock.js';
+    import comboData from '@/mockData/google/comboChartMock.js'
 
     export default {
         components: {
             'timeline': Timeline,
             'gauge': Gauge,
             'orgchart': OrgChart,
-            'sankey': SankeyDiagram
+            'sankey': SankeyDiagram,
+            'combo': ComboChart
         },
         data () {
             return { 
@@ -45,6 +50,13 @@
                     redTo: 100,
                     yellowFrom: 75, yellowTo: 90,
                     minorTicks: 5
+                },
+                comboData,
+                comboOpts: {
+                    seriesType: 'bars',
+                    series: [{},{ type: 'line' },{},{},{},{type: 'area'}],
+                    height: 300,
+                    backgroundColor: "white"
                 }
             }
         }
@@ -75,6 +87,11 @@
         & .sankey {
             height: 500px;
             grid-column: 7/13;
+        }
+
+        & .combo {
+            height: 500px;
+            grid-column: 1/7;
         }
     }
 </style>

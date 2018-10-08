@@ -13,7 +13,7 @@
     "chartjs": "^0.3.24",
     "html2canvas": "^1.0.0-alpha.12",
     "html2canvas-webpack": "^0.5.0-beta4",
-    "jscatalyst": "^1.2.24",
+    "jscatalyst": "^1.2.25",
     "moment-duration-format": "^2.2.2",
     "openfin-layouts": "0.0.2",
     "stylus": "^0.54.5",
