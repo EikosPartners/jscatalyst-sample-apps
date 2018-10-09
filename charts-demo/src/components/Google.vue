@@ -54,7 +54,11 @@
                 comboData,
                 comboOpts: {
                     seriesType: 'bars',
-                    series: [{},{ type: 'line' },{},{},{},{type: 'area'}],
+                    series: [
+                        { type: 'bars'},
+                        { type: 'candlesticks' },
+                        { type: 'line'}
+                    ],
                     height: 300,
                     backgroundColor: "white"
                 }
