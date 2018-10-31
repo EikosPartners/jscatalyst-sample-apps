@@ -43,7 +43,7 @@
           <v-list-tile> <v-list-tile-avatar> <v-icon>insert_chart</v-icon> </v-list-tile-avatar>
            <v-list-tile-title>  <router-link :to="{name: 'D3Charts'}" class="sidebar-menu">D3</router-link> </v-list-tile-title>
           </v-list-tile>
-          <v-list-tile> <v-list-tile-avatar> <v-icon>pie_chart</v-icon> </v-list-tile-avatar>
+          <!-- <v-list-tile> <v-list-tile-avatar> <v-icon>pie_chart</v-icon> </v-list-tile-avatar>
             <v-list-tile-title>  <router-link :to="{name: 'PlotlyCharts'}" class="sidebar-menu">Plotly</router-link> </v-list-tile-title>
           </v-list-tile>
           <v-list-tile> <v-list-tile-avatar> <v-icon>bubble_chart</v-icon> </v-list-tile-avatar>
@@ -51,7 +51,7 @@
           </v-list-tile>
           <v-list-tile> <v-list-tile-avatar> <v-icon>multiline_chart</v-icon> </v-list-tile-avatar>
             <v-list-tile-title>  <router-link :to="{name: 'ChartistCharts'}" class="sidebar-menu">Chartist</router-link> </v-list-tile-title>
-          </v-list-tile>
+          </v-list-tile> -->
         </v-list-group>
       </v-list>
     </v-navigation-drawer>
