@@ -32,9 +32,9 @@
 			      </v-text-field>
 					</v-flex>
 			    <v-flex xs4 md4 d-flex align-center>
-			      <v-btn 
+			      <v-btn
 						  @click="submitMessage">
-			        Submit Message
+			        Submit
 			      </v-btn>
 			    </v-flex>
 				</v-layout>

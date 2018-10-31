@@ -16,7 +16,7 @@ import '@@/jscatalyst/dist/jscatalyst.min.css'
 Vue.use(Vuetify)
 
 import { ThemePlugin, AuthPlugin } from 'jscatalyst'
-Vue.use(ThemePlugin, {store, themes: ['Blue', 'Pink', 'Green', 'Brown', 'Red', 'Grey']})
+Vue.use(ThemePlugin, {store})
 
 new Vue({
   el: '#app',

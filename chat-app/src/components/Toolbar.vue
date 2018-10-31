@@ -32,22 +32,12 @@
             </v-btn>
             <span>Refresh</span>
           </v-tooltip>
-          <v-menu>  
-            <v-btn flat :to='{name: "DirectMessageList"}' slot="activator" class="navBtn">DM List</v-btn> 
+          <v-menu>
+            <v-btn flat :to='{name: "DirectMessageList"}' slot="activator" class="navBtn">DM List</v-btn>
           </v-menu>
 
 
-           <v-menu offset-y open-on-hover max-height="400px">
-            <v-btn flat slot="activator" class="navBtn">Themes
-              <v-icon>arrow_drop_down</v-icon>
-            </v-btn>
-            <v-list>
-              <v-list-tile v-for="item in themes" :key="item" @click="chooseTheme(item)">
-                <v-list-tile-title>{{ item }}</v-list-tile-title>
-                  <v-icon :color="item.toLowerCase()">brightness_1</v-icon>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
+          <ThemeChooserComponent />
 
         </v-toolbar-items>
 
@@ -72,7 +62,7 @@
 </template>
 
 <script>
-import { StyleTogglerMixin } from 'jscatalyst'
+import { StyleTogglerMixin, ThemeChooserComponent } from 'jscatalyst'
 import {mapState} from 'vuex'
 
   export default {
@@ -92,6 +82,10 @@ import {mapState} from 'vuex'
         themes: [],
       }
     },
+    components: {
+      ThemeChooserComponent
+    },
+
     mounted() {
       this.themes = this.allThemes
       if (this.$store.state.themeMod) this.chooseTheme(this.colorTheme);

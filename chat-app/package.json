@@ -18,7 +18,7 @@
     "express": "^4.16.3",
     "html2canvas-webpack": "^0.5.0-beta4",
     "ip": "^1.1.5",
-    "jscatalyst": "^1.1.1",
+    "jscatalyst": "^1.2.4",
     "socket.io": "^2.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
