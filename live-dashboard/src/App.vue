@@ -11,7 +11,6 @@ import html2canvas from 'html2canvas-webpack' // This needs to be part of a mixi
 
 import Dashboard from './components/Dashboard.vue'
 import Toolbar from './components/Toolbar.vue'
-  import heatData from '@/mockData/d3/heatmapMock.json'
 
 export default {
   name: 'App',

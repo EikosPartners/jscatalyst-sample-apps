@@ -20,7 +20,7 @@ Vue.use(Vuetify)
 
 const store = new Vuex.Store({})
 
-Vue.use(ThemePlugin, {store, themes: ['Blue', 'Pink', 'Green', 'Brown', 'Red', 'Grey']})
+Vue.use(ThemePlugin, {store})
 Vue.use(VueSocketio, 'https://ws-api.iextrading.com/1.0/tops')
 
 /* eslint-disable */
