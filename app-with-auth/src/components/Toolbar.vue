@@ -34,18 +34,7 @@
           </v-tooltip>
 
           <!-- <v-btn small flat @click.stop="aboutModal = true" class="navBtn">About</v-btn> -->
-          <v-menu offset-y open-on-hover max-height="400px">
-            <v-btn flat slot="activator" class="navBtn">Themes
-              <v-icon>arrow_drop_down</v-icon>
-            </v-btn>
-            <v-list>
-              <v-list-tile v-for="item in themes" :key="item" @click="chooseTheme(item)">
-                <v-list-tile-title>{{ item }}</v-list-tile-title>
-                  <v-icon :color="item.toLowerCase()">brightness_1</v-icon>
-
-              </v-list-tile>
-            </v-list>
-          </v-menu>
+          <ThemeChooserComponent />
           <v-menu v-if='authenticated' offset-y open-on-hover max-height="400px">
             <v-btn flat slot="activator" class="navBtn">User
               <v-icon>arrow_drop_down</v-icon>
@@ -117,10 +106,11 @@
 
 <script>
 
-import { StyleTogglerMixin } from 'jscatalyst'
+import { StyleTogglerMixin, ThemeChooserComponent } from 'jscatalyst'
 
   export default {
     components: {
+      ThemeChooserComponent
     },
     props: [
 

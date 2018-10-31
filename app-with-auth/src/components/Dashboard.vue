@@ -20,6 +20,7 @@
         <h2 class='title text-xs-center mt-3'>Chart Name</h2>
         <heat-map class="chart-styles"
           :dataModel='heatData'
+          :dataType="'calendar'"
         ></heat-map>
       </section>
 

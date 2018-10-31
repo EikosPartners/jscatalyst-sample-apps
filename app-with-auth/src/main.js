@@ -17,7 +17,7 @@ Vue.use(Vuetify)
 
 const store = new Vuex.Store({})
 
-Vue.use(ThemePlugin, {store, themes: ['Blue', 'Pink', 'Green', 'Brown', 'Red', 'Grey']})
+Vue.use(ThemePlugin, {store, custom: true})
 Vue.use(AuthPlugin, {store, router, baseURL: 'http://localhost:8080'})
 
 /* eslint-disable no-new */
