@@ -32,33 +32,33 @@
             </v-btn>
             <span>Refresh</span>
           </v-tooltip>
-          <v-tooltip bottom>
+          <v-tooltip bottom v-if="fin">
             <v-btn icon @click="undock" slot="activator">
               <v-icon class="">chevron_left</v-icon>
             </v-btn>
             <span>Undock</span>
           </v-tooltip>
-          <v-tooltip bottom>
+          <v-tooltip bottom v-if="fin">
             <v-btn icon @click="openApp('http://localhost:8085')" slot="activator">
               <v-icon class="">arrow_up</v-icon>
             </v-btn>
             <span>Open Dashboard Sharing</span>
           </v-tooltip>
 
-          <v-tooltip bottom>
+          <v-tooltip bottom v-if="fin">
             <v-btn icon @click="openApp('http://localhost:8082')" slot="activator">
               <v-icon class="">chat</v-icon>
             </v-btn>
             <span>Open Chat App</span>
           </v-tooltip>
-          <v-tooltip bottom>
+          <v-tooltip bottom v-if="fin">
             <v-btn icon @click="openApp('http://localhost:8083')" slot="activator">
               <v-icon class="">view_compact</v-icon>
             </v-btn>
             <span>Open Live Dashboard</span>
           </v-tooltip>
 
-          <v-tooltip bottom>
+          <v-tooltip bottom v-if="fin">
             <v-btn icon @click="showAllWindows" slot="activator">
               <v-icon class="">list</v-icon>
             </v-btn>
@@ -67,17 +67,7 @@
 
           <!-- <v-btn small flat @click.stop="aboutModal = true" class="navBtn">About</v-btn> -->
 
-          <v-menu offset-y open-on-hover max-height="400px">
-            <v-btn flat slot="activator" class="navBtn">Themes
-              <v-icon>arrow_drop_down</v-icon>
-            </v-btn>
-            <v-list>
-              <v-list-tile v-for="item in themes" :key="item" @click="chooseTheme(item)">
-                <v-list-tile-title>{{ item }}</v-list-tile-title>
-                  <v-icon :color="item.toLowerCase()">brightness_1</v-icon>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
+          <ThemeChooserComponent />
 
         </v-toolbar-items>
 
@@ -89,8 +79,8 @@
             </v-btn>
             <span>Toggle light/dark</span>
           </v-tooltip>
-         
-          <v-tooltip bottom>
+
+          <v-tooltip bottom v-if="fin">
             <v-btn icon @click="undock" slot="activator">
               <v-icon class="">chevron_left</v-icon>
             </v-btn>
@@ -124,16 +114,20 @@
 
 <script>
 
-import { StyleTogglerMixin } from 'jscatalyst'
+import { StyleTogglerMixin,ThemeChooserComponent } from 'jscatalyst'
 
   export default {
     props: [
 
     ],
+    components: {
+      ThemeChooserComponent
+    },
     mixins: [StyleTogglerMixin],
     data: function () {
       return {
         themes: [],
+        fin: window.fin
       }
     },
     mounted() {

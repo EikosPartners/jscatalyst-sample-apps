@@ -1,7 +1,7 @@
 <template lang="html">
   <main>
     <h1 class="display-2 mb-5 text-xs-center">D3 Charts</h1>
-    
+
     <div class="d3-wrapper">
       <div class="bar-chart">
         <bar
@@ -80,6 +80,7 @@
         <heat
           :dataModel='heatData'
           title='D3 Heat Map'
+          :dataType="'calendar'"
           @jsc_mouseover="displayEventMO"
           @jsc_click="displayEventClick"
         ></heat>
@@ -357,7 +358,7 @@
         this.snackbar = true;
       },
       displayEventClick(d) {
-        this.message = d;
+        this.message = d.data;
         this.eventName = 'Click';
         this.snackbar = true;
       },
@@ -366,13 +367,14 @@
         this.eventName = "Mouseover";
         this.snackbar = true;
       },
-      displayDendrogramClick (d) {
+      displayDendrogramClick (e) {
+        let d = e.data
         this.message = `Depth: ${d.depth}, Height: ${d.height}, X: ${d.x}, Y: ${d.y}`
         this.eventName = "Click";
         this.snackbar = true;
       },
       displaySunburstMO (d) {
-        this.message = d.data;
+        this.message = d;
         this.eventName = "Mouseover";
         this.snackbar = true;
       },

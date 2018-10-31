@@ -2,6 +2,7 @@
   <v-app id="app">
     <toolbar></toolbar>
     <dashboard></dashboard>
+
   </v-app>
 </template>
 
@@ -10,6 +11,7 @@ import html2canvas from 'html2canvas-webpack' // This needs to be part of a mixi
 
 import Dashboard from './components/Dashboard.vue'
 import Toolbar from './components/Toolbar.vue'
+  import heatData from '@/mockData/d3/heatmapMock.json'
 
 export default {
   name: 'App',
@@ -30,7 +32,7 @@ export default {
           }
         }
 
-    if( event.data.action !== undefined && event.data.action === 'screencapture') 
+    if( event.data.action !== undefined && event.data.action === 'screencapture')
     {
         let body = window.document.body
         html2canvas(body)

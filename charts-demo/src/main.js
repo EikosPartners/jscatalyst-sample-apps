@@ -15,7 +15,6 @@ import {
 
 Vue.use(Vuetify)
 Vue.use(Vuex)
-Vue.use(require('vue-chartist'))
 
 const store = new Vuex.Store({
   state: {
@@ -28,8 +27,7 @@ const store = new Vuex.Store({
   }
 })
 Vue.use(ThemePlugin, {
-  store,
-  themes: ['Blue', 'Pink', 'Green', 'Brown', 'Red', 'Grey']
+  store
 })
 
 Vue.config.productionTip = false

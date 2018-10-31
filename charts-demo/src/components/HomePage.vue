@@ -16,7 +16,7 @@
           <h3 class="title mb-2">D3 Charts</h3>
           <p>The most popular JavaScript data visualization library. Charts are built using HTML, SVG, and CSS. <a href="https://d3js.org/" target="_blank">Read more</a>.</p>
         </div>
-        <div class="my-3">
+        <!-- <div class="my-3">
           <h3 class="title mb-2">Plotly Charts</h3>
           <p>A declarative charting library with easy-to-use, beautifully styled visuals. <a href="https://plot.ly/" target="_blank">Read more</a>.</p>
         </div>
@@ -27,7 +27,7 @@
         <div class="my-3">
           <h3 class="title mb-2">Chartist Charts</h3>
           <p>A flexible, responsive charting library. <a href="https://gionkunz.github.io/chartist-js/" target="_blank">Read more</a>.</p>
-        </div>
+        </div> -->
       </div>
     </section>
   </main>

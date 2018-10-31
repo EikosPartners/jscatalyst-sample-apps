@@ -11,14 +11,21 @@
 <script>
 
 import html2canvas from 'html2canvas-webpack' // This needs to be part of a mixin / plugin
-
 import Toolbar from './components/Toolbar.vue'
 import SubNavBar from './components/SubNavBar.vue'
+
 export default {
   name: 'App',
   components: {
     'toolbar': Toolbar,
-    'sub-nav': SubNavBar
+    'sub-nav': SubNavBar,
+  },
+  data(){
+    return {
+
+    }
+  },
+  methods: {
   },
   mounted() {
       window.addEventListener("message", event=>{
@@ -32,7 +39,7 @@ export default {
           }
         }
 
-    if( event.data.action !== undefined && event.data.action === 'screencapture') 
+    if( event.data.action !== undefined && event.data.action === 'screencapture')
     {
         let body = window.document.body
         html2canvas(body)
