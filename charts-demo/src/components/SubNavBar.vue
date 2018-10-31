@@ -3,9 +3,7 @@
     <div class="text-xs-center">
       <v-btn flat :to="{name: 'HomePage'}" class="primary">Home</v-btn>
       <v-btn flat :to="{name: 'D3Charts'}" class="primary">D3</v-btn>
-      <!-- <v-btn flat :to="{name: 'PlotlyCharts'}" class="primary">Plotly</v-btn>
-      <v-btn flat :to="{name: 'ChartjsCharts'}" class="primary">Chartjs</v-btn>
-      <v-btn flat :to="{name: 'ChartistCharts'}" class="primary">Chartist</v-btn> -->
+      <v-btn flat :to="{name: 'Google'}" class="primary">Google</v-btn>
     </div>
   </v-card>
 </template>
